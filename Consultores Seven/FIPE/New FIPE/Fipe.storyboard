@@ -184,14 +184,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADICIONAIS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEq-nd-aKg">
-                                <rect key="frame" x="15" y="40" width="106.5" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mmO-Xc-P5X">
-                                <rect key="frame" x="0.0" y="149" width="375" height="518"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42U-Bl-dIe">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
@@ -522,20 +516,18 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="42U-Bl-dIe" secondAttribute="trailing" id="1JG-Uv-WAQ"/>
                                     <constraint firstItem="42U-Bl-dIe" firstAttribute="top" secondItem="mmO-Xc-P5X" secondAttribute="top" id="RYp-uj-p5g"/>
-                                    <constraint firstAttribute="bottom" secondItem="42U-Bl-dIe" secondAttribute="bottom" id="jkx-st-JAj"/>
+                                    <constraint firstAttribute="bottom" secondItem="42U-Bl-dIe" secondAttribute="bottom" constant="69" id="jkx-st-JAj"/>
                                     <constraint firstItem="42U-Bl-dIe" firstAttribute="leading" secondItem="mmO-Xc-P5X" secondAttribute="leading" id="wVw-3U-9cd"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="BEq-nd-aKg" firstAttribute="top" secondItem="MNG-EN-nD7" secondAttribute="top" constant="20" id="0tZ-gs-CaR"/>
                             <constraint firstItem="MNG-EN-nD7" firstAttribute="bottom" secondItem="mmO-Xc-P5X" secondAttribute="bottom" id="Ej4-Fj-oxb"/>
                             <constraint firstItem="mmO-Xc-P5X" firstAttribute="leading" secondItem="MNG-EN-nD7" secondAttribute="leading" id="X7i-XD-75u"/>
                             <constraint firstItem="42U-Bl-dIe" firstAttribute="width" secondItem="2EK-Ts-9LR" secondAttribute="width" id="g6a-iQ-Tbu"/>
                             <constraint firstItem="MNG-EN-nD7" firstAttribute="trailing" secondItem="mmO-Xc-P5X" secondAttribute="trailing" id="hRF-G6-3aZ"/>
-                            <constraint firstItem="BEq-nd-aKg" firstAttribute="leading" secondItem="MNG-EN-nD7" secondAttribute="leading" constant="15" id="oUo-DE-V2e"/>
-                            <constraint firstItem="mmO-Xc-P5X" firstAttribute="top" secondItem="BEq-nd-aKg" secondAttribute="bottom" constant="85" id="yeg-ag-wOR"/>
+                            <constraint firstItem="mmO-Xc-P5X" firstAttribute="top" secondItem="MNG-EN-nD7" secondAttribute="top" constant="100" id="nG8-9F-hXf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MNG-EN-nD7"/>
                     </view>

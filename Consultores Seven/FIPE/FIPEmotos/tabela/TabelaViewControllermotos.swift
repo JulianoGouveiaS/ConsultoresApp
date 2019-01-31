@@ -227,7 +227,7 @@ class TabelaViewControllermotos: UIViewController {
     
     @IBAction func pct15Click(_ sender: Any) {
         if self.id_tabela != 0{
-            if self.id_tabela == 1 || self.id_tabela == 2 || self.id_tabela == 1{
+            if self.id_tabela == 1 || self.id_tabela == 2{
                 
                 if pacote_premio15Switch.isSelected == true{
                     self.valor_mesLabel.text =  String(self.valor_mesLabel.text!.doubleValue + 39.90)
@@ -235,7 +235,6 @@ class TabelaViewControllermotos: UIViewController {
                     self.valor_mesLabel.text = String(self.valor_mesLabel.text!.doubleValue - 39.90)
                 }
             } else if self.id_tabela == 5 || self.id_tabela == 6 {
-                
                 if pacote_premio15Switch.isSelected == true{
                     self.valor_mesLabel.text =  String(self.valor_mesLabel.text!.doubleValue + 54.90)
                 }else{

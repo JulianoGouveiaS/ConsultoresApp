@@ -270,6 +270,8 @@ class FipeVC: UIViewController {
                 let ano = json["ano"].stringValue
                 let updated_at = json["updated_at"].stringValue
                 let valor_mes = json["valor_mes"].stringValue
+                let id = json["id"].int
+
                 
                 let vc = UIStoryboard(name: "Fipe", bundle: nil).instantiateViewController(withIdentifier: "ResultadoFipeVC") as! ResultadoFipeVC
                     vc.tabela = tabela
@@ -282,6 +284,7 @@ class FipeVC: UIViewController {
                     vc.updated_at = updated_at
                     vc.valor_mes = valor_mes
                     vc.combustivel = combustivel
+                    vc.id_tabela = id
                 self.navigationController!.pushViewController(vc, animated: true)
                 
             case .failure(let error):

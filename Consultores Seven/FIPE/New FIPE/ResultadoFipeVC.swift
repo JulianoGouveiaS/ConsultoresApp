@@ -13,7 +13,7 @@ import KSTokenView
 
 class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
 
-    let names: Array<String> = ["Danos Mat a Terceiros", "Coparticipação Reduzida", "Proteção de Vidros 80%", "Rastreador", "Carro Reserva (15 dias)", "Carro Reserva (30 dias)", "Uber", "Pct Premium (15 dias)", "Pct Premium (30 dias)"]
+    var names: Array<String> = ["Danos Mat a Terceiros", "Coparticipação Reduzida", "Proteção de Vidros 80%", "Rastreador", "Carro Reserva (15 dias)", "Carro Reserva (30 dias)", "Uber", "Pct Premium (15 dias)", "Pct Premium (30 dias)", "Assist 24H 500KM", "Assist 24H 700KM", "Assist 24H 1000KM"]
   
     
     @IBOutlet weak var tabelaLbl: UILabel!
@@ -36,14 +36,20 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
     var updated_at: String!
     var valor_mes: String!
     var combustivel: String!
+    var id_tabela: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tokenView = KSTokenView(frame: CGRect(x: 10, y: 125, width: 300, height: 40))
+        if self.id_tabela == 3{
+            self.names = ["Danos Mat a Terceiros", "Coparticipação Reduzida", "Rastreador", "Pct Premium (15 dias)", "Pct Premium (30 dias)", "Assist 24H 500KM", "Assist 24H 700KM", "Assist 24H 1000KM"]
+        }
+        
+        
+        let tokenView = KSTokenView(frame: CGRect(x: 10, y: 20, width: 300, height: 40))
         
         tokenView.delegate = self
-        tokenView.promptText = "Selecionados: "
+        tokenView.promptText = "ADICIONAIS: "
         tokenView.placeholder = "Clique para adicionar"
         tokenView.descriptionText = "Adicionais"
         tokenView.style = .squared
@@ -66,7 +72,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
         self.valorLbl.text = self.valor
         self.anoLbl.text = "\(self.ano!) \(self.combustivel!)"
         self.updated_atLbl.text = self.updated_at
-        self.valor_mesLbl.text = "R$ \(Double(self.valor_mes.replace(target: ",", withString: "."))!) reais"
+        self.valor_mesLbl.text = "\(Double(self.valor_mes.replace(target: ",", withString: "."))!)"
         
     }
     
@@ -91,16 +97,153 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
     }
     
     func tokenView(_ tokenView: KSTokenView, didAddToken token: KSToken) {
-        print("adicionou:" ,token)
+        if self.id_tabela != 0{
+            switch token.title {
+                
+            case "Danos Mat a Terceiros":
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 15.00)
+                
+            case "Coparticipação Reduzida":
+                if self.id_tabela != 5 && self.id_tabela != 6{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 15.00)
+                }else{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 30.00)
+                }
+                
+            case "Proteção de Vidros 80%":
+                if self.id_tabela != 3{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 15.00)
+                }
+                
+            case "Rastreador":
+                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 50.00)
+                
+            case "Carro Reserva (15 dias)":
+                if self.id_tabela != 3{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 15.00)
+                }
+                
+            case "Carro Reserva (30 dias)":
+                if self.id_tabela != 3{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 30.00)
+                }
+                
+            case "Pct Premium (15 dias)":
+                if self.id_tabela != 3 && self.id_tabela != 5 && self.id_tabela != 6{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 39.00)
+                }
+                
+            case "Pct Premium (30 dias)":
+                if self.id_tabela != 3 {
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 69.00)
+                }
+                
+            case "Uber":
+                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 50.00)
+                
+            case "Assist 24H 500KM":
+                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 15.00)
+                
+            case "Assist 24H 700KM":
+                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 25.00)
+                
+            case "Assist 24H 1000KM":
+                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 35.00)
+                
+            default:
+                print("asdadasdada")
+                
+            }
+        }
     }
     
     func tokenView(_ tokenView: KSTokenView, didDeleteToken token: KSToken) {
-        print("removeu:" ,token)
+        if self.id_tabela != 0{
+            switch token.title {
+                
+            case "Danos Mat a Terceiros":
+                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 15.00)
+                
+            case "Coparticipação Reduzida":
+                if self.id_tabela != 5 && self.id_tabela != 6{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 15.00)
+                }else{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 30.00)
+                }
+                
+            case "Proteção de Vidros 80%":
+                if self.id_tabela != 3{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 15.00)
+                }
+                
+            case "Rastreador":
+                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 50.00)
+                
+            case "Carro Reserva (15 dias)":
+                if self.id_tabela != 3{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 15.00)
+                }
+                
+            case "Carro Reserva (30 dias)":
+                if self.id_tabela != 3{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 30.00)
+                }
+                
+            case "Pct Premium (15 dias)":
+                if self.id_tabela != 3 && self.id_tabela != 5 && self.id_tabela != 6{
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 39.00)
+                }
+                
+            case "Pct Premium (30 dias)":
+                if self.id_tabela != 3 {
+                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 69.00)
+                }
+                
+            case "Uber":
+                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 50.00)
+                
+            case "Assist 24H 500KM":
+                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 15.00)
+                
+            case "Assist 24H 700KM":
+                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 25.00)
+                
+            case "Assist 24H 1000KM":
+                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 35.00)
+                
+            default:
+                print("asdadasdada")
+            }
+        }
     }
     
     func tokenView(_ tokenView: KSTokenView, didSelectToken token: KSToken) {
         print("selecionou:" ,token)
     }
 
+    func Convertetabela(tabelaApi: String!) -> Int{
+        var tabelaid = 0
+        if tabelaApi! == "AUTOMÓVEL LEVE/PICK UP"{
+            tabelaid = 1
+        }
+        if tabelaApi! == "CAMINHONETE" {
+            tabelaid = 2
+        }
+        if tabelaApi! == "MOTO"{
+            tabelaid = 3
+        }
+        if tabelaApi! == "TABELA ESPECIAL 4" {
+            tabelaid = 4
+        }
+        if tabelaApi! == "TABELA ESPECIAL 5" {
+            tabelaid = 5
+        }
+        if tabelaApi! == "TABELA ESPECIAL 6" {
+            tabelaid = 6
+        }
+        
+        return tabelaid
+    }
+    
 }
 
