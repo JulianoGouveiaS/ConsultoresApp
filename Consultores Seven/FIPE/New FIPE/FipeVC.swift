@@ -270,7 +270,6 @@ class FipeVC: UIViewController {
                 let ano = json["ano"].stringValue
                 let updated_at = json["updated_at"].stringValue
                 let valor_mes = json["valor_mes"].stringValue
-                let id = json["id"].int
 
                 
                 let vc = UIStoryboard(name: "Fipe", bundle: nil).instantiateViewController(withIdentifier: "ResultadoFipeVC") as! ResultadoFipeVC
@@ -284,7 +283,7 @@ class FipeVC: UIViewController {
                     vc.updated_at = updated_at
                     vc.valor_mes = valor_mes
                     vc.combustivel = combustivel
-                    vc.id_tabela = id
+                    vc.id_tabela = self.Convertetabela(tabelaApi: tabela)
                 self.navigationController!.pushViewController(vc, animated: true)
                 
             case .failure(let error):
@@ -305,4 +304,28 @@ class FipeVC: UIViewController {
             
         }
     }
+    func Convertetabela(tabelaApi: String!) -> Int{
+        var tabelaid = 0
+        if tabelaApi! == "AUTOMÓVEL LEVE/PICK UP"{
+            tabelaid = 1
+        }
+        if tabelaApi! == "CAMINHONETE" {
+            tabelaid = 2
+        }
+        if tabelaApi! == "MOTO"{
+            tabelaid = 3
+        }
+        if tabelaApi! == "TABELA ESPECIAL 4" {
+            tabelaid = 4
+        }
+        if tabelaApi! == "TABELA ESPECIAL 5" {
+            tabelaid = 5
+        }
+        if tabelaApi! == "TABELA ESPECIAL 6" {
+            tabelaid = 6
+        }
+        
+        return tabelaid
+    }
+    
 }

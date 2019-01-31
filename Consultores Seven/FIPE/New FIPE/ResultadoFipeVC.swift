@@ -13,7 +13,7 @@ import KSTokenView
 
 class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
 
-    var names: Array<String> = ["Danos Mat a Terceiros","st 24H 1000KM"]
+    var names: Array<String> = ["Danos Mat a Terceiros", "Carro Reserva (15 dias)", "Carro Reserva (30 dias)", "Coparticipação Reduzida", "Rastreador", "Proteção de Vidros 80%", "Pct Premium (15 dias)", "Pct Premium (30 dias)", "Assist 24H 500KM", "Assist 24H 700KM", "Assist 24H 1000KM", "Uber, Bacify, 99Pop, etc..."]
   
     
     @IBOutlet weak var tabelaLbl: UILabel!
@@ -25,6 +25,8 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
     @IBOutlet weak var anoLbl: UILabel!
     @IBOutlet weak var valorLbl: UILabel!
     @IBOutlet weak var valor_mesLbl: UILabel!
+ 
+    @IBOutlet weak var tokenView: KSTokenView!
     
     var tabela: String!
     var franquia: String!
@@ -37,29 +39,23 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
     var valor_mes: String!
     var combustivel: String!
     var id_tabela: Int!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if self.id_tabela == 3{
             self.names = ["Danos Mat a Terceiros", "Coparticipação Reduzida", "Rastreador", "Pct Premium (15 dias)", "Pct Premium (30 dias)", "Assist 24H 500KM", "Assist 24H 700KM", "Assist 24H 1000KM"]
-        }
-        
-        
-        let tokenView = KSTokenView(frame: CGRect(x: 10, y: 20, width: 300, height: 40))
+       }
         
         tokenView.delegate = self
         tokenView.promptText = "ADICIONAIS: "
-        tokenView.placeholder = "Clique para adicionar"
+        tokenView.placeholder = "Clique para Pesquisar"
         tokenView.descriptionText = "Adicionais"
+        tokenView.maxTokenLimit = -1
+        tokenView.minimumCharactersToSearch = 0 // Show all results without without typing anything
         tokenView.style = .squared
-        tokenView.shouldAddTokenFromTextInput = false
-        tokenView.minimumCharactersToSearch = 0
-        tokenView.direction = .vertical
+        tokenView.returnKeyType(type: .done)
         tokenView.layer.borderWidth = 1
         tokenView.layer.borderColor = UIColor.black.cgColor
-        
-        self.view.addSubview(tokenView)
         
         if self.tabela == "Não fazemos esse modelo"{
             self.franquiaLbl.text = "Não fazemos esse modelo"
@@ -75,26 +71,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
         self.updated_atLbl.text = self.updated_at
         self.valor_mesLbl.text = "\(Double(self.valor_mes.replace(target: ",", withString: "."))!)"
         
-    }
-    
-    func tokenView(_ tokenView: KSTokenView, performSearchWithString string: String, completion: ((_ results: Array<AnyObject>) -> Void)?) {
         
-        if (string.characters.isEmpty){
-            completion!(names as Array<AnyObject>);
-            return
-        };
-        
-        var data: Array<String> = []
-        for value: String in names {
-            if value.lowercased().range(of: string.lowercased()) != nil {
-                data.append(value)
-            }
-        }
-        completion!(data as Array<AnyObject>)
-    }
-    
-    func tokenView(_ tokenView: KSTokenView, displayTitleForObject object: AnyObject) -> String {
-        return object as! String
     }
     
     func tokenView(_ tokenView: KSTokenView, didAddToken token: KSToken) {
@@ -221,7 +198,38 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
     func tokenView(_ tokenView: KSTokenView, didSelectToken token: KSToken) {
         print("selecionou:" ,token)
     }
-
-   
+    func tokenView(_ tokenView: KSTokenView, performSearchWithString string: String, completion: ((_ results: Array<AnyObject>) -> Void)?) {
+        var data: Array<String> = names
+        for value: String in names {
+            if value.lowercased().range(of: string.lowercased()) != nil {
+                data.append(value)
+            }
+        }
+        completion!(data as Array<AnyObject>)
+    }
+    
+    func tokenView(_ tokenView: KSTokenView, displayTitleForObject object: AnyObject) -> String {
+        return object as! String
+    }
+    
+    func tokenView(_ tokenView: KSTokenView, shouldChangeAppearanceForToken token: KSToken) -> KSToken? {
+       
+        token.tokenBackgroundColor = UIColor.red
+        token.tokenTextColor = UIColor.black
+    
+        return token
+    }
+    
+    func MakeButtonsNav(){
+        let button: UIButton = UIButton(type: UIButtonType.custom) as! UIButton
+        button.setImage(UIImage(named: "enviado"), for: UIControlState.normal)
+        button.addTarget(self, action: "screenshot", for: UIControlEvents.touchUpInside)
+        button.frame = self.CGRectMake(0, 0, 53, 31)
+        let barButton = UIBarButtonItem(customView: button)
+        
+        self.navigationItem.rightBarButtonItem = barButton
+        
+    }
+    
 }
 

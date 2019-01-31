@@ -453,6 +453,16 @@ extension UIViewController {
         }
     }
     
+    @objc func screenShot() {
+        //Create the UIImage
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        //Save it to the camera roll
+        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+    }
+    
     func getTextfield(view: UIView) -> [UITextField] {
         var results = [UITextField]()
         for subview in view.subviews as [UIView] {

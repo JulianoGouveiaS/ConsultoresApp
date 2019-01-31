@@ -154,6 +154,10 @@ class Teto: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
     
     func loadFotos(){
         KRProgressHUD.show()
+        let settings = FirestoreSettings()
+        settings.isPersistenceEnabled = true
+        
+        db.settings = settings
         
         db.collection("ConsultorSeven").document("FotosPropostas").collection("\(self.id_user!)").document("\(self.propostaEscolhida.id!)").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
