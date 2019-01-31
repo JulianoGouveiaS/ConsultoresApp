@@ -1,0 +1,6 @@
+framework module Pods_Consultores_SevenUITests {
+  umbrella header "Pods-Consultores SevenUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
