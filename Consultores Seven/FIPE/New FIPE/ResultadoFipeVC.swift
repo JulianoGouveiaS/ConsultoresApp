@@ -13,7 +13,7 @@ import KSTokenView
 
 class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
 
-    var names: Array<String> = ["Danos Mat a Terceiros", "Coparticipação Reduzida", "Proteção de Vidros 80%", "Rastreador", "Carro Reserva (15 dias)", "Carro Reserva (30 dias)", "Uber", "Pct Premium (15 dias)", "Pct Premium (30 dias)", "Assist 24H 500KM", "Assist 24H 700KM", "Assist 24H 1000KM"]
+    var names: Array<String> = ["Danos Mat a Terceiros","st 24H 1000KM"]
   
     
     @IBOutlet weak var tabelaLbl: UILabel!
@@ -60,6 +60,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
         tokenView.layer.borderColor = UIColor.black.cgColor
         
         self.view.addSubview(tokenView)
+        
         if self.tabela == "Não fazemos esse modelo"{
             self.franquiaLbl.text = "Não fazemos esse modelo"
         }else{
@@ -221,29 +222,6 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
         print("selecionou:" ,token)
     }
 
-    func Convertetabela(tabelaApi: String!) -> Int{
-        var tabelaid = 0
-        if tabelaApi! == "AUTOMÓVEL LEVE/PICK UP"{
-            tabelaid = 1
-        }
-        if tabelaApi! == "CAMINHONETE" {
-            tabelaid = 2
-        }
-        if tabelaApi! == "MOTO"{
-            tabelaid = 3
-        }
-        if tabelaApi! == "TABELA ESPECIAL 4" {
-            tabelaid = 4
-        }
-        if tabelaApi! == "TABELA ESPECIAL 5" {
-            tabelaid = 5
-        }
-        if tabelaApi! == "TABELA ESPECIAL 6" {
-            tabelaid = 6
-        }
-        
-        return tabelaid
-    }
-    
+   
 }
 
