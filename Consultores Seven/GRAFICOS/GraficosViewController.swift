@@ -17,7 +17,7 @@ class DummyVC: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurePageControl()
+        //configurePageControl()
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
         self.view.addSubview(scrollView)
@@ -32,7 +32,6 @@ class DummyVC: UIViewController, UIScrollViewDelegate {
         
         self.scrollView.contentSize = CGSize(width:self.scrollView.frame.size.width * 4,height: self.scrollView.frame.size.height)
         pageControl.addTarget(self, action: #selector(self.changePage(sender:)), for: UIControlEvents.valueChanged)
-        
     }
     
     func configurePageControl() {

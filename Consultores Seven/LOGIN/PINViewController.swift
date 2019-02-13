@@ -60,7 +60,6 @@ class PINViewController: UIViewController, CBPinEntryViewDelegate {
                     //funil
                     KRProgressHUD.dismiss()
                     let vc = UIStoryboard(name: "Funil", bundle: nil).instantiateViewController(withIdentifier: "FunilVC") as! FunilVC;
-                    
                     self.navigationController?.pushViewController(vc, animated: true);
                     
                 }else{

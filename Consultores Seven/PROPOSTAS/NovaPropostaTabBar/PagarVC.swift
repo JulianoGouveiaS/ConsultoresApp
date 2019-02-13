@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stripe
 import KRProgressHUD
 import Alamofire
 import SwiftyJSON

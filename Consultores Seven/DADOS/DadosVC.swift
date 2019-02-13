@@ -43,7 +43,7 @@ class DadosVC: UIViewController {
             Section(header: "Extras", rows: [
                 Row(text: "FIPE", detailText: "", selection: { [unowned self] in
                     
-                    let vc = UIStoryboard(name: "FIPEStoryboard", bundle: nil).instantiateViewController(withIdentifier: "TipoSimuladorViewController") as? TipoSimuladorViewController
+                    let vc = UIStoryboard(name: "Fipe", bundle: nil).instantiateViewController(withIdentifier: "FipeVC") as? FipeVC
                     self.navigationController!.pushViewController(vc!, animated: true)
                     }),
                 Row(text: "Meus Pagamentos", detailText: "", selection: { [unowned self] in

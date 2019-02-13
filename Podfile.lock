@@ -136,12 +136,22 @@ PODS:
     - gRPC-Core (= 1.14.0)
     - gRPC-RxLibrary (= 1.14.0)
   - GTMSessionFetcher/Core (1.2.0)
-  - Harpy (4.1.14)
   - KRActivityIndicatorView (2.2.0)
   - KRProgressHUD (3.3.0):
     - KRActivityIndicatorView (= 2.2.0)
   - KSTokenView (4.0.1)
   - leveldb-library (1.20)
+  - MaterialComponents/Palettes (63.0.0)
+  - MaterialComponents/private/Math (63.0.0)
+  - MaterialComponents/ProgressView (63.0.0):
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MDFInternationalization
+    - MotionAnimator (~> 2.1)
+  - MDFInternationalization (1.1.0)
+  - MotionAnimator (2.8.1):
+    - MotionInterchange (~> 1.6)
+  - MotionInterchange (1.6.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -152,10 +162,8 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
-  - SkeletonView (1.4)
   - SkyFloatingLabelTextField (3.6.0)
   - Static (3.0.2)
-  - Stripe (13.2.0)
   - SwiftyGif (4.1.0)
   - SwiftyJSON (3.1.4)
   - SwiftyPickerPopover (6.6.4)
@@ -174,15 +182,13 @@ DEPENDENCIES:
   - Firebase/MLModelInterpreter
   - Firebase/Storage
   - Gallery (from `https://github.com/hyperoslo/Gallery.git`, branch `master`)
-  - Harpy
   - KRProgressHUD
   - KSTokenView (~> 4.0)
+  - MaterialComponents/ProgressView
   - PMSuperButton
   - SDWebImage (~> 4.0)
-  - SkeletonView
   - SkyFloatingLabelTextField (~> 3.0)
   - Static (from `https://github.com/venmo/Static`)
-  - Stripe
   - SwiftyJSON (~> 3.1)
   - SwiftyPickerPopover
 
@@ -213,18 +219,19 @@ SPEC REPOS:
     - gRPC-ProtoRPC
     - gRPC-RxLibrary
     - GTMSessionFetcher
-    - Harpy
     - KRActivityIndicatorView
     - KRProgressHUD
     - KSTokenView
     - leveldb-library
+    - MaterialComponents
+    - MDFInternationalization
+    - MotionAnimator
+    - MotionInterchange
     - nanopb
     - PMSuperButton
     - Protobuf
     - SDWebImage
-    - SkeletonView
     - SkyFloatingLabelTextField
-    - Stripe
     - SwiftyGif
     - SwiftyJSON
     - SwiftyPickerPopover
@@ -272,24 +279,25 @@ SPEC CHECKSUMS:
   gRPC-ProtoRPC: 76f6053639a842e1fb45fa82aa598bf3f4d9f66f
   gRPC-RxLibrary: 3c305f32155024b116b780f389323c73a28197e6
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
-  Harpy: b2fbe6819f6a8932df32d7cd2fb20f442df86bbc
   KRActivityIndicatorView: a30136b113917e0a716743200d8dbbcc3cb350b5
   KRProgressHUD: 0741430fa95fbebe525db3b56d1d9c6c785edfdf
   KSTokenView: 73bd70340b9f64b8324a55e5be5e9bd94a4d139e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  MaterialComponents: 4e0c0ee000e0dcbf5214b0054767ef9f8f812264
+  MDFInternationalization: b5b8626628abf026e630e5ebaeee563037712cbb
+  MotionAnimator: ee16aa30567c5bae0fb2750c132915829cfaaf8a
+  MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PMSuperButton: 5e7b2eb79468dba1ced3fd00e47a7ce88a1fa664
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  SkeletonView: 50f7a9b04e3a62bd0ae964859c19317fabaea367
   SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
   Static: 1542d33a345105ae57e8fffd2d5200080d99f131
-  Stripe: 2c69e216061d54d9c538204bb4f58bd597ddfc5b
   SwiftyGif: d36c6dfb52e2ca1e48fe349d225f50ec4123ec85
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyPickerPopover: 6d08cbae133c80743654f4e977607cd1553947e6
   TensorFlowLite: 7cd43376c604938a12110b8335a5a407afe41688
 
-PODFILE CHECKSUM: f9bff66fb3ea4060d9df4fc3039abc0b86fe5ba3
+PODFILE CHECKSUM: 3e244004bc4b1802eaeb864e4fd958c44cb0cb83
 
 COCOAPODS: 1.5.3

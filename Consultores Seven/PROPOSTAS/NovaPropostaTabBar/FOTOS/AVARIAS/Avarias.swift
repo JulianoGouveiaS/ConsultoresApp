@@ -180,8 +180,10 @@ class Avarias: UIViewController, UICollectionViewDataSource, UICollectionViewDel
                 let dictionary = querySnapshot?.data()
                 
                 for i in 1...10{
-                    if (dictionary?["avaria\(i)_st"] as? String ?? "").contains(".jpg"){
-                        self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(dictionary?["avaria\(i)_st"] as? String ?? "")?alt=media")
+                    if (dictionary?["avaria\(i)_st"] as? String ?? "").contains("/emulated/"){
+                        let arr1 = (dictionary?["avaria\(i)_st"] as? String ?? "").components(separatedBy: "/Seven/")
+                        self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(arr1[1])?alt=media")
+                        
                     }else{
                     self.ArrFotosUrls.append(dictionary?["avaria\(i)_st"] as? String ?? "")
                     }
@@ -197,19 +199,20 @@ class Avarias: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     
     fileprivate func extractedFunc(_ image: Image) {
+        DispatchQueue.main.async {
+            KRProgressHUD.show()
+        }
         if self.ArrFotosUrls[0] == ""{
             //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
             self.ArrFotosUrls[0] = "-"
             image.resolve(completion: { (imagem) in
                 let data = UIImagePNGRepresentation(imagem!)
                 
-                if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                    if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                    
-                    self.enviaFotoStorage(nomeImg: "avaria1_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                    self.myCollectionView.reloadData()
-                    }}
+                let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                
+                self.enviaFotoStorage(nomeImg: "avaria1_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                
                 
             })
         }else if self.ArrFotosUrls[1] == ""{
@@ -218,13 +221,10 @@ class Avarias: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             image.resolve(completion: { (imagem) in
                 let data = UIImagePNGRepresentation(imagem!)
                 
-                if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                    if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                    
-                    self.enviaFotoStorage(nomeImg: "avaria2_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                    self.myCollectionView.reloadData()
-                    }}
+                let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                
+                self.enviaFotoStorage(nomeImg: "avaria2_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
                 
             })
         }else if self.ArrFotosUrls[2] == ""{
@@ -233,28 +233,23 @@ class Avarias: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             image.resolve(completion: { (imagem) in
                 let data = UIImagePNGRepresentation(imagem!)
                 
-                if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                    if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                    
-                    self.enviaFotoStorage(nomeImg: "avaria3_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                    self.myCollectionView.reloadData()
-                    }}
+                let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                
+                self.enviaFotoStorage(nomeImg: "avaria3_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                
+                
             })
-            
         }else if self.ArrFotosUrls[3] == ""{
             //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
             self.ArrFotosUrls[3] = "-"
             image.resolve(completion: { (imagem) in
                 let data = UIImagePNGRepresentation(imagem!)
                 
-                if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                    if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                    
-                    self.enviaFotoStorage(nomeImg: "avaria4_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                    self.myCollectionView.reloadData()
-                    }}
+                let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                
+                self.enviaFotoStorage(nomeImg: "avaria4_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
             })
         }else if self.ArrFotosUrls[4] == ""{
             //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
@@ -262,13 +257,11 @@ class Avarias: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             image.resolve(completion: { (imagem) in
                 let data = UIImagePNGRepresentation(imagem!)
                 
-                if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                    if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                    
-                    self.enviaFotoStorage(nomeImg: "avaria5_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                    self.myCollectionView.reloadData()
-                    }}
+                let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                
+                self.enviaFotoStorage(nomeImg: "avaria5_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                
             })
         }else if self.ArrFotosUrls[5] == ""{
             //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
@@ -276,13 +269,11 @@ class Avarias: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             image.resolve(completion: { (imagem) in
                 let data = UIImagePNGRepresentation(imagem!)
                 
-                if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                    if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                    
-                    self.enviaFotoStorage(nomeImg: "avaria6_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                    self.myCollectionView.reloadData()
-                    }}
+                let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                
+                self.enviaFotoStorage(nomeImg: "avaria6_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                
             })
         }else if self.ArrFotosUrls[6] == ""{
             //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
@@ -290,13 +281,11 @@ class Avarias: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             image.resolve(completion: { (imagem) in
                 let data = UIImagePNGRepresentation(imagem!)
                 
-                if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                    if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                    
-                    self.enviaFotoStorage(nomeImg: "avaria7_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                    self.myCollectionView.reloadData()
-                    }}
+                let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                
+                self.enviaFotoStorage(nomeImg: "avaria7_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                
             })
         }else if self.ArrFotosUrls[7] == ""{
             //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
@@ -304,13 +293,11 @@ class Avarias: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             image.resolve(completion: { (imagem) in
                 let data = UIImagePNGRepresentation(imagem!)
                 
-                if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                    if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                    
-                    self.enviaFotoStorage(nomeImg: "avaria8_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                    self.myCollectionView.reloadData()
-                    }}
+                let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                
+                self.enviaFotoStorage(nomeImg: "avaria8_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                
             })
         }else if self.ArrFotosUrls[8] == ""{
             //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
@@ -318,30 +305,27 @@ class Avarias: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             image.resolve(completion: { (imagem) in
                 let data = UIImagePNGRepresentation(imagem!)
                 
-                if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                    if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                    
-                    self.enviaFotoStorage(nomeImg: "avaria9_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                    self.myCollectionView.reloadData()
-                    }}
+                let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                
+                self.enviaFotoStorage(nomeImg: "avaria9_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                
             })
         }else if self.ArrFotosUrls[9] == ""{
             //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
             self.ArrFotosUrls[9] = "-"
             image.resolve(completion: { (imagem) in
-                
                 let data = UIImagePNGRepresentation(imagem!)
                 
-                if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                    if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                    
-                    self.enviaFotoStorage(nomeImg: "avaria10_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                    self.myCollectionView.reloadData()
-                    }}
+                let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                
+                self.enviaFotoStorage(nomeImg: "avaria10_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                
+                
             })
         }
+        self.myCollectionView.reloadData()
     }
     
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {

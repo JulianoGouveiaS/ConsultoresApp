@@ -21,7 +21,6 @@ class TableVisitasVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var listaVisitas = [Visita]()
     
-    
     var searchedList = [Visita]()
     var searching = false
     @IBOutlet weak var searchBar: UISearchBar!
@@ -92,7 +91,6 @@ class TableVisitasVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }else if visita.tpveiculo! == "2"{
                  cell.tipoLabel.text = "Tipo: Moto"
             }
-
         }
         if visita.modelo_veiculo! == ""{
             cell.modeloLabel.text = "Modelo: Modelo não especificado."
@@ -164,9 +162,7 @@ class TableVisitasVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             // Present Alert View Controller
             present(alertController, animated: true, completion: nil)
         }
-        
     }
-    
     
     func loadVisitas(){
         KRProgressHUD.show()
@@ -212,7 +208,6 @@ class TableVisitasVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                 }
                 
-                
                 KRProgressHUD.dismiss()
                 
                 DispatchQueue.main.async {
@@ -221,11 +216,7 @@ class TableVisitasVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             KRProgressHUD.dismiss()
         }
-    }
-    
-    
-  
-    
+    } 
 }
 extension TableVisitasVC: UISearchBarDelegate {
     

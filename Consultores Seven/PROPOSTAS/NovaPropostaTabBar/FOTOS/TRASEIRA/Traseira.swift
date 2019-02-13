@@ -163,8 +163,10 @@ class Traseira: UIViewController, UICollectionViewDataSource, UICollectionViewDe
                 self.ArrFotosUrls = []
                 
                 let dictionary = querySnapshot?.data()
-                if (dictionary?["traseira_st"] as? String ?? "").contains(".jpg"){
-                    self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(dictionary?["traseira_st"] as? String ?? "")?alt=media")
+                if (dictionary?["traseira_st"] as? String ?? "").contains("/emulated/"){
+                    let arr1 = (dictionary?["traseira_st"] as? String ?? "").components(separatedBy: "/Seven/")
+                    self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(arr1[1])?alt=media")
+                    
                 }else{
                     self.ArrFotosUrls.append(dictionary?["traseira_st"] as? String ?? "")
                 }
@@ -175,21 +177,21 @@ class Traseira: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         }
     }
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
-        
+        DispatchQueue.main.async {
+            KRProgressHUD.show()
+        }
         images[0].resolve(completion: { (imagem) in
-            let data1 = UIImagePNGRepresentation(imagem!)
+            let data = UIImagePNGRepresentation(imagem!)
             
-            if let fotoComprimida = self.colocaLogo(imgData: data1!).jpeg(.lowest) {
-                if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                print("data1.count => \(data1!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                
-                self.enviaFotoStorage(nomeImg: "traseira_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                self.myCollectionView.reloadData()
-            }
-            }
+            let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+            print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+            
+            self.enviaFotoStorage(nomeImg: "traseira_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+            
         })
         
         
+        self.myCollectionView.reloadData()
         controller.dismiss(animated: true, completion: nil)
     }
     

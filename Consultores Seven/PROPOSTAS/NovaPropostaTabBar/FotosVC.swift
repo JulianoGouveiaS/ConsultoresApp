@@ -165,6 +165,9 @@ class FotosVC: UIViewController,EPSignatureDelegate {
                 if dictionary?["protvidro"] as? Bool ?? false == false && (dictionary?["pctpremio15"] as? Bool ?? false) == false && (dictionary?["pctpremio30"] as? Bool ?? false) == false{
                     self.vidroBttn.isHidden = true
                     self.vidroLbl.isHidden = true
+                }else{
+                    self.vidroBttn.isHidden = false
+                    self.vidroLbl.isHidden = false
                 }
                 
                 if (dictionary?["seguro"] as? String ?? "0") == "1"{
@@ -242,11 +245,13 @@ class FotosVC: UIViewController,EPSignatureDelegate {
                         self.estofadosBttn.isHidden = true
                         self.lanternaBttn.isHidden = true
                         self.faroisBttn.isHidden = true
+                        self.vidroBttn.isHidden = true
                         
                         self.portamalasLbl.isHidden = true
                         self.tetoLbl.isHidden = true
                         self.estofadosLbl.isHidden = true
                         self.lanternaLbl.isHidden = true
+                        self.vidroLbl.isHidden = true
                         self.faroisLbl.isHidden = true
                     }
                     
@@ -338,6 +343,8 @@ class FotosVC: UIViewController,EPSignatureDelegate {
                     countTeto = countTeto + 1
                 }
                 self.tetoLbl.text = "\(countTeto)/1"
+                self.superiormotoLbl.text = "\(countTeto)/1"
+                
                 
                 var countMotor = 0
                 if dictionary?["motor_st"] as? String ?? "" != ""{
@@ -747,14 +754,13 @@ class FotosVC: UIViewController,EPSignatureDelegate {
     
     func epSignature(_: EPSignatureViewController, didSign imagem: UIImage, boundingRect: CGRect) {
         
-        let data1 = UIImagePNGRepresentation(imagem)
+        let data = UIImagePNGRepresentation(imagem)
         
-        if let fotoComprimida = self.colocaLogo(imgData: data1!).jpeg(.lowest) {
-            print("data1.count => \(data1!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-            
-            self.enviaFotoStorage(nomeImg: "vistoria_str", imagemDados: fotoComprimida, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-            
-        }
+        let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+        print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+        
+        self.enviaFotoStorage(nomeImg: "vistoria_str", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+     
     }
     
     func enviarProposta(){

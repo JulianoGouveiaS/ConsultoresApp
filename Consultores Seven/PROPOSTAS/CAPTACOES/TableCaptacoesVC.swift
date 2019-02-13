@@ -10,6 +10,7 @@ import UIKit
 import KRProgressHUD
 import FirebaseFirestore
 import CFAlertViewController
+import StoreKit
 
 class TableCaptacoesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
@@ -46,6 +47,11 @@ class TableCaptacoesVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         actionButton.shadowCircleOpacity = 0.4
         actionButton.shadowCircleRadius = 2
         actionButton.isAddShadow = true
+       /*
+        if #available( iOS 10.3,*){
+            SKStoreReviewController.requestReview()
+            apareceuRateApp()
+        }*/
         
         actionButton.handler = {
             button in
@@ -58,6 +64,39 @@ class TableCaptacoesVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.view.addSubview(actionButton)
         // Do any additional setup after loading the view.
     }
+    /*
+    func apareceuRateApp(){
+        let db = Firestore.firestore()
+        let date = Date()
+            let Reference = db.collection("ConsultorSeven").document("iosVersion").collection("CheckRateApp").document("\(self.id_user!)")
+            var values: [String : Any]!
+            values = ["date": "\(date)"] as [String : Any]
+            
+            Reference.setData(values) { (error) in
+                if error != nil{
+                    print("erro ao acessar servidor", error)
+                    self.CriarAlerta(tituloAlerta: "Erro", mensagemAlerta: "Erro ao acessar servidor!", acaoAlerta: "OK", erroRecebido:"\(error)")
+                    return
+                }
+        }
+    }
+    
+    func checkDataRateApp() -> Date{
+        let db = Firestore.firestore()
+        var date: Date!
+        db.collection("ConsultorSeven").document("iosVersion").collection("CheckRateApp").document("\(self.id_user!)").getDocument { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let dictionary = querySnapshot?.data()
+                
+                date = dictionary?["date"] as? Date ?? nil
+                
+            }
+            KRProgressHUD.dismiss()
+        }
+        return Date()
+    }*/
     
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -198,7 +237,6 @@ class TableCaptacoesVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func checkVersion(){
-        
         db.collection("ConsultorSeven").document("iosVersion").addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -229,12 +267,11 @@ class TableCaptacoesVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                         self.present(alert, animated: true, completion: nil)
                     }
                 }
-                
             }
         }
     }
-    
 }
+
 extension TableCaptacoesVC: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

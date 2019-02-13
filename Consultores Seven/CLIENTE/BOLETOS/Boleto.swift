@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class Boleto{
-     var nosso_numero: String!
-     var valor: String!
+    var nosso_numero: String!
+    var valor: String!
     var tipo_boleto: String!
     var data_vencimento: String!
     var data_pagamento: String!

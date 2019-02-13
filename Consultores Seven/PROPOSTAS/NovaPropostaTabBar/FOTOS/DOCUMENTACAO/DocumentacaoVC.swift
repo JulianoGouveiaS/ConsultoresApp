@@ -19,7 +19,7 @@ class DocumentacaoVC: UIViewController, UICollectionViewDataSource, UICollection
     
     
     @IBOutlet weak var myCollectionView: UICollectionView!
-    var ArrFotosUrls = [String]()
+    var ArrFotosUrls: [String] = ["","","",""]
     let db = Firestore.firestore()
      var permissao = ""
     var propostaEscolhida: Proposta!
@@ -74,10 +74,11 @@ class DocumentacaoVC: UIViewController, UICollectionViewDataSource, UICollection
                 return myCell2
                 
             }else{
+                
                 let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "celulareuso", for: indexPath as IndexPath) as! CellCollectionPropostas
                 myCell.imagem.tag = indexPath.row
                 myCell.backgroundColor = UIColor.clear
-                myCell.imagem.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "imgLoad"))
+               myCell.imagem.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "imgLoad"))
                 let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
                 tapGesture.numberOfTapsRequired = 1
                 self.myCollectionView.addGestureRecognizer(tapGesture)
@@ -181,14 +182,19 @@ class DocumentacaoVC: UIViewController, UICollectionViewDataSource, UICollection
                 let dictionary = querySnapshot?.data()
                 
                 for i in 1...4{
-                    if (dictionary?["doc\(i)_st"] as? String ?? "").contains(".jpg"){
-                        self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(dictionary?["doc\(i)_st"] as? String ?? "")?alt=media")
+                    if (dictionary?["doc\(i)_st"] as? String ?? "").contains("/emulated/"){
+                        
+                       // autoreleasepool {
+                        let arr1 = (dictionary?["doc\(i)_st"] as? String ?? "").components(separatedBy: "/Seven/")
+                        self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(arr1[1])?alt=media")
+                      //  }
                     }else{
-                    self.ArrFotosUrls.append(dictionary?["doc\(i)_st"] as? String ?? "")
+                        
+                        autoreleasepool {
+                            self.ArrFotosUrls.append(dictionary?["doc\(i)_st"] as? String ?? "")
+                        }
                     }
                 }
-                
-                
                 self.myCollectionView.reloadData()
             }
             KRProgressHUD.dismiss()
@@ -199,6 +205,9 @@ class DocumentacaoVC: UIViewController, UICollectionViewDataSource, UICollection
     
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
         print("ArrFotosUrls => ",ArrFotosUrls)
+        DispatchQueue.main.async {
+            KRProgressHUD.show()
+        }
         for image in images{
             if self.ArrFotosUrls[0] == ""{
                 //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
@@ -206,13 +215,10 @@ class DocumentacaoVC: UIViewController, UICollectionViewDataSource, UICollection
                 image.resolve(completion: { (imagem) in
                     let data = UIImagePNGRepresentation(imagem!)
                     
-                    if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                        if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                        print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                        
-                        self.enviaFotoStorage(nomeImg: "doc1_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                        self.myCollectionView.reloadData()
-                        }}
+                    let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.04)
+                    print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                    
+                    self.enviaFotoStorage(nomeImg: "doc1_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
                     
                 })
             }else if self.ArrFotosUrls[1] == ""{
@@ -221,13 +227,10 @@ class DocumentacaoVC: UIViewController, UICollectionViewDataSource, UICollection
                 image.resolve(completion: { (imagem) in
                     let data = UIImagePNGRepresentation(imagem!)
                     
-                    if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                        if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                        print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                        
-                        self.enviaFotoStorage(nomeImg: "doc2_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                        self.myCollectionView.reloadData()
-                        }}
+                    let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.07)
+                    print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                    
+                    self.enviaFotoStorage(nomeImg: "doc2_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
                     
                 })
             }else if self.ArrFotosUrls[2] == ""{
@@ -236,32 +239,31 @@ class DocumentacaoVC: UIViewController, UICollectionViewDataSource, UICollection
                 image.resolve(completion: { (imagem) in
                     let data = UIImagePNGRepresentation(imagem!)
                     
-                    if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                        if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                        print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                        
-                        self.enviaFotoStorage(nomeImg: "doc3_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                        self.myCollectionView.reloadData()
-                        }}
+                    let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.04)
+                    print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                    
+                    self.enviaFotoStorage(nomeImg: "doc3_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                    
                 })
-                
             }else if self.ArrFotosUrls[3] == ""{
                 //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
                 self.ArrFotosUrls[3] = "-"
                 image.resolve(completion: { (imagem) in
                     let data = UIImagePNGRepresentation(imagem!)
                     
-                    if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                        if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                        print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                        
-                        self.enviaFotoStorage(nomeImg: "doc4_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                        self.myCollectionView.reloadData()
-                        }}
+                    let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.04)
+                    print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                    
+                    self.enviaFotoStorage(nomeImg: "doc4_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                    
                 })
-            }
+                }
+                
+            
         }
         controller.dismiss(animated: true, completion: nil)
+        KRProgressHUD.dismiss()
+       
     }
     func getPermissao(id_user:String, propostaEscolhida: Proposta){
         let db = Firestore.firestore()

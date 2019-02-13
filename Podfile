@@ -21,10 +21,8 @@ pod 'Firebase/Firestore'
 pod 'SDWebImage', '~> 4.0'
 pod 'KSTokenView', '~> 4.0'
 pod 'SwiftyPickerPopover'
-pod 'Stripe'
-pod "SkeletonView"
 pod 'AIFlatSwitch', '~> 1.0.1'
-pod 'Harpy'
+pod 'MaterialComponents/ProgressView'
 pod 'CFAlertViewController'
 pod "Agrume"
 pod 'Gallery', :git => 'https://github.com/hyperoslo/Gallery.git', :branch => 'master'

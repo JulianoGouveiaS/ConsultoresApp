@@ -173,21 +173,22 @@ class SuperiorMoto: UIViewController, UICollectionViewDataSource, UICollectionVi
         }
     }
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
-        
+        DispatchQueue.main.async {
+            KRProgressHUD.show()
+        }
         images[0].resolve(completion: { (imagem) in
-            let data1 = UIImagePNGRepresentation(imagem!)
+            let data = UIImagePNGRepresentation(imagem!)
             
-            if let fotoComprimida = self.colocaLogo(imgData: data1!).jpeg(.lowest) {
-                if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                print("data1.count => \(data1!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                
-                self.enviaFotoStorage(nomeImg: "teto_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                self.myCollectionView.reloadData()
-                }}
+            let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+            print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+            
+            self.enviaFotoStorage(nomeImg: "teto_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+         
+            
             
         })
         
-        
+           self.myCollectionView.reloadData()
         controller.dismiss(animated: true, completion: nil)
     }
     

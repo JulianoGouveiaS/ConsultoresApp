@@ -120,12 +120,11 @@ class PerfilViewController: UIViewController,UIImagePickerControllerDelegate,UIN
             image.resolve(completion: { (imagem) in
                 let data = UIImagePNGRepresentation(imagem!)
                 self.imageUser.image = imagem
-                if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                    if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
+                if let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2) {
+                    print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida)" )
                     
-                    self.enviaFotoPerfil(nomeImg: "fotoperfil", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)")
-                    }}
+                    self.enviaFotoPerfil(nomeImg: "fotoperfil", imagemDados: UIImagePNGRepresentation(fotoComprimida)!, id_user: "\(self.id_user!)")
+                    }
                 
             })
         }

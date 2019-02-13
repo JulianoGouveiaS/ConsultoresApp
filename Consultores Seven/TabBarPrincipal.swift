@@ -22,8 +22,8 @@ class TabBarPrincipal: UITabBarController, UITabBarControllerDelegate {
         MakeButtonsNav()
         self.delegate = self
     // MARK: - Actions
- 
     }
+ 
     @objc func pushToNextVC() {
         let newVC = UIViewController()
         newVC.view.backgroundColor = UIColor.red
@@ -34,7 +34,6 @@ class TabBarPrincipal: UITabBarController, UITabBarControllerDelegate {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         print("Selected item", item.tag )
     }
-    
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         print("Selected view controller", viewController)
@@ -60,8 +59,8 @@ class TabBarPrincipal: UITabBarController, UITabBarControllerDelegate {
         bttnGrafico.frame = self.CGRectMake(0, 0, 53, 31)
         let barButtongrafico = UIBarButtonItem(customView: bttnGrafico)
         
-        //self.navigationItem.rightBarButtonItems = [barButtonperfil, barButtongrafico]
-        self.navigationItem.rightBarButtonItems = [barButtonperfil]
+        self.navigationItem.rightBarButtonItems = [barButtonperfil, barButtongrafico]
+      //  self.navigationItem.rightBarButtonItems = [barButtonperfil]
     }
     
     func MakeButtonsNav(){
@@ -86,8 +85,8 @@ class TabBarPrincipal: UITabBarController, UITabBarControllerDelegate {
         
         
         //assign button to navigationbar
-       // self.navigationItem.rightBarButtonItems = [barButtonperfil, barButtongrafico]
-         self.navigationItem.rightBarButtonItems = [barButtonperfil]
+        self.navigationItem.rightBarButtonItems = [barButtonperfil, barButtongrafico]
+       //  self.navigationItem.rightBarButtonItems = [barButtonperfil]
         self.navigationItem.leftBarButtonItem = barButtonOff
         
     }

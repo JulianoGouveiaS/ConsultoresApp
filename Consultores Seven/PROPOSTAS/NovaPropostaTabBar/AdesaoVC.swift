@@ -127,6 +127,10 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
             CriarAlertaSemErro(tituloAlerta: "Falha ao Salvar", mensagemAlerta: "Data de proposta inválida", acaoAlerta: "Ok")
             return
         }
+        var auxVidros = false
+        if self.tpVeic == "1"{
+            var auxVidros = self.protVidrosBox.isChecked
+        }
         
         let usersReference = db.collection("ConsultorSeven").document("MinhasPropostas").collection("\(self.id_user!)").document("\(self.propostaEscolhida.id!)")
 
@@ -138,7 +142,7 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
             "obs": "\(self.obsTxtView.text!)",
             "danosterceiros": self.danosMateriaisBox.isChecked,
             "coparticipacaored": self.CopartBox.isChecked,
-            "protvidro": self.protVidrosBox.isChecked,
+            "protvidro": auxVidros,
             "cartaopremio": self.cartaoPremBox.isChecked,
             "rastreadorparceirosv": self.rastreadorBox.isChecked,
             "uber": self.uberBox.isChecked,
@@ -151,7 +155,8 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
             "km700": self.km700,
             "km500": self.km500,
             "seguro": self.tpProt,
-            "tpveiculo": self.tpVeic]
+            "tpveiculo": self.tpVeic
+            ]
             as [String : Any]
 
         usersReference.updateData(values) { (error) in

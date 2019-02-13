@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "89C6E5E66D6A0D0A8D652BFE7CBF56C4"
+               BlueprintIdentifier = "9CD20D9CA5DC55FFA51246832C34C7E7"
                BlueprintName = "SwiftyPickerPopover"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "SwiftyPickerPopover.framework">

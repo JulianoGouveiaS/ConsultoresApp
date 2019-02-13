@@ -179,8 +179,10 @@ class Farois: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 let dictionary = querySnapshot?.data()
                 
                 for i in 1...2{
-                    if (dictionary?["farol\(i)_st"] as? String ?? "").contains(".jpg"){
-                        self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(dictionary?["farol\(i)_st"] as? String ?? "")?alt=media")
+                    if (dictionary?["farol\(i)_st"] as? String ?? "").contains("/emulated/"){
+                        let arr1 = (dictionary?["farol\(i)_st"] as? String ?? "").components(separatedBy: "/Seven/")
+                        self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(arr1[1])?alt=media")
+                        
                     }else{
                         self.ArrFotosUrls.append(dictionary?["farol\(i)_st"] as? String ?? "")
                     }
@@ -196,6 +198,9 @@ class Farois: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
         print("ArrFotosUrls => ",ArrFotosUrls)
+        DispatchQueue.main.async {
+            KRProgressHUD.show()
+        }
         for image in images{
             if self.ArrFotosUrls[0] == ""{
                 //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
@@ -203,13 +208,10 @@ class Farois: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 image.resolve(completion: { (imagem) in
                     let data = UIImagePNGRepresentation(imagem!)
                     
-                    if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                        if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                        print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                        
-                        self.enviaFotoStorage(nomeImg: "farol1_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                        self.myCollectionView.reloadData()
-                        }}
+                    let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                    print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                    
+                    self.enviaFotoStorage(nomeImg: "farol1_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
                     
                 })
             }else if self.ArrFotosUrls[1] == ""{
@@ -218,17 +220,15 @@ class Farois: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 image.resolve(completion: { (imagem) in
                     let data = UIImagePNGRepresentation(imagem!)
                     
-                    if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                        if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                        print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                        
-                        self.enviaFotoStorage(nomeImg: "farol2_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                        self.myCollectionView.reloadData()
-                    }
-                    }
+                    let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                    print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                    
+                    self.enviaFotoStorage(nomeImg: "farol2_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                    
                 })
             }
         }
+        self.myCollectionView.reloadData()
         controller.dismiss(animated: true, completion: nil)
     }
     func getPermissao(id_user:String, propostaEscolhida: Proposta){

@@ -68,7 +68,7 @@ class MenuClienteVC: UIViewController {
             Section(header: "Seven Proteção Veicular", rows: [
                 Row(text: "FIPE", detailText: "", selection: { [unowned self] in
                     
-                    let vc = UIStoryboard(name: "FIPEStoryboard", bundle: nil).instantiateViewController(withIdentifier: "TipoSimuladorViewController") as? TipoSimuladorViewController
+                    let vc = UIStoryboard(name: "Fipe", bundle: nil).instantiateViewController(withIdentifier: "FipeVC") as? FipeVC
                     self.navigationController!.pushViewController(vc!, animated: true)
                 }),
                 Row(text: "Suporte", detailText: "", selection: { [unowned self] in
@@ -81,8 +81,8 @@ class MenuClienteVC: UIViewController {
                     
                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TelefonesUteisVC") as? TelefonesUteisVC
                     self.navigationController!.pushViewController(vc!, animated: true)
-                    
                 }),
+                
                 Row(text: "Sobre o App", detailText: "", selection: { [unowned self] in
                     
                     let vc = UIStoryboard(name: "SobreCliente", bundle: nil).instantiateViewController(withIdentifier: "SobreClienteVC") as? SobreClienteVC

@@ -37,16 +37,14 @@ class PediuPermissaoVC: UIViewController {
         self.okAssociado.isHidden = true
         self.okVeiculo.isHidden = true
         self.okImagens.isHidden = true
-        
         self.reloadBttn.isHidden = true
         self.prosseguirBttn.isEnabled = false
+        KRProgressHUD.show()
         EnviaVoluntario()
     }
     
-    
     func EnviaVoluntario() {
         
-        KRProgressHUD.show()
         let db = Firestore.firestore()
         
         db.collection("ConsultorSeven").document("MinhasPropostas").collection("\(self.id_user!)").document("\(self.propostaEscolhida.id!)").addSnapshotListener { (querySnapshot, err) in
@@ -55,7 +53,6 @@ class PediuPermissaoVC: UIViewController {
             } else {
                 
                 let dictionary = querySnapshot!.data()
-                
                 
                 let parameters = [
                     "id_voluntario": "\(self.id_user!)",
@@ -299,13 +296,13 @@ class PediuPermissaoVC: UIViewController {
                     "doc4":                      "",
                     "dut":                       "",
                     "rastreador":                "",
-                    "frontal1":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary!["fronta1_st"] as? String ?? ""),
-                    "frontal2":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary!["fronta2_st"] as? String ?? ""),
-                    "lat1":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["lat1_st"] as? String ?? ""),
-                    "lat2":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["lat2_st"] as? String ?? ""),
-                    "lat3":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["lat3_st"] as? String ?? ""),
-                    "lat4":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["lat4_st"] as? String ?? ""),
-                    "traseira":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary!["traseira_st"] as? String ?? ""),
+                    "frontal1":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary!["fronta1_st"] as! String),
+                    "frontal2":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary!["fronta2_st"] as! String),
+                    "lat1":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["lat1_st"] as! String),
+                    "lat2":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["lat2_st"] as! String),
+                    "lat3":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["lat3_st"] as! String),
+                    "lat4":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["lat4_st"] as! String),
+                    "traseira":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary!["traseira_st"] as! String),
                     "portamalas":                "",
                     "teto":                      "",
                     "motor":                     "",

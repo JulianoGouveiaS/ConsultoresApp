@@ -32,6 +32,7 @@ class ListaPropostasVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         loadPropostas()
         searchBar.delegate = self
         tableView.keyboardDismissMode = .interactive
+        hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view.
     }
     
@@ -286,8 +287,6 @@ class ListaPropostasVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.listaPropostas.append(proposta)
                     
                 }
-                
-                
                 KRProgressHUD.dismiss()
                 
                 DispatchQueue.main.async {

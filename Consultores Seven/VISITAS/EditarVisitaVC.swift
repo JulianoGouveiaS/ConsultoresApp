@@ -178,9 +178,13 @@ class EditarVisitaVC: UIViewController, UITextFieldDelegate {
         if !v.placa_isMERCOSUL{
             self.SwitchPlacaMercosul.setOn(false, animated: false)
             self.placaTxt.text = v.placa
+            self.StackViewPlacaNormal.isHidden = false
+            self.StackViewPlacaMERCOSUL.isHidden = true
         }else if v.placa_isMERCOSUL{
             self.SwitchPlacaMercosul.setOn(true, animated: false)
             self.placaMERCOSULTxt.text = v.placa
+            self.StackViewPlacaNormal.isHidden = true
+            self.StackViewPlacaMERCOSUL.isHidden = false
         }
         
         self.dt_visitaTxt.text = v.dt_visita
@@ -605,7 +609,8 @@ class EditarVisitaVC: UIViewController, UITextFieldDelegate {
             "status_permissao": "0",
             "uber": false,
             "uf": self.ufTxt.text!,
-            "zerokm": true
+            "zerokm": true,
+            "mes": getMesByInt(mes: month)
             ] as [String : Any]
         usersReference.setData(values) { (error) in
             if error != nil{

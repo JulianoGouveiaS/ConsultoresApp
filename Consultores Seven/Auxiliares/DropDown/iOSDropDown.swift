@@ -319,6 +319,7 @@ extension DropDown: UITableViewDataSource {
         return cell!
     }
 }
+
 //MARK: UITableViewDelegate
 extension DropDown: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -335,28 +336,20 @@ extension DropDown: UITableViewDelegate {
                         
                         tableView.reloadData()
         })
+        
         if hideOptionsWhenSelect {
             touchAction()
             self.endEditing(true)
         }
         if let selected = optionArray.index(where: {$0 == selectedText}) {
             if let id = optionIds?[selected] {
-                didSelectCompletion(selectedText, selected , id )
+                didSelectCompletion(selectedText, selected , id)
             }else{
                 didSelectCompletion(selectedText, selected , 0)
             }
-            
         }
-        
     }
 }
-
-
-
-
-
-
-//MARK: Arrow
 
 enum Position {
     case left

@@ -35,13 +35,24 @@ class FipeVC: UIViewController {
         self.modeloDropDown.text = ""
         self.arrAnos = []
         self.TipoSegmented.selectedSegmentIndex = UISegmentedControlNoSegment
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
+        marcaDropDown.layer.borderColor = UIColor.clear.cgColor
+        marcaDropDown.layer.borderWidth = 0.7
+        modeloDropDown.layer.borderColor = UIColor.clear.cgColor
+        modeloDropDown.layer.borderWidth = 0.7
+        codigoDropDown.layer.borderColor = UIColor.clear.cgColor
+        codigoDropDown.layer.borderWidth = 0.7
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.marcaDropDown.optionArray = []
+        hideKeyboardWhenTappedAround()
         
         marcaDropDown.didSelect(completion: { (selected, index, id)  in
             
@@ -67,6 +78,7 @@ class FipeVC: UIViewController {
             let idEscolhido = array[0]
             let arrayModelo = selected.components(separatedBy: " ")
             let modeloEscolhido = arrayModelo[0]
+            print("modelo escolhido1 ->" + modeloEscolhido)
             self.getModelo(tipo: self.tipoEscolhido, id: idEscolhido, modelo: modeloEscolhido)
             
             self.codigoDropDown.text = selected
@@ -79,12 +91,14 @@ class FipeVC: UIViewController {
             self.modeloDropDown.text = selected
             let array = self.marcaDropDown.text!.components(separatedBy: " ")
             let idEscolhido = array[0]
-            let arrayModelo = self.modeloDropDown.text!.components(separatedBy: " ")
+            let arrayModelo = self.codigoDropDown.text!.components(separatedBy: " ")
+            print("arr modelo -> ", arrayModelo)
             let modeloEscolhido = arrayModelo[0]
             //let arrayAno = selected.components(separatedBy: " ")
             //let anoEscolhido = arrayAno[0]
             
             let anoEscolhido = self.arrAnos[index]
+            print("modelo escolhido2 ->" + modeloEscolhido)
             self.getInfos(tipo: self.tipoEscolhido, id: idEscolhido, modelo: modeloEscolhido, ano: anoEscolhido)
         })
     }
@@ -92,10 +106,13 @@ class FipeVC: UIViewController {
     @IBAction func SegmentedChangeValue(sender: Any){
         self.marcaDropDown.optionArray = []
         self.marcaDropDown.text = ""
+        self.marcaDropDown.layer.borderColor = UIColor.clear.cgColor
         self.codigoDropDown.optionArray = []
         self.codigoDropDown.text = ""
+        self.codigoDropDown.layer.borderColor = UIColor.clear.cgColor
         self.modeloDropDown.optionArray = []
         self.modeloDropDown.text = ""
+        self.modeloDropDown.layer.borderColor = UIColor.clear.cgColor
         if self.TipoSegmented.selectedSegmentIndex == 0{
             
             self.tipoEscolhido = "carros"
@@ -137,6 +154,8 @@ class FipeVC: UIViewController {
                 }
                 self.marcaDropDown.isEnabled = true
                 
+                self.marcaDropDown.layer.borderColor = UIColor.green.cgColor
+                
                 KRProgressHUD.dismiss()
                 
             case .failure(let error):
@@ -151,11 +170,9 @@ class FipeVC: UIViewController {
                 }else if error._code == NSURLErrorNotConnectedToInternet{
                     self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Conecte-se a internet!", acaoAlerta: "Ok", erroRecebido: "\(error)")
                 }else {
-                    self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Erro ao conectar-se!", acaoAlerta: "Ok", erroRecebido: "\(error)")
+                    self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Erro ao conectar-se com o servidor!", acaoAlerta: "Ok", erroRecebido: "\(error)")
                 }
-                
             }
-            
         }
     }
     
@@ -179,6 +196,8 @@ class FipeVC: UIViewController {
                 }
                 self.codigoDropDown.isEnabled = true
                 
+                self.codigoDropDown.layer.borderColor = UIColor.green.cgColor
+                
                 KRProgressHUD.dismiss()
                 
             case .failure(let error):
@@ -193,11 +212,9 @@ class FipeVC: UIViewController {
                 }else if error._code == NSURLErrorNotConnectedToInternet{
                     self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Conecte-se a internet!", acaoAlerta: "Ok", erroRecebido: "\(error)")
                 }else {
-                    self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Erro ao conectar-se!", acaoAlerta: "Ok", erroRecebido: "\(error)")
+                    self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Erro ao conectar-se com o servidor!", acaoAlerta: "Ok", erroRecebido: "\(error)")
                 }
-                
             }
-            
         }
     }
     
@@ -206,6 +223,7 @@ class FipeVC: UIViewController {
         
         KRProgressHUD.show()
         
+        print("modelo = \(modelo)")
         let url = "https://www.sevenprotecaoveicular.com.br/Api/Recupemarca/\(tipo)/\(id)/\(modelo)"
         
         Alamofire.request(url, method:.get, parameters: nil,encoding: JSONEncoding.default).responseJSON { response in
@@ -223,6 +241,8 @@ class FipeVC: UIViewController {
                 }
                 self.modeloDropDown.isEnabled = true
                 
+                self.modeloDropDown.layer.borderColor = UIColor.green.cgColor
+                
                 KRProgressHUD.dismiss()
                 
             case .failure(let error):
@@ -237,7 +257,7 @@ class FipeVC: UIViewController {
                 }else if error._code == NSURLErrorNotConnectedToInternet{
                     self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Conecte-se a internet!", acaoAlerta: "Ok", erroRecebido: "\(error)")
                 }else {
-                    self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Erro ao conectar-se!", acaoAlerta: "Ok", erroRecebido: "\(error)")
+                    self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Erro ao conectar-se com o servidor!", acaoAlerta: "Ok", erroRecebido: "\(error)")
                 }
                 
             }
@@ -250,7 +270,7 @@ class FipeVC: UIViewController {
         KRProgressHUD.show()
         
         let url = "https://www.sevenprotecaoveicular.com.br/Api/Recupemarca/\(tipo)/\(id)/\(modelo)/\(ano)"
-        
+        print("url -> "+url)
         Alamofire.request(URL(string: url)!, method:.get, parameters: nil,encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -260,8 +280,7 @@ class FipeVC: UIViewController {
                 KRProgressHUD.dismiss()
                 
                 let combustivel = json["combustivel"].stringValue
-                
-                let tabela = json["tabela"].stringValue
+                let tabela = json["nm_tabela"].stringValue
                 let franquia = json["franquia"].stringValue
                 let codigo_fipe = json["codigo_fipe"].stringValue
                 let marca = json["marca"].stringValue
@@ -270,7 +289,6 @@ class FipeVC: UIViewController {
                 let ano = json["ano"].stringValue
                 let updated_at = json["updated_at"].stringValue
                 let valor_mes = json["valor_mes"].stringValue
-
                 
                 let vc = UIStoryboard(name: "Fipe", bundle: nil).instantiateViewController(withIdentifier: "ResultadoFipeVC") as! ResultadoFipeVC
                     vc.tabela = tabela
@@ -297,7 +315,7 @@ class FipeVC: UIViewController {
                 }else if error._code == NSURLErrorNotConnectedToInternet{
                     self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Conecte-se a internet!", acaoAlerta: "Ok", erroRecebido: "\(error)")
                 }else {
-                    self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Erro ao conectar-se!", acaoAlerta: "Ok", erroRecebido: "\(error)")
+                    self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Erro ao conectar-se com o servidor!", acaoAlerta: "Ok", erroRecebido: "\(error)")
                 }
                 
             }

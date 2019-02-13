@@ -52,7 +52,6 @@ class Frontal: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         
         //assign button to navigationbar
         self.navigationItem.rightBarButtonItem = barButtonPlus
-        
     }
     
     @objc func addFoto(){
@@ -147,7 +146,6 @@ class Frontal: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         }
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         print("User tapped on item \(indexPath.row)")
@@ -161,12 +159,12 @@ class Frontal: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         print("requestLightbox")
     }
     
-    
     func galleryControllerDidCancel(_ controller: GalleryController) {
         controller.dismiss(animated: true, completion: nil)
     }
     
     func loadFotos(){
+        
         KRProgressHUD.show()
         
         db.collection("ConsultorSeven").document("FotosPropostas").collection("\(self.id_user!)").document("\(self.propostaEscolhida.id!)").addSnapshotListener { (querySnapshot, err) in
@@ -178,24 +176,25 @@ class Frontal: UIViewController, UICollectionViewDataSource, UICollectionViewDel
                 let dictionary = querySnapshot?.data()
                 
                 for i in 1...2{
-                    if (dictionary?["fronta\(i)_st"] as? String ?? "").contains(".jpg"){
-                        self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(dictionary?["fronta\(i)_st"] as? String ?? "")?alt=media")
+                    if (dictionary?["fronta\(i)_st"] as? String ?? "").contains("/emulated/"){
+                        let arr1 = (dictionary?["fronta\(i)_st"] as? String ?? "").components(separatedBy: "/Seven/")
+                        self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(arr1[1])?alt=media")
+                        
                     }else{
                     self.ArrFotosUrls.append(dictionary?["fronta\(i)_st"] as? String ?? "")
                     }
-                    
                 }
-                
                 self.myCollectionView.reloadData()
             }
             KRProgressHUD.dismiss()
         }
     }
     
-    
-    
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
         print("ArrFotosUrls => ",ArrFotosUrls)
+        DispatchQueue.main.async {
+            KRProgressHUD.show()
+        }
         for image in images{
             if self.ArrFotosUrls[0] == ""{
                 //string apenas para ocupar o array e nao entrar no mesmo if duas vezes
@@ -203,13 +202,10 @@ class Frontal: UIViewController, UICollectionViewDataSource, UICollectionViewDel
                 image.resolve(completion: { (imagem) in
                     let data = UIImagePNGRepresentation(imagem!)
                     
-                    if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                        if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                        print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                        
-                        self.enviaFotoStorage(nomeImg: "fronta1_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                        self.myCollectionView.reloadData()
-                        }}
+                    let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                    print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                    
+                    self.enviaFotoStorage(nomeImg: "fronta1_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
                     
                 })
             }else if self.ArrFotosUrls[1] == ""{
@@ -218,17 +214,16 @@ class Frontal: UIViewController, UICollectionViewDataSource, UICollectionViewDel
                 image.resolve(completion: { (imagem) in
                     let data = UIImagePNGRepresentation(imagem!)
                     
-                    if let fotoComprimida = self.colocaLogo(imgData: data!).jpeg(.lowest) {
-                        if let fotoComprimida2 = self.colocaLogo(imgData: fotoComprimida).jpeg(.lowest) {
-                        print("data.count => \(data!.count) \n fotoComprimida.count => \(fotoComprimida.count)" )
-                        
-                        self.enviaFotoStorage(nomeImg: "fronta2_st", imagemDados: fotoComprimida2, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-                        self.myCollectionView.reloadData()
-                        }}
+                    let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+                    print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+                    
+                    self.enviaFotoStorage(nomeImg: "fronta2_st", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+                    
                     
                 })
             }
         }
+        self.myCollectionView.reloadData()
         controller.dismiss(animated: true, completion: nil)
     }
     func getPermissao(id_user:String, propostaEscolhida: Proposta){

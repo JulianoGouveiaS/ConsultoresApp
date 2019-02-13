@@ -16,6 +16,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
     var names: Array<String> = ["Danos Mat a Terceiros", "Carro Reserva (15 dias)", "Carro Reserva (30 dias)", "Coparticipação Reduzida", "Rastreador", "Proteção de Vidros 80%", "Pct Premium (15 dias)", "Pct Premium (30 dias)", "Assist 24H 500KM", "Assist 24H 700KM", "Assist 24H 1000KM", "Uber, Bacify, 99Pop, etc..."]
   
     
+    
     @IBOutlet weak var tabelaLbl: UILabel!
     @IBOutlet weak var franquiaLbl: UILabel!
     @IBOutlet weak var codigo_fipeLbl: UILabel!
@@ -42,6 +43,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        MakeButtonsNav()
         if self.id_tabela == 3{
             self.names = ["Danos Mat a Terceiros", "Coparticipação Reduzida", "Rastreador", "Pct Premium (15 dias)", "Pct Premium (30 dias)", "Assist 24H 500KM", "Assist 24H 700KM", "Assist 24H 1000KM"]
        }
@@ -51,7 +53,8 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
         tokenView.placeholder = "Clique para Pesquisar"
         tokenView.descriptionText = "Adicionais"
         tokenView.maxTokenLimit = -1
-        tokenView.minimumCharactersToSearch = 0 // Show all results without without typing anything
+        tokenView.searchResultHeight = 100
+        tokenView.minimumCharactersToSearch = 0 // Show all results without without typing anything 20/417/1994
         tokenView.style = .squared
         tokenView.returnKeyType(type: .done)
         tokenView.layer.borderWidth = 1
@@ -59,8 +62,14 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
         
         if self.tabela == "Não fazemos esse modelo"{
             self.franquiaLbl.text = "Não fazemos esse modelo"
+            self.valor_mesLbl.text = "Não fazemos esse modelo"
+            self.tokenView.isUserInteractionEnabled = false
+            tokenView.promptText = ""
+            tokenView.placeholder = "Adicionais indisponíveis para esta FIPE"
         }else{
             self.franquiaLbl.text = self.franquia
+            self.valor_mesLbl.text = "\(Double(self.valor_mes.replace(target: ",", withString: "."))!)"
+            self.tokenView.isUserInteractionEnabled = true
         }
         self.tabelaLbl.text = self.tabela
         self.codigo_fipeLbl.text = self.codigo_fipe
@@ -68,10 +77,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
         self.modeloLbl.text = self.modelo
         self.valorLbl.text = self.valor
         self.anoLbl.text = "\(self.ano!) \(self.combustivel!)"
-        self.updated_atLbl.text = self.updated_at
-        self.valor_mesLbl.text = "\(Double(self.valor_mes.replace(target: ",", withString: "."))!)"
-        
-        
+       // self.updated_atLbl.text = self.updated_at
     }
     
     func tokenView(_ tokenView: KSTokenView, didAddToken token: KSToken) {
@@ -79,60 +85,66 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
             switch token.title {
                 
             case "Danos Mat a Terceiros":
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 15.00)
+                AdicionaValor(valor: 15.00)
                 
             case "Coparticipação Reduzida":
                 if self.id_tabela != 5 && self.id_tabela != 6{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 15.00)
+                    AdicionaValor(valor: 15.00)
                 }else{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 30.00)
+                    AdicionaValor(valor: 30.00)
                 }
                 
             case "Proteção de Vidros 80%":
                 if self.id_tabela != 3{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 15.00)
+                    AdicionaValor(valor: 15.00)
                 }
                 
             case "Rastreador":
-                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 50.00)
+                AdicionaValor(valor: 50.00)
                 
             case "Carro Reserva (15 dias)":
                 if self.id_tabela != 3{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 15.00)
+                    AdicionaValor(valor: 15.00)
                 }
                 
             case "Carro Reserva (30 dias)":
                 if self.id_tabela != 3{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 30.00)
+                    AdicionaValor(valor: 30.00)
                 }
                 
             case "Pct Premium (15 dias)":
                 if self.id_tabela != 3 && self.id_tabela != 5 && self.id_tabela != 6{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 39.00)
+                    AdicionaValor(valor: 39.00)
                 }
                 
             case "Pct Premium (30 dias)":
                 if self.id_tabela != 3 {
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 69.00)
+                    AdicionaValor(valor: 69.00)
                 }
                 
             case "Uber":
-                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 50.00)
+                AdicionaValor(valor: 50.00)
                 
             case "Assist 24H 500KM":
-                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 15.00)
+                AdicionaValor(valor: 15.00)
                 
             case "Assist 24H 700KM":
-                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 25.00)
+                AdicionaValor(valor: 25.00)
                 
             case "Assist 24H 1000KM":
-                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue + 35.00)
-                
+                AdicionaValor(valor: 35.00)
             default:
                 print("asdadasdada")
-                
             }
         }
+    }
+    
+    func AdicionaValor(valor: Double){
+        self.valor_mesLbl.text = String(Double(self.valor_mesLbl.text!)! + valor)
+    }
+    
+    func SubtraiValor(valor: Double){
+        self.valor_mesLbl.text = String(Double(self.valor_mesLbl.text!)! - valor)
     }
     
     func tokenView(_ tokenView: KSTokenView, didDeleteToken token: KSToken) {
@@ -140,55 +152,54 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
             switch token.title {
                 
             case "Danos Mat a Terceiros":
-                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 15.00)
+                SubtraiValor(valor: 15.00)
                 
             case "Coparticipação Reduzida":
                 if self.id_tabela != 5 && self.id_tabela != 6{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 15.00)
+                    SubtraiValor(valor: 15.00)
                 }else{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 30.00)
+                    SubtraiValor(valor: 30.00)
                 }
                 
             case "Proteção de Vidros 80%":
                 if self.id_tabela != 3{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 15.00)
+                    SubtraiValor(valor: 15.00)
                 }
                 
             case "Rastreador":
-                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 50.00)
+                SubtraiValor(valor: 50.00)
                 
             case "Carro Reserva (15 dias)":
                 if self.id_tabela != 3{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 15.00)
+                    SubtraiValor(valor: 15.00)
                 }
                 
             case "Carro Reserva (30 dias)":
                 if self.id_tabela != 3{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 30.00)
+                    SubtraiValor(valor: 30.00)
                 }
                 
             case "Pct Premium (15 dias)":
                 if self.id_tabela != 3 && self.id_tabela != 5 && self.id_tabela != 6{
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 39.00)
+                    SubtraiValor(valor: 39.00)
                 }
                 
             case "Pct Premium (30 dias)":
                 if self.id_tabela != 3 {
-                    self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 69.00)
+                    SubtraiValor(valor: 69.00)
                 }
                 
             case "Uber":
-                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 50.00)
+                SubtraiValor(valor: 50.00)
                 
             case "Assist 24H 500KM":
-                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 15.00)
+                SubtraiValor(valor: 15.00)
                 
             case "Assist 24H 700KM":
-                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 25.00)
+                SubtraiValor(valor: 25.00)
                 
             case "Assist 24H 1000KM":
-                self.valor_mesLbl.text = String(self.valor_mesLbl.text!.doubleValue - 35.00)
-                
+                SubtraiValor(valor: 35.00)
             default:
                 print("asdadasdada")
             }
@@ -199,6 +210,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
         print("selecionou:" ,token)
     }
     func tokenView(_ tokenView: KSTokenView, performSearchWithString string: String, completion: ((_ results: Array<AnyObject>) -> Void)?) {
+     
         var data: Array<String> = names
         for value: String in names {
             if value.lowercased().range(of: string.lowercased()) != nil {
@@ -221,14 +233,23 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
     }
     
     func MakeButtonsNav(){
-        let button: UIButton = UIButton(type: UIButtonType.custom) as! UIButton
-        button.setImage(UIImage(named: "enviado"), for: UIControlState.normal)
-        button.addTarget(self, action: "screenshot", for: UIControlEvents.touchUpInside)
-        button.frame = self.CGRectMake(0, 0, 53, 31)
-        let barButton = UIBarButtonItem(customView: button)
         
-        self.navigationItem.rightBarButtonItem = barButton
+        let bttnScreenshot: UIButton = UIButton(type: UIButtonType.custom)
+        bttnScreenshot.setImage(UIImage(named: "folder"), for: .normal)
+        bttnScreenshot.addTarget(self, action: "saveTabela", for: UIControlEvents.touchUpInside)
+        bttnScreenshot.frame = self.CGRectMake(0, 0, 53, 31)
+        let barButtonSC = UIBarButtonItem(customView: bttnScreenshot)
         
+        
+        //assign button to navigationbar
+        self.navigationItem.rightBarButtonItems = [barButtonSC]
+        
+    }
+    
+    func saveTabela(){
+        let image = view.asImage()
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        KRProgressHUD.showMessage("Fipe enviada para o rolo da camera!")
     }
     
 }

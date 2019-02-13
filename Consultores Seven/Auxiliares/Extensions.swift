@@ -94,20 +94,23 @@ extension UIViewController {
             var nextChar = letters.character(at: Int(rand))
             randomString += NSString(characters: &nextChar, length: 1) as String
         }
-        
+
         return randomString
     }
     
     func getNomeFotoPelaUrl(urlFirebase: String) -> String{
         
         let url = urlFirebase
-        if url != ""{
-            if !url.contains("storage/emulated"){
-                let arr1 = url.components(separatedBy: "o/")
-                print("arr1 =>", arr1)
-                let arr2 = arr1[1].components(separatedBy: "?")
-                print("arr2 =>", arr2)
-                return arr2[0]
+        if url != "" || !url.contains("storage/emulated") || !url.contains("o/"){
+            let arr1 = url.components(separatedBy: "o/")
+            if arr1.count > 1{
+                if arr1[1].contains("?"){
+                    let arr2 = arr1[1].components(separatedBy: "?")
+                    print("arr2 =>", arr2)
+                    return arr2[0]
+                }else{
+                    return ""
+                }
             }else{
                 return ""
             }
@@ -116,13 +119,45 @@ extension UIViewController {
         }
     }
     
+    func getMesByInt(mes: Int) -> String{
+        switch mes {
+        case 1:
+            return "Janeiro"
+        case 2:
+            return "Fevereiro"
+        case 3:
+            return "Março"
+        case 4:
+            return "Abril"
+        case 5:
+            return "Maio"
+        case 6:
+            return "Junho"
+        case 7:
+            return "Julho"
+        case 8:
+            return "Agosto"
+        case 9:
+            return "Setembro"
+        case 10:
+            return "Outubro"
+        case 11:
+            return "Novembro"
+        case 12:
+            return "Dezembro"
+        default:
+            return ""
+        }
+    }
+
+    
     func CriarAlerta (tituloAlerta: String, mensagemAlerta: String, acaoAlerta: String, erroRecebido: String) {
         //Cria um alerta no estilo Alert com titulo e mensagem
         let alertaController = UIAlertController(title: tituloAlerta, message: mensagemAlerta, preferredStyle: .alert)
         
         //Adiciona o Botao Acao Confirmar no Alerta
         let acaoCfonfirmar = UIAlertAction(title: acaoAlerta, style: .default, handler: nil)
-     /*
+     
         let mostraErroDetalhe = UIAlertAction(title: "Detalhes do Erro", style: UIAlertActionStyle.destructive, handler: { action in
             if erroRecebido != ""{
                 let alert = UIAlertController(title: "Detalhes do Erro", message: "\(erroRecebido)", preferredStyle: .alert)
@@ -131,10 +166,10 @@ extension UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         })
-        */
+        
         //adiciona acoes
         alertaController.addAction(acaoCfonfirmar)
-      //  alertaController.addAction(mostraErroDetalhe)
+        alertaController.addAction(mostraErroDetalhe)
         
         //Apresenta o alerta de forma animada
         present(alertaController, animated: true, completion: nil)
@@ -203,54 +238,7 @@ extension UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
-    func mandaPostProFirebase(nomeImg: String, imagemDados: Data, id_user: String, nm_user: String, text_recado: String, img_user: String, temImagem: Bool){
-        KRProgressHUD.show()
-        let armazenamento = Storage.storage().reference()
-        armazenamento.child("\(nomeImg)").putData(imagemDados, metadata: nil, completion: { (metaDados, erro) in
-            if erro == nil{
-                
-                print("foto enviada com sucesso")
-                print("nome imagem: \(nomeImg)")
-                var uuid = NSUUID().uuidString
-                var downloadURL: URL!
-                let timestamp = Date().millisecondsSince1970
-                let timestampValue = FieldValue.serverTimestamp()
-                armazenamento.child("\(nomeImg)").downloadURL { url, error in
-                    if let error = error {
-                        print(error)
-                        KRProgressHUD.dismiss()
-                    } else {
-                        let db = Firestore.firestore()
-                        let usersReference = db.collection("EventoSeven").document("TimeLine").collection("postagens").document("\(uuid)")
-                        var values = [String : Any]()
-                        if temImagem == true{
-                            
-                            values = ["data": timestamp, "user_id": id_user, "image_url": "\(url!)","image_thumb": "\(url!)", "nm_user": nm_user, "desc": text_recado, "img_user": img_user, "timestamp": timestampValue] as [String : Any]
-                        }else{
-                           
-                            values = ["data": timestamp, "user_id": id_user, "image_url": "", "nm_user": nm_user, "desc": text_recado, "img_user": img_user,"image_thumb": "\(url!)", "timestamp": timestampValue] as [String : Any]
-                        }
-                        
-                        usersReference.setData(values) { (error) in
-                            if error != nil{
-                                print("erro ao cadastrar no firebase", error)
-                                self.CriarAlerta(tituloAlerta: "Erro", mensagemAlerta: "Erro ao salvar dados no servidor!", acaoAlerta: "OK", erroRecebido: "\(error)")
-                                return
-                            }else{
-                                print("cadastrado no firebase com sucesso")
-                                KRProgressHUD.showSuccess()
-                                _ = self.navigationController?.popViewController(animated: true)
-                            }
-                        }
-                        KRProgressHUD.dismiss()
-                    }
-                }
-            }else{
-                self.CriarAlerta(tituloAlerta: "Opa", mensagemAlerta: "Ocorreu um erro ao enviar a publicação", acaoAlerta: "OK", erroRecebido: "\(erro)")
-                KRProgressHUD.dismiss()
-            }
-        })
-    }
+   
     
     func colocaLogo(imgData: Data) -> UIImage{
        
@@ -299,6 +287,7 @@ extension UIViewController {
             }
         })
     }
+    
     func enviaUrlDatabasePerfil(nomeImg: String, url: URL, id_user: String){
         let db = Firestore.firestore()
         let usersReference = db.collection("ConsultorSeven").document("Perfil").collection("\(id_user)").document("Dados")
@@ -354,21 +343,23 @@ extension UIViewController {
         }
     }
     
-    func enviaFotoStorage(nomeImg: String, imagemDados: Data, id_user: String, proposta: Proposta){
-        KRProgressHUD.show()
-        let imagemDados2 = UIImage(data: imagemDados)!.jpeg(.lowest)
-        let imagemDados3 = UIImage(data: imagemDados2!)!.jpeg(.lowest)
+    func enviaFotoStorage(nomeImg: String, imagem: UIImage, id_user: String, proposta: Proposta){
+  
+        
         let armazenamento = Storage.storage().reference()
         let timestampValue = Date().millisecondsSince1970
-        armazenamento.child("\(timestampValue)").putData(imagemDados3!, metadata: nil, completion: { (metaDados, erro) in
+        
+        let imagemDados = UIImagePNGRepresentation(imagem)
+        
+        armazenamento.child("\(timestampValue).jpg").putData(imagemDados!, metadata: nil, completion: { (metaDados, erro) in
             if erro == nil{
                 print("foto enviada com sucesso")
-                print("nome imagem: \(timestampValue)")
-                armazenamento.child("\(timestampValue)").downloadURL { url, error in
+                print("nome imagem: \(timestampValue).jpg")
+                armazenamento.child("\(timestampValue).jpg").downloadURL { url, error in
                     if let error = error {
                         print(error)
                         KRProgressHUD.dismiss()
-                    } else {
+                    }else {
                         self.enviaUrlDatabase(nomeImg: nomeImg, url: url!, id_user: id_user, proposta: proposta)
                     }
                 }
@@ -629,10 +620,8 @@ extension UIViewController {
                 return
             }else{
                 print("url enviada com sucesso")
-                KRProgressHUD.showSuccess()
             }
         }
-        KRProgressHUD.dismiss()
     }
     
     func showImagePicker(picker: UIImagePickerController){
@@ -948,21 +937,49 @@ extension String {
 
 
 extension UIImage {
-    enum JPEGQuality: CGFloat {
-        case lowest  = 0
-        case low     = 0.25
-        case medium  = 0.5
-        case high    = 0.75
-        case highest = 1
-    }
-    
-    /// Returns the data for the specified image in JPEG format.
-    /// If the image object’s underlying image data has been purged, calling this function forces that data to be reloaded into memory.
-    /// - returns: A data object containing the JPEG data, or nil if there was a problem generating the data. This function may return nil if the image has no data or if the underlying CGImageRef contains data in an unsupported bitmap format.
-    func jpeg(_ quality: JPEGQuality) -> Data? {
-        return UIImageJPEGRepresentation(self, quality.rawValue)
+    func compressTo(_ expectedSizeInMb:Float) -> UIImage? {
+        var actualHeight : CGFloat = self.size.height
+        var actualWidth : CGFloat = self.size.width
+        let maxHeight : CGFloat = 1136.0
+        let maxWidth : CGFloat = 640.0
+        var imgRatio : CGFloat = actualWidth/actualHeight
+        let maxRatio : CGFloat = maxWidth/maxHeight
+        var compressionQuality : CGFloat = 0
+        
+        if (actualHeight > maxHeight || actualWidth > maxWidth){
+            if(imgRatio < maxRatio){
+                //adjust width according to maxHeight
+                imgRatio = maxHeight / actualHeight
+                actualWidth = imgRatio * actualWidth
+                actualHeight = maxHeight
+            }
+            else if(imgRatio > maxRatio){
+                //adjust height according to maxWidth
+                imgRatio = maxWidth / actualWidth
+                actualHeight = imgRatio * actualHeight
+                actualWidth = maxWidth
+            }
+            else{
+                actualHeight = maxHeight
+                actualWidth = maxWidth
+                compressionQuality = 1
+            }
+        }
+        
+        let rect = CGRect(x: 0.0, y: 0.0, width: actualWidth, height: actualHeight)
+        UIGraphicsBeginImageContext(rect.size)
+        self.draw(in: rect)
+        guard let img = UIGraphicsGetImageFromCurrentImageContext() else {
+            return nil
+        }
+        UIGraphicsEndImageContext()
+        guard let imageData = UIImageJPEGRepresentation(img, compressionQuality)else{
+            return nil
+        }
+        return UIImage(data: imageData)
     }
 }
+
 extension Bundle {
     var releaseVersionNumber: String? {
         return infoDictionary?["CFBundleShortVersionString"] as? String

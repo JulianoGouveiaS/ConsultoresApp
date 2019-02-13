@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseFirestore
 import KRProgressHUD
-import KSTokenView
 
 class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,7 +16,10 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
     let id_user = KeychainWrapper.standard.integer(forKey: "ID")
     let nome_user = KeychainWrapper.standard.string(forKey: "NOME")
     
-     let names: Array<String> = ["Danos Mat a Terceiros", "Coparticipação Reduzida", "Proteção de Vidros 80%", "Rastreador", "Carro Reserva (15 dias)", "Carro Reserva (30 dias)", "Uber", "Pct Premium (15 dias)", "Pct Premium (30 dias)"]
+    
+    var arrTotalCapMensal: [Int] = [0,0,0,0,0,0,0,0,0,0,0,0]
+    var arrTotalVisMensal: [Int] = [0,0,0,0,0,0,0,0,0,0,0,0]
+    var arrTotalPropMensal: [Int] = [0,0,0,0,0,0,0,0,0,0,0,0]
     
     public var chartColumn: AAChartType?
     public var stepColumn: Bool?
@@ -36,51 +38,215 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
     let bandCellId = "bandCellId"
     
     var arrCaptacoes = [Int]()
+    private var pageControl = UIPageControl(frame: .zero)
+    
+    //setup page control
+    var scrollView = UIScrollView(frame: .zero)
+    //var colors:[UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.yellow]
+    var frame: CGRect = CGRect(x:0, y:0, width:0, height:0)
+    var arrViewsGraficos = [UIView]();
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scrollView = UIScrollView(frame: CGRect(x:0, y:0, width:self.view.bounds.width,height: 260))
+      //  configurePageControl()
+        scrollView.delegate = self
+        scrollView.isPagingEnabled = true
+        self.view.addSubview(scrollView)
        
-        let tokenView = KSTokenView(frame: CGRect(x: 10, y: 100, width: 400, height: 40))
-        tokenView.delegate = self
-        tokenView.promptText = "Selecionados: "
-        tokenView.placeholder = "Clique para adicionar"
-        tokenView.descriptionText = "Adicionais"
-        tokenView.style = .squared
-        tokenView.shouldAddTokenFromTextInput = false
         
-        tokenView.minimumCharactersToSearch = 0 // Show all results without typing anything
-        tokenView.direction = .vertical
+        self.scrollView.contentSize = CGSize(width:self.scrollView.frame.size.width * 2,height: self.scrollView.frame.size.height)
+        pageControl.addTarget(self, action: #selector(self.changePage(sender:)), for: UIControlEvents.valueChanged)
         
-        view.addSubview(tokenView)
         
-      /*  viewcolumn.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: 260)
+        viewcolumn.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: 200)
         viewcolumn.backgroundColor = UIColor.clear
-        self.view.addSubview(viewcolumn)
-        setupTableView()
-        populaArrayCaptacoes()
-    
-        configureAAChartColumn()
-        
-        
- */
-        // Do any additional setup after loading the view.
+        self.setupTableView()
+        getCaptacoes()
+        self.scrollView .addSubview(viewcolumn)
+        for index in 0..<2 {
+            frame.origin.x = self.scrollView.frame.size.width * CGFloat(index)
+            frame.size = self.scrollView.frame.size
+        }
     }
     
-    func populaArrayCaptacoes(){
-        for _ in 0 ... 11{
-            self.arrCaptacoes.append(Int.random(in: 0 ... 100))
+
+    func changePage(sender: AnyObject) -> () {
+        let x = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
+        scrollView.setContentOffset(CGPoint(x:x, y:0), animated: true)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
+        pageControl.currentPage = Int(pageNumber)
+    }
+    
+    
+    func getCaptacoes(){
+        KRProgressHUD.show()
+        let db = Firestore.firestore()
+        db.collection("ConsultorSeven").document("Captacoes").collection("\(self.id_user!)").order(by: "data", descending: true).addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    let dictionary = document.data()
+                    
+                    let mes = dictionary["mes"] as? String ?? ""
+                    
+                    switch mes{
+                    case "Janeiro":
+                        self.arrTotalCapMensal[0] = self.arrTotalCapMensal[0] + 1
+                    case "Fevereiro":
+                        self.arrTotalCapMensal[1] = self.arrTotalCapMensal[1] + 1
+                    case "Março":
+                        self.arrTotalCapMensal[2] = self.arrTotalCapMensal[2] + 1
+                    case "Abril":
+                        self.arrTotalCapMensal[3] = self.arrTotalCapMensal[3] + 1
+                    case "Maio":
+                        self.arrTotalCapMensal[4] = self.arrTotalCapMensal[4] + 1
+                    case "Junho":
+                        self.arrTotalCapMensal[5] = self.arrTotalCapMensal[5] + 1
+                    case "Julho":
+                        self.arrTotalCapMensal[6] = self.arrTotalCapMensal[6] + 1
+                    case "Agosto":
+                        self.arrTotalCapMensal[7] = self.arrTotalCapMensal[7] + 1
+                    case "Setembro":
+                        self.arrTotalCapMensal[8] = self.arrTotalCapMensal[8] + 1
+                    case "Outubro":
+                        self.arrTotalCapMensal[9] = self.arrTotalCapMensal[9] + 1
+                    case "Novembro":
+                        self.arrTotalCapMensal[10] = self.arrTotalCapMensal[10] + 1
+                    case "Dezembro":
+                        self.arrTotalCapMensal[11] = self.arrTotalCapMensal[11] + 1
+                    default:
+                        print("")
+                    }
+                    
+                }
+            }
+            self.getVisitas()
         }
-        self.tableView.reloadData()
+    }
+    
+    func getVisitas(){
+        KRProgressHUD.show()
+        let db = Firestore.firestore()
+        db.collection("ConsultorSeven").document("Visitas").collection("\(self.id_user!)").order(by: "data", descending: true).addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    let dictionary = document.data()
+                    
+                    let mes = dictionary["mes"] as? String ?? ""
+                    
+                    switch mes{
+                    case "Janeiro":
+                        self.arrTotalVisMensal[0] = self.arrTotalVisMensal[0] + 1
+                    case "Fevereiro":
+                        self.arrTotalVisMensal[1] = self.arrTotalVisMensal[1] + 1
+                    case "Março":
+                        self.arrTotalVisMensal[2] = self.arrTotalCapMensal[2] + 1
+                    case "Abril":
+                        self.arrTotalVisMensal[3] = self.arrTotalVisMensal[3] + 1
+                    case "Maio":
+                        self.arrTotalVisMensal[4] = self.arrTotalVisMensal[4] + 1
+                    case "Junho":
+                        self.arrTotalVisMensal[5] = self.arrTotalVisMensal[5] + 1
+                    case "Julho":
+                        self.arrTotalVisMensal[6] = self.arrTotalVisMensal[6] + 1
+                    case "Agosto":
+                        self.arrTotalVisMensal[7] = self.arrTotalVisMensal[7] + 1
+                    case "Setembro":
+                        self.arrTotalVisMensal[8] = self.arrTotalVisMensal[8] + 1
+                    case "Outubro":
+                        self.arrTotalVisMensal[9] = self.arrTotalVisMensal[9] + 1
+                    case "Novembro":
+                        self.arrTotalVisMensal[10] = self.arrTotalVisMensal[10] + 1
+                    case "Dezembro":
+                        self.arrTotalVisMensal[11] = self.arrTotalVisMensal[11] + 1
+                    default:
+                        print("")
+                    }
+                    
+                }
+            }
+            self.getPropostas()
+        }
+    }
+    
+    func getPropostas(){
+        KRProgressHUD.show()
+        let db = Firestore.firestore()
+        db.collection("ConsultorSeven").document("MinhasPropostas").collection("\(self.id_user!)").order(by: "data", descending: true).addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    let dictionary = document.data()
+                    
+                    let mes = dictionary["mes"] as? String ?? ""
+                    
+                    switch mes{
+                    case "Janeiro":
+                        self.arrTotalPropMensal[0] = self.arrTotalPropMensal[0] + 1
+                    case "Fevereiro":
+                        self.arrTotalPropMensal[1] = self.arrTotalPropMensal[1] + 1
+                    case "Março":
+                        self.arrTotalPropMensal[2] = self.arrTotalPropMensal[2] + 1
+                    case "Abril":
+                        self.arrTotalPropMensal[3] = self.arrTotalPropMensal[3] + 1
+                    case "Maio":
+                        self.arrTotalPropMensal[4] = self.arrTotalPropMensal[4] + 1
+                    case "Junho":
+                        self.arrTotalPropMensal[5] = self.arrTotalPropMensal[5] + 1
+                    case "Julho":
+                        self.arrTotalPropMensal[6] = self.arrTotalPropMensal[6] + 1
+                    case "Agosto":
+                        self.arrTotalPropMensal[7] = self.arrTotalPropMensal[7] + 1
+                    case "Setembro":
+                        self.arrTotalPropMensal[8] = self.arrTotalPropMensal[8] + 1
+                    case "Outubro":
+                        self.arrTotalPropMensal[9] = self.arrTotalPropMensal[9] + 1
+                    case "Novembro":
+                        self.arrTotalPropMensal[10] = self.arrTotalPropMensal[10] + 1
+                    case "Dezembro":
+                        self.arrTotalPropMensal[11] = self.arrTotalPropMensal[11] + 1
+                    default:
+                        print("")
+                    }
+                    
+                }
+                
+                KRProgressHUD.dismiss()
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            self.configureAAChartColumn()
+            KRProgressHUD.dismiss()
+        }
     }
     
     func setupTableView(){
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.register(BandCell.self, forCellReuseIdentifier: bandCellId)
         
         view.addSubview(tableView)
-        tableView.setAnchor(top: viewcolumn.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        tableView.setAnchor(top: scrollView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -95,15 +261,15 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: bandCellId, for: indexPath) as! BandCell
         
         if indexPath.row == 0{
-            cell.Label.text = "Número de Captações: \(self.arrCaptacoes[indexPath.row])"
+            cell.Label.text = "Número de Captações: \(self.arrTotalCapMensal[indexPath.section])"
             cell.colorView.backgroundColor = UIColor.hexStr(hexStr: "ff0066", alpha: 1)
             
         }else if indexPath.row == 1{
-            cell.Label.text = "Número de Visitas: \(self.arrCaptacoes[indexPath.row])"
+            cell.Label.text = "Número de Visitas: \(self.arrTotalVisMensal[indexPath.section])"
             cell.colorView.backgroundColor = UIColor.hexStr(hexStr: "22324c", alpha: 1)
             
         }else{
-            cell.Label.text = "Número de Propostas: \(self.arrCaptacoes[indexPath.row])"
+            cell.Label.text = "Número de Propostas: \(self.arrTotalPropMensal[indexPath.section])"
             cell.colorView.backgroundColor = UIColor.hexStr(hexStr: "ff9933", alpha: 1)
         }
         return cell
@@ -218,15 +384,15 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
                 AASeriesElement()
                     .name("Captações")
                     //cada posicao no array deve conter o numero por mes
-                    .data([Int.random(in: 0 ... 100),Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100)])
+                    .data(self.arrTotalCapMensal)
                     .toDic()!,
                 AASeriesElement()
                     .name("Visitas")
-                    .data([Int.random(in: 0 ... 100),Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100)])
+                    .data(self.arrTotalVisMensal)
                     .toDic()!,
                 AASeriesElement()
                     .name("Propostas")
-                    .data([Int.random(in: 0 ... 100),Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100), Int.random(in: 0 ... 100)])
+                    .data(self.arrTotalPropMensal)
                     .toDic()!
                 ])
         
@@ -240,37 +406,4 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
                        alpha: 1.0)
     }
     
-}
-
-extension BarChartAndTableVC: KSTokenViewDelegate {
-    func tokenView(_ tokenView: KSTokenView, performSearchWithString string: String, completion: ((_ results: Array<AnyObject>) -> Void)?) {
-        if (string.characters.isEmpty){
-            completion!(names as Array<AnyObject>)
-            return
-        }
-        
-        var data: Array<String> = []
-        for value: String in names {
-            if value.lowercased().range(of: string.lowercased()) != nil {
-                data.append(value)
-            }
-        }
-        completion!(data as Array<AnyObject>)
-    }
-    
-    func tokenView(_ tokenView: KSTokenView, displayTitleForObject object: AnyObject) -> String {
-        return object as! String
-    }
-    
-    func tokenView(_ tokenView: KSTokenView, didAddToken token: KSToken) {
-        print("adicionou:" ,token)
-    }
-    
-    func tokenView(_ tokenView: KSTokenView, didDeleteToken token: KSToken) {
-        print("removeu:" ,token)
-    }
-    
-    func tokenView(_ tokenView: KSTokenView, didSelectToken token: KSToken) {
-        print("selecionou:" ,token)
-    }
 }

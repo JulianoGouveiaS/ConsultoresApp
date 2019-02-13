@@ -15,6 +15,10 @@
 		3A2AE6F421B9889500F8AD48 /* AASerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2AE6EE21B9889400F8AD48 /* AASerializable.swift */; };
 		3A2AE6F521B9889500F8AD48 /* AASeriesElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2AE6EF21B9889400F8AD48 /* AASeriesElement.swift */; };
 		3A2AE6F621B9889500F8AD48 /* AAJSFiles.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3A2AE6F021B9889400F8AD48 /* AAJSFiles.bundle */; };
+		3A332DBA2209F0570013A0B4 /* BubbleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A332DB92209F0560013A0B4 /* BubbleTransition.swift */; };
+		3A332DBE2209F0D80013A0B4 /* BubbleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A332DBC2209F0D20013A0B4 /* BubbleVC.swift */; };
+		3A332DBF2209F0D80013A0B4 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A332DBD2209F0D80013A0B4 /* ModalViewController.swift */; };
+		3A332DC12209F0F50013A0B4 /* Bubble.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A332DC02209F0F50013A0B4 /* Bubble.storyboard */; };
 		3A3F7D812191CF2A00782B2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C4C2191CF2900782B2A /* ViewController.swift */; };
 		3A3F7D822191CF2A00782B2A /* TabBarPrincipal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C4D2191CF2900782B2A /* TabBarPrincipal.swift */; };
 		3A3F7D832191CF2A00782B2A /* FunilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C4F2191CF2900782B2A /* FunilVC.swift */; };
@@ -23,43 +27,6 @@
 		3A3F7D872191CF2A00782B2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A3F7C552191CF2900782B2A /* Assets.xcassets */; };
 		3A3F7D892191CF2A00782B2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A3F7C572191CF2900782B2A /* LaunchScreen.storyboard */; };
 		3A3F7D8A2191CF2A00782B2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A3F7C592191CF2900782B2A /* Main.storyboard */; };
-		3A3F7D8B2191CF2A00782B2A /* TabelaInfomotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C5E2191CF2900782B2A /* TabelaInfomotos.swift */; };
-		3A3F7D8C2191CF2A00782B2A /* TabelaViewControllermotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C5F2191CF2900782B2A /* TabelaViewControllermotos.swift */; };
-		3A3F7D8D2191CF2A00782B2A /* celulaInfoFIPEmotos3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C612191CF2900782B2A /* celulaInfoFIPEmotos3.swift */; };
-		3A3F7D8E2191CF2A00782B2A /* ModeloFipeVCmotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C622191CF2900782B2A /* ModeloFipeVCmotos.swift */; };
-		3A3F7D8F2191CF2A00782B2A /* FIPEmotosInfo3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C632191CF2900782B2A /* FIPEmotosInfo3.swift */; };
-		3A3F7D902191CF2A00782B2A /* celulaInfoFIPEmotos2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C652191CF2900782B2A /* celulaInfoFIPEmotos2.swift */; };
-		3A3F7D912191CF2A00782B2A /* CodigoFipeVCmotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C662191CF2900782B2A /* CodigoFipeVCmotos.swift */; };
-		3A3F7D922191CF2A00782B2A /* FIPEmotosInfo2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C672191CF2900782B2A /* FIPEmotosInfo2.swift */; };
-		3A3F7D932191CF2A00782B2A /* FIPEmotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C692191CF2900782B2A /* FIPEmotosViewController.swift */; };
-		3A3F7D942191CF2A00782B2A /* FIPEmotosInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C6A2191CF2900782B2A /* FIPEmotosInfo.swift */; };
-		3A3F7D952191CF2A00782B2A /* celulaInfoFIPEmotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C6B2191CF2900782B2A /* celulaInfoFIPEmotos.swift */; };
-		3A3F7D962191CF2A00782B2A /* TabelaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C6E2191CF2900782B2A /* TabelaViewController.swift */; };
-		3A3F7D972191CF2A00782B2A /* TabelaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C6F2191CF2900782B2A /* TabelaInfo.swift */; };
-		3A3F7D982191CF2A00782B2A /* celulaInfoFIPEcarros3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C712191CF2900782B2A /* celulaInfoFIPEcarros3.swift */; };
-		3A3F7D992191CF2A00782B2A /* FIPEcarrosInfo3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C722191CF2900782B2A /* FIPEcarrosInfo3.swift */; };
-		3A3F7D9A2191CF2A00782B2A /* ModeloFipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C732191CF2900782B2A /* ModeloFipeVC.swift */; };
-		3A3F7D9B2191CF2B00782B2A /* CodigoFipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C752191CF2900782B2A /* CodigoFipeVC.swift */; };
-		3A3F7D9C2191CF2B00782B2A /* FIPEcarrosInfo2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C762191CF2900782B2A /* FIPEcarrosInfo2.swift */; };
-		3A3F7D9D2191CF2B00782B2A /* celulaInfoFIPEcarros2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C772191CF2900782B2A /* celulaInfoFIPEcarros2.swift */; };
-		3A3F7D9E2191CF2B00782B2A /* celulaInfoFIPEcarros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C792191CF2900782B2A /* celulaInfoFIPEcarros.swift */; };
-		3A3F7D9F2191CF2B00782B2A /* FIPEcarrosInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C7A2191CF2900782B2A /* FIPEcarrosInfo.swift */; };
-		3A3F7DA02191CF2B00782B2A /* FIPEcarrosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C7B2191CF2900782B2A /* FIPEcarrosViewController.swift */; };
-		3A3F7DA12191CF2B00782B2A /* MarcasDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C7C2191CF2900782B2A /* MarcasDataSource.swift */; };
-		3A3F7DA22191CF2B00782B2A /* TabelaInfocaminhoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C7F2191CF2900782B2A /* TabelaInfocaminhoes.swift */; };
-		3A3F7DA32191CF2B00782B2A /* TabelaViewControllercaminhoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C802191CF2900782B2A /* TabelaViewControllercaminhoes.swift */; };
-		3A3F7DA42191CF2B00782B2A /* FIPEcaminhoesInfo3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C822191CF2900782B2A /* FIPEcaminhoesInfo3.swift */; };
-		3A3F7DA52191CF2B00782B2A /* ModeloFipeVCcaminhoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C832191CF2900782B2A /* ModeloFipeVCcaminhoes.swift */; };
-		3A3F7DA62191CF2B00782B2A /* celulaInfoFIPEcaminhoes3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C842191CF2900782B2A /* celulaInfoFIPEcaminhoes3.swift */; };
-		3A3F7DA72191CF2B00782B2A /* celulaInfoFIPEcaminhoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C862191CF2900782B2A /* celulaInfoFIPEcaminhoes.swift */; };
-		3A3F7DA82191CF2B00782B2A /* FIPEcaminhoesInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C872191CF2900782B2A /* FIPEcaminhoesInfo.swift */; };
-		3A3F7DA92191CF2B00782B2A /* FIPEcaminhoesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C882191CF2900782B2A /* FIPEcaminhoesViewController.swift */; };
-		3A3F7DAA2191CF2B00782B2A /* FIPEcaminhoesInfo2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C8A2191CF2900782B2A /* FIPEcaminhoesInfo2.swift */; };
-		3A3F7DAB2191CF2B00782B2A /* celulaInfoFIPEcaminhoes2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C8B2191CF2900782B2A /* celulaInfoFIPEcaminhoes2.swift */; };
-		3A3F7DAC2191CF2B00782B2A /* CodigoFipeVCcaminhoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C8C2191CF2900782B2A /* CodigoFipeVCcaminhoes.swift */; };
-		3A3F7DAD2191CF2B00782B2A /* TipoSimuladorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C8D2191CF2900782B2A /* TipoSimuladorViewController.swift */; };
-		3A3F7DAE2191CF2B00782B2A /* ModelosDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C8E2191CF2900782B2A /* ModelosDataSource.swift */; };
-		3A3F7DAF2191CF2B00782B2A /* FIPEStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A3F7C8F2191CF2900782B2A /* FIPEStoryboard.storyboard */; };
 		3A3F7DB02191CF2B00782B2A /* SuporteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C912191CF2900782B2A /* SuporteVC.swift */; };
 		3A3F7DB12191CF2B00782B2A /* CellVeiculos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7C942191CF2900782B2A /* CellVeiculos.swift */; };
 		3A3F7DB22191CF2B00782B2A /* Veiculos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A3F7C952191CF2900782B2A /* Veiculos.storyboard */; };
@@ -208,7 +175,6 @@
 		3A3F7E442191CF2C00782B2A /* Proposta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7D652191CF2A00782B2A /* Proposta.swift */; };
 		3A3F7E452191CF2C00782B2A /* ListaPropostasVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7D662191CF2A00782B2A /* ListaPropostasVC.swift */; };
 		3A3F7E462191CF2C00782B2A /* EnviarTudoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7D672191CF2A00782B2A /* EnviarTudoVC.swift */; };
-		3A3F7E472191CF2C00782B2A /* PropostasVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7D682191CF2A00782B2A /* PropostasVC.swift */; };
 		3A3F7E482191CF2C00782B2A /* CollapsibleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7D6B2191CF2A00782B2A /* CollapsibleTableViewCell.swift */; };
 		3A3F7E492191CF2C00782B2A /* ExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7D6C2191CF2A00782B2A /* ExampleData.swift */; };
 		3A3F7E4A2191CF2C00782B2A /* CollapsibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7D6D2191CF2A00782B2A /* CollapsibleViewController.swift */; };
@@ -230,6 +196,7 @@
 		3A3F7E602191D36600782B2A /* PagamentoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7E5C2191D36500782B2A /* PagamentoCell.swift */; };
 		3A3F7E612191D36600782B2A /* ComprovanteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7E5D2191D36600782B2A /* ComprovanteVC.swift */; };
 		3A3F7E622191D36600782B2A /* TablePagamentosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F7E5E2191D36600782B2A /* TablePagamentosVC.swift */; };
+		3A4B20C3221455A00013D496 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B20C2221455A00013D496 /* ProgressBarView.swift */; };
 		3A54723E21BAA5F100225BBB /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54723921BAA5F100225BBB /* DGElasticPullToRefreshLoadingViewCircle.swift */; };
 		3A54723F21BAA5F100225BBB /* DGElasticPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54723A21BAA5F100225BBB /* DGElasticPullToRefreshView.swift */; };
 		3A54724021BAA5F100225BBB /* DGElasticPullToRefreshConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A54723B21BAA5F100225BBB /* DGElasticPullToRefreshConstants.swift */; };
@@ -243,6 +210,7 @@
 		3ADA1A7B216793660077EA4F /* Consultores_SevenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA1A7A216793660077EA4F /* Consultores_SevenUITests.swift */; };
 		3AEDDA8621C2C65F000F6B37 /* BarChartAndTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEDDA8521C2C65F000F6B37 /* BarChartAndTableVC.swift */; };
 		3AF2775221A5DA9D00394A67 /* PINViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF2775121A5DA9D00394A67 /* PINViewController.swift */; };
+		3AFC21FC220A09010000A958 /* Produto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC21FB220A09010000A958 /* Produto.swift */; };
 		3AFE7BE221CAA69E0071D215 /* Fipe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AFE7BE121CAA69E0071D215 /* Fipe.storyboard */; };
 		49FC1817C2069ADB791F6547 /* Pods_Consultores_Seven.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA5AB250879C540550D15A9 /* Pods_Consultores_Seven.framework */; };
 		B0263569DBB7479CE7C6D69A /* Pods_Consultores_SevenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACEC7AD76B40671275F071DA /* Pods_Consultores_SevenTests.framework */; };
@@ -290,6 +258,10 @@
 		3A2AE6EE21B9889400F8AD48 /* AASerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AASerializable.swift; sourceTree = "<group>"; };
 		3A2AE6EF21B9889400F8AD48 /* AASeriesElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AASeriesElement.swift; sourceTree = "<group>"; };
 		3A2AE6F021B9889400F8AD48 /* AAJSFiles.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AAJSFiles.bundle; sourceTree = "<group>"; };
+		3A332DB92209F0560013A0B4 /* BubbleTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleTransition.swift; sourceTree = "<group>"; };
+		3A332DBC2209F0D20013A0B4 /* BubbleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleVC.swift; sourceTree = "<group>"; };
+		3A332DBD2209F0D80013A0B4 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		3A332DC02209F0F50013A0B4 /* Bubble.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bubble.storyboard; sourceTree = "<group>"; };
 		3A3F7C4C2191CF2900782B2A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3A3F7C4D2191CF2900782B2A /* TabBarPrincipal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarPrincipal.swift; sourceTree = "<group>"; };
 		3A3F7C4F2191CF2900782B2A /* FunilVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunilVC.swift; sourceTree = "<group>"; };
@@ -298,43 +270,6 @@
 		3A3F7C552191CF2900782B2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A3F7C582191CF2900782B2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A3F7C5A2191CF2900782B2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3A3F7C5E2191CF2900782B2A /* TabelaInfomotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabelaInfomotos.swift; sourceTree = "<group>"; };
-		3A3F7C5F2191CF2900782B2A /* TabelaViewControllermotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabelaViewControllermotos.swift; sourceTree = "<group>"; };
-		3A3F7C612191CF2900782B2A /* celulaInfoFIPEmotos3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = celulaInfoFIPEmotos3.swift; sourceTree = "<group>"; };
-		3A3F7C622191CF2900782B2A /* ModeloFipeVCmotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeloFipeVCmotos.swift; sourceTree = "<group>"; };
-		3A3F7C632191CF2900782B2A /* FIPEmotosInfo3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEmotosInfo3.swift; sourceTree = "<group>"; };
-		3A3F7C652191CF2900782B2A /* celulaInfoFIPEmotos2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = celulaInfoFIPEmotos2.swift; sourceTree = "<group>"; };
-		3A3F7C662191CF2900782B2A /* CodigoFipeVCmotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodigoFipeVCmotos.swift; sourceTree = "<group>"; };
-		3A3F7C672191CF2900782B2A /* FIPEmotosInfo2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEmotosInfo2.swift; sourceTree = "<group>"; };
-		3A3F7C692191CF2900782B2A /* FIPEmotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEmotosViewController.swift; sourceTree = "<group>"; };
-		3A3F7C6A2191CF2900782B2A /* FIPEmotosInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEmotosInfo.swift; sourceTree = "<group>"; };
-		3A3F7C6B2191CF2900782B2A /* celulaInfoFIPEmotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = celulaInfoFIPEmotos.swift; sourceTree = "<group>"; };
-		3A3F7C6E2191CF2900782B2A /* TabelaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabelaViewController.swift; sourceTree = "<group>"; };
-		3A3F7C6F2191CF2900782B2A /* TabelaInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabelaInfo.swift; sourceTree = "<group>"; };
-		3A3F7C712191CF2900782B2A /* celulaInfoFIPEcarros3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = celulaInfoFIPEcarros3.swift; sourceTree = "<group>"; };
-		3A3F7C722191CF2900782B2A /* FIPEcarrosInfo3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEcarrosInfo3.swift; sourceTree = "<group>"; };
-		3A3F7C732191CF2900782B2A /* ModeloFipeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeloFipeVC.swift; sourceTree = "<group>"; };
-		3A3F7C752191CF2900782B2A /* CodigoFipeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodigoFipeVC.swift; sourceTree = "<group>"; };
-		3A3F7C762191CF2900782B2A /* FIPEcarrosInfo2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEcarrosInfo2.swift; sourceTree = "<group>"; };
-		3A3F7C772191CF2900782B2A /* celulaInfoFIPEcarros2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = celulaInfoFIPEcarros2.swift; sourceTree = "<group>"; };
-		3A3F7C792191CF2900782B2A /* celulaInfoFIPEcarros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = celulaInfoFIPEcarros.swift; sourceTree = "<group>"; };
-		3A3F7C7A2191CF2900782B2A /* FIPEcarrosInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEcarrosInfo.swift; sourceTree = "<group>"; };
-		3A3F7C7B2191CF2900782B2A /* FIPEcarrosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEcarrosViewController.swift; sourceTree = "<group>"; };
-		3A3F7C7C2191CF2900782B2A /* MarcasDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarcasDataSource.swift; sourceTree = "<group>"; };
-		3A3F7C7F2191CF2900782B2A /* TabelaInfocaminhoes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabelaInfocaminhoes.swift; sourceTree = "<group>"; };
-		3A3F7C802191CF2900782B2A /* TabelaViewControllercaminhoes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabelaViewControllercaminhoes.swift; sourceTree = "<group>"; };
-		3A3F7C822191CF2900782B2A /* FIPEcaminhoesInfo3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEcaminhoesInfo3.swift; sourceTree = "<group>"; };
-		3A3F7C832191CF2900782B2A /* ModeloFipeVCcaminhoes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeloFipeVCcaminhoes.swift; sourceTree = "<group>"; };
-		3A3F7C842191CF2900782B2A /* celulaInfoFIPEcaminhoes3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = celulaInfoFIPEcaminhoes3.swift; sourceTree = "<group>"; };
-		3A3F7C862191CF2900782B2A /* celulaInfoFIPEcaminhoes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = celulaInfoFIPEcaminhoes.swift; sourceTree = "<group>"; };
-		3A3F7C872191CF2900782B2A /* FIPEcaminhoesInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEcaminhoesInfo.swift; sourceTree = "<group>"; };
-		3A3F7C882191CF2900782B2A /* FIPEcaminhoesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEcaminhoesViewController.swift; sourceTree = "<group>"; };
-		3A3F7C8A2191CF2900782B2A /* FIPEcaminhoesInfo2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIPEcaminhoesInfo2.swift; sourceTree = "<group>"; };
-		3A3F7C8B2191CF2900782B2A /* celulaInfoFIPEcaminhoes2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = celulaInfoFIPEcaminhoes2.swift; sourceTree = "<group>"; };
-		3A3F7C8C2191CF2900782B2A /* CodigoFipeVCcaminhoes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodigoFipeVCcaminhoes.swift; sourceTree = "<group>"; };
-		3A3F7C8D2191CF2900782B2A /* TipoSimuladorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipoSimuladorViewController.swift; sourceTree = "<group>"; };
-		3A3F7C8E2191CF2900782B2A /* ModelosDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelosDataSource.swift; sourceTree = "<group>"; };
-		3A3F7C8F2191CF2900782B2A /* FIPEStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FIPEStoryboard.storyboard; sourceTree = "<group>"; };
 		3A3F7C912191CF2900782B2A /* SuporteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuporteVC.swift; sourceTree = "<group>"; };
 		3A3F7C942191CF2900782B2A /* CellVeiculos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellVeiculos.swift; sourceTree = "<group>"; };
 		3A3F7C952191CF2900782B2A /* Veiculos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Veiculos.storyboard; sourceTree = "<group>"; };
@@ -489,7 +424,6 @@
 		3A3F7D652191CF2A00782B2A /* Proposta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Proposta.swift; sourceTree = "<group>"; };
 		3A3F7D662191CF2A00782B2A /* ListaPropostasVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListaPropostasVC.swift; sourceTree = "<group>"; };
 		3A3F7D672191CF2A00782B2A /* EnviarTudoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnviarTudoVC.swift; sourceTree = "<group>"; };
-		3A3F7D682191CF2A00782B2A /* PropostasVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropostasVC.swift; sourceTree = "<group>"; };
 		3A3F7D6B2191CF2A00782B2A /* CollapsibleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewCell.swift; sourceTree = "<group>"; };
 		3A3F7D6C2191CF2A00782B2A /* ExampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleData.swift; sourceTree = "<group>"; };
 		3A3F7D6D2191CF2A00782B2A /* CollapsibleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleViewController.swift; sourceTree = "<group>"; };
@@ -512,6 +446,7 @@
 		3A3F7E5C2191D36500782B2A /* PagamentoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagamentoCell.swift; path = "Consultores Seven/PagamentoCell.swift"; sourceTree = SOURCE_ROOT; };
 		3A3F7E5D2191D36600782B2A /* ComprovanteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComprovanteVC.swift; path = "Consultores Seven/ComprovanteVC.swift"; sourceTree = SOURCE_ROOT; };
 		3A3F7E5E2191D36600782B2A /* TablePagamentosVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TablePagamentosVC.swift; path = "Consultores Seven/TablePagamentosVC.swift"; sourceTree = SOURCE_ROOT; };
+		3A4B20C2221455A00013D496 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		3A54723921BAA5F100225BBB /* DGElasticPullToRefreshLoadingViewCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingViewCircle.swift; sourceTree = "<group>"; };
 		3A54723A21BAA5F100225BBB /* DGElasticPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshView.swift; sourceTree = "<group>"; };
 		3A54723B21BAA5F100225BBB /* DGElasticPullToRefreshConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshConstants.swift; sourceTree = "<group>"; };
@@ -530,6 +465,7 @@
 		3ADA1A7C216793660077EA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AEDDA8521C2C65F000F6B37 /* BarChartAndTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartAndTableVC.swift; sourceTree = "<group>"; };
 		3AF2775121A5DA9D00394A67 /* PINViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINViewController.swift; sourceTree = "<group>"; };
+		3AFC21FB220A09010000A958 /* Produto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Produto.swift; sourceTree = "<group>"; };
 		3AFE7BE121CAA69E0071D215 /* Fipe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Fipe.storyboard; sourceTree = "<group>"; };
 		4EA5AB250879C540550D15A9 /* Pods_Consultores_Seven.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Consultores_Seven.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C2443F896B2CFCE0F2C923 /* Pods-Consultores SevenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Consultores SevenUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Consultores SevenUITests/Pods-Consultores SevenUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -620,9 +556,21 @@
 			path = AAChartCreator;
 			sourceTree = "<group>";
 		};
+		3A332DBB2209F0AF0013A0B4 /* Bubble */ = {
+			isa = PBXGroup;
+			children = (
+				3A332DBD2209F0D80013A0B4 /* ModalViewController.swift */,
+				3A332DBC2209F0D20013A0B4 /* BubbleVC.swift */,
+				3A332DC02209F0F50013A0B4 /* Bubble.storyboard */,
+				3AFC21FB220A09010000A958 /* Produto.swift */,
+			);
+			path = Bubble;
+			sourceTree = "<group>";
+		};
 		3A3F7C4B2191CF2900782B2A /* Consultores Seven */ = {
 			isa = PBXGroup;
 			children = (
+				3A332DBB2209F0AF0013A0B4 /* Bubble */,
 				3A3F7C922191CF2900782B2A /* CLIENTE */,
 				3A3F7C5B2191CF2900782B2A /* FIPE */,
 				3A3F7C512191CF2900782B2A /* TEL UTEIS */,
@@ -633,7 +581,6 @@
 				3A3F7C902191CF2900782B2A /* SUPORTE */,
 				3A3F7CB02191CF2A00782B2A /* UPDATE DADOS USER */,
 				3A3F7CB52191CF2A00782B2A /* DADOS */,
-				3A3F7CB82191CF2A00782B2A /* Sources */,
 				3A3F7CC22191CF2A00782B2A /* SOBRE O APP */,
 				3A3F7CC62191CF2A00782B2A /* VISITAS */,
 				3A3F7D732191CF2A00782B2A /* VIDEO TUTORIAL */,
@@ -676,165 +623,8 @@
 			isa = PBXGroup;
 			children = (
 				3AFE7BE021CAA68A0071D215 /* New FIPE */,
-				3A3F7C5C2191CF2900782B2A /* FIPEmotos */,
-				3A3F7C6C2191CF2900782B2A /* FIPEcarros */,
-				3A3F7C7C2191CF2900782B2A /* MarcasDataSource.swift */,
-				3A3F7C7D2191CF2900782B2A /* FIPEcaminhoes */,
-				3A3F7C8D2191CF2900782B2A /* TipoSimuladorViewController.swift */,
-				3A3F7C8E2191CF2900782B2A /* ModelosDataSource.swift */,
-				3A3F7C8F2191CF2900782B2A /* FIPEStoryboard.storyboard */,
 			);
 			path = FIPE;
-			sourceTree = "<group>";
-		};
-		3A3F7C5C2191CF2900782B2A /* FIPEmotos */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C5D2191CF2900782B2A /* tabela */,
-				3A3F7C602191CF2900782B2A /* modelo */,
-				3A3F7C642191CF2900782B2A /* codigo */,
-				3A3F7C682191CF2900782B2A /* marca */,
-			);
-			path = FIPEmotos;
-			sourceTree = "<group>";
-		};
-		3A3F7C5D2191CF2900782B2A /* tabela */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C5E2191CF2900782B2A /* TabelaInfomotos.swift */,
-				3A3F7C5F2191CF2900782B2A /* TabelaViewControllermotos.swift */,
-			);
-			path = tabela;
-			sourceTree = "<group>";
-		};
-		3A3F7C602191CF2900782B2A /* modelo */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C612191CF2900782B2A /* celulaInfoFIPEmotos3.swift */,
-				3A3F7C622191CF2900782B2A /* ModeloFipeVCmotos.swift */,
-				3A3F7C632191CF2900782B2A /* FIPEmotosInfo3.swift */,
-			);
-			path = modelo;
-			sourceTree = "<group>";
-		};
-		3A3F7C642191CF2900782B2A /* codigo */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C652191CF2900782B2A /* celulaInfoFIPEmotos2.swift */,
-				3A3F7C662191CF2900782B2A /* CodigoFipeVCmotos.swift */,
-				3A3F7C672191CF2900782B2A /* FIPEmotosInfo2.swift */,
-			);
-			path = codigo;
-			sourceTree = "<group>";
-		};
-		3A3F7C682191CF2900782B2A /* marca */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C692191CF2900782B2A /* FIPEmotosViewController.swift */,
-				3A3F7C6A2191CF2900782B2A /* FIPEmotosInfo.swift */,
-				3A3F7C6B2191CF2900782B2A /* celulaInfoFIPEmotos.swift */,
-			);
-			path = marca;
-			sourceTree = "<group>";
-		};
-		3A3F7C6C2191CF2900782B2A /* FIPEcarros */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C6D2191CF2900782B2A /* tabela */,
-				3A3F7C702191CF2900782B2A /* modelo */,
-				3A3F7C742191CF2900782B2A /* codigo */,
-				3A3F7C782191CF2900782B2A /* marca */,
-			);
-			path = FIPEcarros;
-			sourceTree = "<group>";
-		};
-		3A3F7C6D2191CF2900782B2A /* tabela */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C6E2191CF2900782B2A /* TabelaViewController.swift */,
-				3A3F7C6F2191CF2900782B2A /* TabelaInfo.swift */,
-			);
-			path = tabela;
-			sourceTree = "<group>";
-		};
-		3A3F7C702191CF2900782B2A /* modelo */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C712191CF2900782B2A /* celulaInfoFIPEcarros3.swift */,
-				3A3F7C722191CF2900782B2A /* FIPEcarrosInfo3.swift */,
-				3A3F7C732191CF2900782B2A /* ModeloFipeVC.swift */,
-			);
-			path = modelo;
-			sourceTree = "<group>";
-		};
-		3A3F7C742191CF2900782B2A /* codigo */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C752191CF2900782B2A /* CodigoFipeVC.swift */,
-				3A3F7C762191CF2900782B2A /* FIPEcarrosInfo2.swift */,
-				3A3F7C772191CF2900782B2A /* celulaInfoFIPEcarros2.swift */,
-			);
-			path = codigo;
-			sourceTree = "<group>";
-		};
-		3A3F7C782191CF2900782B2A /* marca */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C792191CF2900782B2A /* celulaInfoFIPEcarros.swift */,
-				3A3F7C7A2191CF2900782B2A /* FIPEcarrosInfo.swift */,
-				3A3F7C7B2191CF2900782B2A /* FIPEcarrosViewController.swift */,
-			);
-			path = marca;
-			sourceTree = "<group>";
-		};
-		3A3F7C7D2191CF2900782B2A /* FIPEcaminhoes */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C7E2191CF2900782B2A /* tabela */,
-				3A3F7C812191CF2900782B2A /* modelo */,
-				3A3F7C852191CF2900782B2A /* tipo */,
-				3A3F7C892191CF2900782B2A /* codigo */,
-			);
-			path = FIPEcaminhoes;
-			sourceTree = "<group>";
-		};
-		3A3F7C7E2191CF2900782B2A /* tabela */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C7F2191CF2900782B2A /* TabelaInfocaminhoes.swift */,
-				3A3F7C802191CF2900782B2A /* TabelaViewControllercaminhoes.swift */,
-			);
-			path = tabela;
-			sourceTree = "<group>";
-		};
-		3A3F7C812191CF2900782B2A /* modelo */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C822191CF2900782B2A /* FIPEcaminhoesInfo3.swift */,
-				3A3F7C832191CF2900782B2A /* ModeloFipeVCcaminhoes.swift */,
-				3A3F7C842191CF2900782B2A /* celulaInfoFIPEcaminhoes3.swift */,
-			);
-			path = modelo;
-			sourceTree = "<group>";
-		};
-		3A3F7C852191CF2900782B2A /* tipo */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C862191CF2900782B2A /* celulaInfoFIPEcaminhoes.swift */,
-				3A3F7C872191CF2900782B2A /* FIPEcaminhoesInfo.swift */,
-				3A3F7C882191CF2900782B2A /* FIPEcaminhoesViewController.swift */,
-			);
-			path = tipo;
-			sourceTree = "<group>";
-		};
-		3A3F7C892191CF2900782B2A /* codigo */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F7C8A2191CF2900782B2A /* FIPEcaminhoesInfo2.swift */,
-				3A3F7C8B2191CF2900782B2A /* celulaInfoFIPEcaminhoes2.swift */,
-				3A3F7C8C2191CF2900782B2A /* CodigoFipeVCcaminhoes.swift */,
-			);
-			path = codigo;
 			sourceTree = "<group>";
 		};
 		3A3F7C902191CF2900782B2A /* SUPORTE */ = {
@@ -956,7 +746,7 @@
 			path = DADOS;
 			sourceTree = "<group>";
 		};
-		3A3F7CB82191CF2A00782B2A /* Sources */ = {
+		3A3F7CB82191CF2A00782B2A /* SourcesESTabBar */ = {
 			isa = PBXGroup;
 			children = (
 				3A3F7CB92191CF2A00782B2A /* Localizable.strings */,
@@ -968,7 +758,7 @@
 				3A3F7CC02191CF2A00782B2A /* ESTabBar.swift */,
 				3A3F7CC12191CF2A00782B2A /* ESTabBarItemContainer.swift */,
 			);
-			path = Sources;
+			path = SourcesESTabBar;
 			sourceTree = "<group>";
 		};
 		3A3F7CC22191CF2A00782B2A /* SOBRE O APP */ = {
@@ -996,6 +786,7 @@
 		3A3F7CCE2191CF2A00782B2A /* Auxiliares */ = {
 			isa = PBXGroup;
 			children = (
+				3A3F7CB82191CF2A00782B2A /* SourcesESTabBar */,
 				3A12CF1D21CAAF820089FD75 /* DropDown */,
 				3A54723821BAA5F100225BBB /* DGElasticPullToRefresh */,
 				3A2AE6E821B9887900F8AD48 /* Graficos */,
@@ -1006,10 +797,12 @@
 				3A3F7CFB2191CF2A00782B2A /* VideoHelper.swift */,
 				3A3F7CFC2191CF2A00782B2A /* Extensions.swift */,
 				3A3F7CFD2191CF2A00782B2A /* Reachability.swift */,
+				3A332DB92209F0560013A0B4 /* BubbleTransition.swift */,
 				3A3F7CFE2191CF2A00782B2A /* SignaturePad */,
 				3A3F7D052191CF2A00782B2A /* IQKeyboardManagerSwift */,
 				3A3F7D1D2191CF2A00782B2A /* StringFormatter */,
 				3A3F7D1F2191CF2A00782B2A /* DTZFloatingActionButton */,
+				3A4B20C2221455A00013D496 /* ProgressBarView.swift */,
 			);
 			path = Auxiliares;
 			sourceTree = "<group>";
@@ -1233,7 +1026,6 @@
 				3A3F7D652191CF2A00782B2A /* Proposta.swift */,
 				3A3F7D662191CF2A00782B2A /* ListaPropostasVC.swift */,
 				3A3F7D672191CF2A00782B2A /* EnviarTudoVC.swift */,
-				3A3F7D682191CF2A00782B2A /* PropostasVC.swift */,
 				3A3F7D692191CF2A00782B2A /* ENVIADAS */,
 			);
 			path = PROPOSTAS;
@@ -1735,6 +1527,7 @@
 				3A3F7DD52191CF2B00782B2A /* SobreConsultor.storyboard in Resources */,
 				3A6B507221B56A7B00DD68F3 /* Graficos.storyboard in Resources */,
 				3A6B506D21B5451200DD68F3 /* GoogleService-Info.plist in Resources */,
+				3A332DC12209F0F50013A0B4 /* Bubble.storyboard in Resources */,
 				3A3F7DD92191CF2B00782B2A /* Visita.storyboard in Resources */,
 				3A3F7DC42191CF2B00782B2A /* MainCliente.storyboard in Resources */,
 				3A3F7E3A2191CF2C00782B2A /* Proposta.storyboard in Resources */,
@@ -1754,7 +1547,6 @@
 				3A3F7E3D2191CF2C00782B2A /* Captacao.storyboard in Resources */,
 				3A3F7DB52191CF2B00782B2A /* DetalhesVeiculos.storyboard in Resources */,
 				3AFE7BE221CAA69E0071D215 /* Fipe.storyboard in Resources */,
-				3A3F7DAF2191CF2B00782B2A /* FIPEStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1815,17 +1607,18 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/Gallery/Gallery.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Harpy/Harpy.framework",
 				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/KSTokenView/KSTokenView.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionAnimator/MotionAnimator.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionInterchange/MotionInterchange.framework",
 				"${BUILT_PRODUCTS_DIR}/PMSuperButton/PMSuperButton.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/Static/Static.framework",
-				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyGif/SwiftyGif.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyPickerPopover/SwiftyPickerPopover.framework",
@@ -1850,17 +1643,18 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gallery.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Harpy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KSTokenView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionAnimator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionInterchange.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PMSuperButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Static.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyGif.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyPickerPopover.framework",
@@ -1943,25 +1737,21 @@
 				3A3F7E4B2191CF2C00782B2A /* CollapsibleTableViewHeader.swift in Sources */,
 				3A3F7E0D2191CF2B00782B2A /* IQInvocation.swift in Sources */,
 				3A3F7DD72191CF2B00782B2A /* EditarVisitaVC.swift in Sources */,
-				3A3F7D972191CF2A00782B2A /* TabelaInfo.swift in Sources */,
 				3A3F7DF02191CF2B00782B2A /* M13CheckboxFillController.swift in Sources */,
 				3A3F7DD12191CF2B00782B2A /* ESTabBar.swift in Sources */,
 				3A3F7E322191CF2C00782B2A /* Vidro.swift in Sources */,
+				3A332DBA2209F0570013A0B4 /* BubbleTransition.swift in Sources */,
 				3A3F7E382191CF2C00782B2A /* AdesaoVC.swift in Sources */,
 				3A54724121BAA5F100225BBB /* DGElasticPullToRefreshExtensions.swift in Sources */,
-				3A3F7D8D2191CF2A00782B2A /* celulaInfoFIPEmotos3.swift in Sources */,
-				3A3F7D902191CF2A00782B2A /* celulaInfoFIPEmotos2.swift in Sources */,
 				3A3F7E162191CF2B00782B2A /* IQUIView+Hierarchy.swift in Sources */,
 				3A3F7E2B2191CF2C00782B2A /* Teto.swift in Sources */,
 				3A3F7E412191CF2C00782B2A /* TableCaptacoesVC.swift in Sources */,
 				3AF2775221A5DA9D00394A67 /* PINViewController.swift in Sources */,
-				3A3F7D942191CF2A00782B2A /* FIPEmotosInfo.swift in Sources */,
 				3A3F7E242191CF2C00782B2A /* Perfil.swift in Sources */,
 				3A3F7DC02191CF2B00782B2A /* CellSinistro.swift in Sources */,
 				3A54724021BAA5F100225BBB /* DGElasticPullToRefreshConstants.swift in Sources */,
 				3A3F7E072191CF2B00782B2A /* IQTextView.swift in Sources */,
 				3A3F7DC52191CF2B00782B2A /* TabBarPrincipalCliente.swift in Sources */,
-				3A3F7DA02191CF2B00782B2A /* FIPEcarrosViewController.swift in Sources */,
 				3A3F7E012191CF2B00782B2A /* Reachability.swift in Sources */,
 				3A3F7E512191CF2C00782B2A /* VideoTutorialVC.swift in Sources */,
 				3A3F7DF22191CF2B00782B2A /* M13CheckboxBounceController.swift in Sources */,
@@ -1969,16 +1759,13 @@
 				3A3F7DC92191CF2B00782B2A /* DadosPessoaisVC.swift in Sources */,
 				3A3F7E0B2191CF2B00782B2A /* IQToolbar.swift in Sources */,
 				3A3F7E4F2191CF2C00782B2A /* CelulaInfoPropostas.swift in Sources */,
-				3A3F7DA22191CF2B00782B2A /* TabelaInfocaminhoes.swift in Sources */,
 				3A3F7DC32191CF2B00782B2A /* MenuClienteVC.swift in Sources */,
 				3A3F7E362191CF2C00782B2A /* Dut.swift in Sources */,
 				3A3F7DD02191CF2B00782B2A /* ESTabBarItemBadgeView.swift in Sources */,
 				3A3F7DCA2191CF2B00782B2A /* DadosVC.swift in Sources */,
-				3A3F7D8F2191CF2A00782B2A /* FIPEmotosInfo3.swift in Sources */,
 				3A3F7DFF2191CF2B00782B2A /* VideoHelper.swift in Sources */,
 				3A3F7DFE2191CF2B00782B2A /* M13Checkbox+IB.swift in Sources */,
 				3A3F7E212191CF2C00782B2A /* PlacaLacre.swift in Sources */,
-				3A3F7DAB2191CF2B00782B2A /* celulaInfoFIPEcaminhoes2.swift in Sources */,
 				3A3F7DF32191CF2B00782B2A /* M13CheckboxDotController.swift in Sources */,
 				3A3F7DE22191CF2B00782B2A /* CreditCardFormView.swift in Sources */,
 				3A3F7E5F2191D36600782B2A /* Pagamento.swift in Sources */,
@@ -1988,7 +1775,6 @@
 				3A3F7E492191CF2C00782B2A /* ExampleData.swift in Sources */,
 				3A3F7E4E2191CF2C00782B2A /* PropostasEnviadasVC.swift in Sources */,
 				3A3F7E342191CF2C00782B2A /* Pneus.swift in Sources */,
-				3A3F7DA32191CF2B00782B2A /* TabelaViewControllercaminhoes.swift in Sources */,
 				3A3F7DEC2191CF2B00782B2A /* M13CheckboxExpandController.swift in Sources */,
 				3A3F7E002191CF2B00782B2A /* Extensions.swift in Sources */,
 				3A3F7DE82191CF2B00782B2A /* AKMaskFieldBlockCharacter.swift in Sources */,
@@ -1998,7 +1784,6 @@
 				3A3F7E152191CF2B00782B2A /* IQUITextFieldView+Additions.swift in Sources */,
 				3A3F7DE52191CF2B00782B2A /* AKMaskField.swift in Sources */,
 				3A3F7E1E2191CF2B00782B2A /* AssociadoVC.swift in Sources */,
-				3A3F7DA52191CF2B00782B2A /* ModeloFipeVCcaminhoes.swift in Sources */,
 				3A3F7DBE2191CF2B00782B2A /* Sinistro.swift in Sources */,
 				3A3F7E482191CF2C00782B2A /* CollapsibleTableViewCell.swift in Sources */,
 				3A3F7E562191CF2C00782B2A /* AutoLoginViewController.swift in Sources */,
@@ -2012,17 +1797,12 @@
 				3A3F7DB92191CF2B00782B2A /* TableBoletosVC.swift in Sources */,
 				3A3F7DBB2191CF2B00782B2A /* DetalhesBoletosVC.swift in Sources */,
 				3A3F7DB42191CF2B00782B2A /* Veiculo.swift in Sources */,
-				3A3F7E472191CF2C00782B2A /* PropostasVC.swift in Sources */,
-				3A3F7D922191CF2A00782B2A /* FIPEmotosInfo2.swift in Sources */,
 				3A3F7E4C2191CF2C00782B2A /* PropostaInfo.swift in Sources */,
-				3A3F7DAD2191CF2B00782B2A /* TipoSimuladorViewController.swift in Sources */,
 				3A3F7E612191D36600782B2A /* ComprovanteVC.swift in Sources */,
 				3A3F7DE32191CF2B00782B2A /* CreditCardValidator.swift in Sources */,
 				3A3F7D852191CF2A00782B2A /* TelefonesUteisVC.swift in Sources */,
-				3A3F7D912191CF2A00782B2A /* CodigoFipeVCmotos.swift in Sources */,
 				3A3F7E3E2191CF2C00782B2A /* CriarCaptacaoViewController.swift in Sources */,
 				3A3F7DFD2191CF2B00782B2A /* M13CheckboxController.swift in Sources */,
-				3A3F7D9C2191CF2B00782B2A /* FIPEcarrosInfo2.swift in Sources */,
 				3A3F7E4A2191CF2C00782B2A /* CollapsibleViewController.swift in Sources */,
 				3A3F7DC72191CF2B00782B2A /* ConclusaoVC.swift in Sources */,
 				3A3F7E1D2191CF2B00782B2A /* DTZFloatingActionButton.swift in Sources */,
@@ -2033,62 +1813,46 @@
 				3A2AE6F221B9889500F8AD48 /* AAChartView.swift in Sources */,
 				3A3F7E3C2191CF2C00782B2A /* PediuPermissaoVC.swift in Sources */,
 				3A3F7E192191CF2B00782B2A /* DTZFABViewController.swift in Sources */,
-				3A3F7D982191CF2A00782B2A /* celulaInfoFIPEcarros3.swift in Sources */,
 				3A3F7E272191CF2C00782B2A /* Frontal.swift in Sources */,
-				3A3F7D8C2191CF2A00782B2A /* TabelaViewControllermotos.swift in Sources */,
 				3A3F7E462191CF2C00782B2A /* EnviarTudoVC.swift in Sources */,
 				3A3F7DBF2191CF2B00782B2A /* TableSinistrosVC.swift in Sources */,
 				3A3F7E2F2191CF2C00782B2A /* Motor.swift in Sources */,
 				3A3F7DBC2191CF2B00782B2A /* SobreClienteVC.swift in Sources */,
-				3A3F7D962191CF2A00782B2A /* TabelaViewController.swift in Sources */,
 				3A3F7E392191CF2C00782B2A /* VeiculoVC.swift in Sources */,
-				3A3F7DAA2191CF2B00782B2A /* FIPEcaminhoesInfo2.swift in Sources */,
 				3A54723F21BAA5F100225BBB /* DGElasticPullToRefreshView.swift in Sources */,
 				3A3F7DF52191CF2B00782B2A /* M13CheckboxCheckPathGenerator.swift in Sources */,
 				3A3F7DB02191CF2B00782B2A /* SuporteVC.swift in Sources */,
 				3A3F7E2D2191CF2C00782B2A /* DocumentacaoVC.swift in Sources */,
-				3A3F7D932191CF2A00782B2A /* FIPEmotosViewController.swift in Sources */,
 				3A2AE6F421B9889500F8AD48 /* AASerializable.swift in Sources */,
 				3A3F7E172191CF2B00782B2A /* IQNSArray+Sort.swift in Sources */,
 				3A3F7E402191CF2C00782B2A /* CaptacaoCell.swift in Sources */,
-				3A3F7DA62191CF2B00782B2A /* celulaInfoFIPEcaminhoes3.swift in Sources */,
-				3A3F7D9E2191CF2B00782B2A /* celulaInfoFIPEcarros.swift in Sources */,
 				3A3F7E202191CF2C00782B2A /* FotosVC.swift in Sources */,
 				3A3F7E0C2191CF2B00782B2A /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				3A3F7DFC2191CF2B00782B2A /* M13CheckboxGestureRecognizer.swift in Sources */,
+				3A332DBF2209F0D80013A0B4 /* ModalViewController.swift in Sources */,
 				3A3F7DFB2191CF2B00782B2A /* DefaultValues.swift in Sources */,
 				3A3F7D812191CF2A00782B2A /* ViewController.swift in Sources */,
-				3A3F7DA92191CF2B00782B2A /* FIPEcaminhoesViewController.swift in Sources */,
 				3A3F7E062191CF2B00782B2A /* EPSignatureView.swift in Sources */,
 				3A12CF1F21CAAF9A0089FD75 /* iOSDropDown.swift in Sources */,
-				3A3F7DA42191CF2B00782B2A /* FIPEcaminhoesInfo3.swift in Sources */,
-				3A3F7DA82191CF2B00782B2A /* FIPEcaminhoesInfo.swift in Sources */,
 				3A3F7DE62191CF2B00782B2A /* AKMaskFieldUtility.swift in Sources */,
 				3A3F7E052191CF2B00782B2A /* EPSignatureViewController.swift in Sources */,
 				3A3F7DDE2191CF2B00782B2A /* KeychainItemAccessibility.swift in Sources */,
 				3A3F7E252191CF2C00782B2A /* PortaMalas.swift in Sources */,
 				3A3F7E1C2191CF2B00782B2A /* DTZFABManager.swift in Sources */,
 				3A2AE6F521B9889500F8AD48 /* AASeriesElement.swift in Sources */,
-				3A3F7D9D2191CF2B00782B2A /* celulaInfoFIPEcarros2.swift in Sources */,
-				3A3F7DAE2191CF2B00782B2A /* ModelosDataSource.swift in Sources */,
-				3A3F7D9B2191CF2B00782B2A /* CodigoFipeVC.swift in Sources */,
 				3A3F7DB62191CF2B00782B2A /* DetalhesVeiculosVC.swift in Sources */,
 				3A3F7E222191CF2C00782B2A /* VideoVistoriaVC.swift in Sources */,
 				3A3F7DF62191CF2B00782B2A /* M13CheckboxDisclosurePathGenerator.swift in Sources */,
 				3A3F7E352191CF2C00782B2A /* Chassi.swift in Sources */,
-				3A3F7D9A2191CF2A00782B2A /* ModeloFipeVC.swift in Sources */,
-				3A3F7D952191CF2A00782B2A /* celulaInfoFIPEmotos.swift in Sources */,
-				3A3F7DAC2191CF2B00782B2A /* CodigoFipeVCcaminhoes.swift in Sources */,
 				3A3F7E372191CF2C00782B2A /* PagarVC.swift in Sources */,
 				3A3F7E312191CF2C00782B2A /* Traseira.swift in Sources */,
 				3A3F7E442191CF2C00782B2A /* Proposta.swift in Sources */,
 				3ABF205921CD12110015C680 /* ResultadoFipeVC.swift in Sources */,
-				3A3F7D9F2191CF2B00782B2A /* FIPEcarrosInfo.swift in Sources */,
-				3A3F7DA12191CF2B00782B2A /* MarcasDataSource.swift in Sources */,
 				3A3F7E422191CF2C00782B2A /* EditarCaptacaoViewController.swift in Sources */,
 				3A3F7E3F2191CF2C00782B2A /* Captacao.swift in Sources */,
 				3A3F7E282191CF2C00782B2A /* Velocimetro.swift in Sources */,
 				3A3F7E592191CF2C00782B2A /* PerfilViewController.swift in Sources */,
+				3A332DBE2209F0D80013A0B4 /* BubbleVC.swift in Sources */,
 				3A3F7DF72191CF2B00782B2A /* M13CheckboxAddRemovePathGenerator.swift in Sources */,
 				3A3F7E622191D36600782B2A /* TablePagamentosVC.swift in Sources */,
 				3A3F7E602191D36600782B2A /* PagamentoCell.swift in Sources */,
@@ -2108,7 +1872,6 @@
 				3A3F7E2A2191CF2C00782B2A /* Avarias.swift in Sources */,
 				3A3F7DD22191CF2B00782B2A /* ESTabBarItemContainer.swift in Sources */,
 				3A3F7DB32191CF2B00782B2A /* TableVeiculosVC.swift in Sources */,
-				3A3F7D992191CF2A00782B2A /* FIPEcarrosInfo3.swift in Sources */,
 				3A3F7DD62191CF2B00782B2A /* VisitaCell.swift in Sources */,
 				3A3F7DF12191CF2B00782B2A /* M13CheckboxStrokeController.swift in Sources */,
 				3A3F7E1A2191CF2B00782B2A /* DTZFABWindow.swift in Sources */,
@@ -2121,19 +1884,18 @@
 				3A3F7DF42191CF2B00782B2A /* M13CheckboxPathGenerator.swift in Sources */,
 				3A3F7E132191CF2B00782B2A /* IQUIScrollView+Additions.swift in Sources */,
 				3A3F7E452191CF2C00782B2A /* ListaPropostasVC.swift in Sources */,
-				3A3F7D8E2191CF2A00782B2A /* ModeloFipeVCmotos.swift in Sources */,
 				3A3F7E262191CF2C00782B2A /* Farois.swift in Sources */,
+				3A4B20C3221455A00013D496 /* ProgressBarView.swift in Sources */,
 				3A3F7E522191CF2C00782B2A /* CamposRastreadorVC.swift in Sources */,
 				3A3F7E2C2191CF2C00782B2A /* Estofados.swift in Sources */,
 				3A2AE6F321B9889500F8AD48 /* AAChartModel.swift in Sources */,
 				3A3F7E4D2191CF2C00782B2A /* FotosEnviadasVC.swift in Sources */,
-				3A3F7D8B2191CF2A00782B2A /* TabelaInfomotos.swift in Sources */,
 				3A3F7E122191CF2B00782B2A /* IQKeyboardManager.swift in Sources */,
 				3A3F7DE72191CF2B00782B2A /* CreditCardValidationType.swift in Sources */,
 				3A3F7DC12191CF2B00782B2A /* DetalhesSinistroVC.swift in Sources */,
 				3A3F7E302191CF2C00782B2A /* Laterais.swift in Sources */,
-				3A3F7DA72191CF2B00782B2A /* celulaInfoFIPEcaminhoes.swift in Sources */,
 				3A3F7E432191CF2C00782B2A /* PropostaCell.swift in Sources */,
+				3AFC21FC220A09010000A958 /* Produto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

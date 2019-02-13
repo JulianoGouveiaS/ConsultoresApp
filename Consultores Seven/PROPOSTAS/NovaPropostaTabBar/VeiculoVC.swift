@@ -47,7 +47,8 @@ class VeiculoVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var combustivelTxt: UITextField!
     @IBOutlet weak var corTxt: UITextField!
     
-    
+    var arrAllProducts = [Produto]()
+    var arrChosenProducts = [Produto]()
     
     var arrComb = ["Selecione o Combustível","FLEX","GASOLINA","ETANOL","DIESEL","BIO-GÁS","TETRA-FUEL","NÃO INFORMADO"]
     
@@ -88,8 +89,6 @@ class VeiculoVC: UIViewController, UITextFieldDelegate {
                 self.valorMensal = dictionary?["valormensal"] as? String ?? ""
                 self.combustivelTxt.text = self.arrComb[Int(dictionary?["combustivel"] as? String ?? "0") ?? 0]
                 self.corTxt.text = self.arrCor[Int(dictionary?["cor"] as? String ?? "0") ?? 0]
-                
-                
             }
         }
     }
@@ -97,6 +96,7 @@ class VeiculoVC: UIViewController, UITextFieldDelegate {
     
         // function which is triggered when handleTap is called
         func clickComb(_ sender: AnyObject) {
+            dismissKeyboard()
             let p = StringPickerPopover(title: "Combustíveis", choices: arrComb)
                 .setDoneButton(action: {
                     popover, selectedRow, selectedString in
@@ -112,6 +112,7 @@ class VeiculoVC: UIViewController, UITextFieldDelegate {
     
     
     func clickCor(_ sender: AnyObject) {
+        dismissKeyboard()
         let p = StringPickerPopover(title: "Cores", choices: arrCor )
             .setDoneButton(action: {
                 popover, selectedRow, selectedString in
@@ -174,6 +175,15 @@ class VeiculoVC: UIViewController, UITextFieldDelegate {
                     
                     let nm_tabela = json["user_data"]["nm_tabela"].stringValue
                     self.tipoTxt.text = nm_tabela
+                    
+                    for i in 0...json["produtos"].count - 1{
+                        let produto = Produto()
+                            produto.id = json["produtos"][i]["id"].int
+                            produto.nome = json["produtos"][i]["descricao_produto"].stringValue
+                            produto.valor = json["produtos"][i]["valor_produto"].stringValue
+                        
+                        self.arrAllProducts.append(produto)
+                    }
                     
                     self.salvarCampos()
                     

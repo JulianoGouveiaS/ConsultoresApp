@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.1</string>
+	<string>2.6.4</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -43,19 +43,17 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Precisamos do acesso à sua camera para que você possa enviar fotos.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>O app requer precisa deste acesso para lhe garantir melhores informações do evento.</string>
+	<string>Precisamos do acesso à sua camera para que você possa enviar as fotosdo veículo do cliente para o nosso servidor.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Precisamos deste acesso para capturar o áudio da gravação.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Precisamos deste acesso para salvar o comprovante do pagamento.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Precisamos do acesso à sua biblioteca de fotos para que você possa anexar fotos.</string>
+	<string>Precisamos do acesso à sua biblioteca de fotos para que você possa anexar fotos as fotos do carro cliente.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Fipe</string>
+	<string>Login</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

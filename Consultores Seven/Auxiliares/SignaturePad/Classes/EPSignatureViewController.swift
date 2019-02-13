@@ -123,13 +123,13 @@ open class EPSignatureViewController: UIViewController {
             }
             signatureDelegate?.epSignature!(self, didSign: signature, boundingRect: signatureView.getSignatureBoundsInCanvas())
             UIImageWriteToSavedPhotosAlbum(signature, nil, nil, nil);
-            let data1 = UIImagePNGRepresentation(signature)
+            let data = UIImagePNGRepresentation(signature)
             
-            if let fotoComprimida = self.colocaLogo(imgData: data1!).jpeg(.lowest) {
-                
-                self.enviaFotoStorage(nomeImg: "vistoria_str", imagemDados: fotoComprimida, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
-               
-            }
+            let fotoComprimida = self.colocaLogo(imgData: data!).compressTo(0.2)
+            print("data1.count => \(data!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+            
+            self.enviaFotoStorage(nomeImg: "vistoria_str", imagem: fotoComprimida!, id_user: "\(self.id_user!)", proposta: self.propostaEscolhida)
+            
             dismiss(animated: true, completion: nil)
         } else {
             self.CriarAlertaSemErro(tituloAlerta: "Opa", mensagemAlerta: "Não detectamos sua assinatura", acaoAlerta: "OK")
