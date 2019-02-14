@@ -93,7 +93,6 @@ class VeiculoVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
         // function which is triggered when handleTap is called
         func clickComb(_ sender: AnyObject) {
             dismissKeyboard()

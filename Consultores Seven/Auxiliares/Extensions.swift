@@ -169,7 +169,7 @@ extension UIViewController {
         
         //adiciona acoes
         alertaController.addAction(acaoCfonfirmar)
-        alertaController.addAction(mostraErroDetalhe)
+     // alertaController.addAction(mostraErroDetalhe)
         
         //Apresenta o alerta de forma animada
         present(alertaController, animated: true, completion: nil)

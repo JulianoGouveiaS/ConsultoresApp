@@ -205,9 +205,8 @@ class DocumentacaoVC: UIViewController, UICollectionViewDataSource, UICollection
     
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
         print("ArrFotosUrls => ",ArrFotosUrls)
-        DispatchQueue.main.async {
             KRProgressHUD.show()
-        }
+        
         for image in images{
             if self.ArrFotosUrls[0] == ""{
                 //string apenas para ocupar o array e nao entrar no mesmo if duas vezes

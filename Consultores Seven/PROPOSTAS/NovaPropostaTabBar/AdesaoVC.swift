@@ -129,7 +129,7 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
         }
         var auxVidros = false
         if self.tpVeic == "1"{
-            var auxVidros = self.protVidrosBox.isChecked
+            auxVidros = self.protVidrosBox.isChecked
         }
         
         let usersReference = db.collection("ConsultorSeven").document("MinhasPropostas").collection("\(self.id_user!)").document("\(self.propostaEscolhida.id!)")

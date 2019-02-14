@@ -33,6 +33,7 @@ class CriarCaptacaoViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         MakeButtonsNav()
+        placaLbl.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -109,7 +110,7 @@ class CriarCaptacaoViewController: UIViewController, UITextFieldDelegate {
             
             return false
         } else if self.placaLbl == textField {
-            placaLbl.text = lastText.format("CCCNNNN", oldString: text)
+            placaLbl.text = lastText.format("XXXXXXX", oldString: text)
             
             return false
         }

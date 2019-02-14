@@ -231,15 +231,16 @@ class FotosVC: UIViewController,EPSignatureDelegate {
                     
                 }else if (dictionary?["seguro"] as? String ?? "0") == "2"{
                     self.tpSeguro = "2"
+                    self.placalacreBttn.isHidden = true
                     if (dictionary?["tpveiculo"] as? String ?? "0") == "1"{
                         self.tpVeic = "1"
-                        self.placalacreBttn.isHidden = true
                         self.superiormotoBttn.isHidden = true
                         
                         self.placalacreLbl.isHidden = true
                         self.superiormotoLbl.isHidden = true
                     }else if (dictionary?["tpveiculo"] as? String ?? "0") == "2"{
                         self.tpVeic = "2"
+                        self.placalacreBttn.isHidden = false
                         self.portamalasBttn.isHidden = true
                         self.tetoBttn.isHidden = true
                         self.estofadosBttn.isHidden = true
@@ -254,9 +255,7 @@ class FotosVC: UIViewController,EPSignatureDelegate {
                         self.vidroLbl.isHidden = true
                         self.faroisLbl.isHidden = true
                     }
-                    
                 }
-                
             }
         }
     }

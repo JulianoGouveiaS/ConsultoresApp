@@ -44,7 +44,6 @@ class PediuPermissaoVC: UIViewController {
     }
     
     func EnviaVoluntario() {
-        
         let db = Firestore.firestore()
         
         db.collection("ConsultorSeven").document("MinhasPropostas").collection("\(self.id_user!)").document("\(self.propostaEscolhida.id!)").addSnapshotListener { (querySnapshot, err) in
