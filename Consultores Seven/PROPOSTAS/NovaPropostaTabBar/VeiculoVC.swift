@@ -192,7 +192,6 @@ class VeiculoVC: UIViewController, UITextFieldDelegate {
                     KRProgressHUD.dismiss()
                     self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Insira o ano e o código FIPE corretamente!", acaoAlerta: "Ok", erroRecebido: "\(error)")
                     print("erro: \(error)")
-                    
                 }
             }
     }

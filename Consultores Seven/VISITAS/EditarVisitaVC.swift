@@ -610,7 +610,7 @@ class EditarVisitaVC: UIViewController, UITextFieldDelegate {
             "uber": false,
             "uf": self.ufTxt.text!,
             "zerokm": true,
-            "mes": getMesByInt(mes: month)
+            "mes": "\(getMesByInt(mes: month))/\(year)"
             ] as [String : Any]
         usersReference.setData(values) { (error) in
             if error != nil{

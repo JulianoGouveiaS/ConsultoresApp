@@ -411,6 +411,12 @@ class FunilVC: UIViewController {
                 print("FUNIL ENVIADO")
                 KRProgressHUD.dismiss()
                 self.registraLogin(id: self.id_user!, login: self.loginAux, senha: self.senhaAux);
+                KeychainWrapper.standard.set(self.nome_user!, forKey: "NOME");
+                KeychainWrapper.standard.set(self.cpf_user!, forKey: "CPF");
+                KeychainWrapper.standard.set(self.id_user!, forKey: "ID");
+                
+                KeychainWrapper.standard.set(self.loginAux!, forKey: "LOGIN");
+                KeychainWrapper.standard.set(self.senhaAux!, forKey: "SENHA");
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarPrincipal") as! TabBarPrincipal
                 
                 self.navigationController?.pushViewController(vc, animated: true)

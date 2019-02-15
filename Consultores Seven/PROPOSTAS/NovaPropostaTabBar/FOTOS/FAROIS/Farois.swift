@@ -130,7 +130,6 @@ class Farois: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             } else {
                 print("collection view was long pressed")
             }
-            
         }
     }
     
@@ -187,7 +186,6 @@ class Farois: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                         self.ArrFotosUrls.append(dictionary?["farol\(i)_st"] as? String ?? "")
                     }
                 }
-                
                 self.myCollectionView.reloadData()
             }
             KRProgressHUD.dismiss()

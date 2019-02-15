@@ -229,7 +229,7 @@ class EditarCaptacaoViewController: UIViewController, UITextFieldDelegate {
                 
                 let usersReference = db.collection("ConsultorSeven").document("Visitas").collection("\(self.id_user!)").document("\(self.captaçãoEscolhida.id!)")
                 
-                let values = ["ano_modelo": ano_modeloLbl.text!, "bairro": "", "captacao_enviada": "0", "cep": "", "cidade": "", "complemento": "", "data": Date().millisecondsSince1970, "created_at": data, "dt_visita": "", "hr_visita": "", "id": "\(uuid)", "idconsultor": "\(self.id_user!)", "local_origem": "0", "logradouro": "", "modelo_veiculo": modeloLbl.text!, "nome": nomeLbl.text!, "num_residencia": "", "origem": origemLbl.text!, "placa": placaLbl.text!, "situacao": "0", "telefone": telLbl.text!, "tpveiculo": "", "uf": "", "mes": getMesByInt(mes: month)]  as [String : Any]
+                let values = ["ano_modelo": ano_modeloLbl.text!, "bairro": "", "captacao_enviada": "0", "cep": "", "cidade": "", "complemento": "", "data": Date().millisecondsSince1970, "created_at": data, "dt_visita": "", "hr_visita": "", "id": "\(uuid)", "idconsultor": "\(self.id_user!)", "local_origem": "0", "logradouro": "", "modelo_veiculo": modeloLbl.text!, "nome": nomeLbl.text!, "num_residencia": "", "origem": origemLbl.text!, "placa": placaLbl.text!, "situacao": "0", "telefone": telLbl.text!, "tpveiculo": "", "uf": "", "mes": "\(getMesByInt(mes: month))/\(year)"]  as [String : Any]
                 
                 usersReference.setData(values) { (error) in
                     if error != nil{

@@ -98,8 +98,6 @@ class PediuPermissaoVC: UIViewController {
                             self.okAssociado.isHidden = false
                             print("enviou voluntario, id: \(json["user_data"]["id"].int!)")
                             self.enviaVeiculo(idCliente: json["user_data"]["id"].int!, dictionary: dictionary!)
-                            
-                            
                         }
                         
                     case .failure(let error):

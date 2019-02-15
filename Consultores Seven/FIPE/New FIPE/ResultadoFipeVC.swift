@@ -122,7 +122,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
                     AdicionaValor(valor: 69.00)
                 }
                 
-            case "Uber":
+            case "Uber, Bacify, 99Pop, etc...":
                 AdicionaValor(valor: 50.00)
                 
             case "Assist 24H 500KM":
@@ -140,11 +140,11 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
     }
     
     func AdicionaValor(valor: Double){
-        self.valor_mesLbl.text = String(Double(self.valor_mesLbl.text!)! + valor)
+        self.valor_mesLbl.text = String((Double(self.valor_mesLbl.text!)! + valor).rounded(toPlaces: 2))
     }
     
     func SubtraiValor(valor: Double){
-        self.valor_mesLbl.text = String(Double(self.valor_mesLbl.text!)! - valor)
+        self.valor_mesLbl.text = String((Double(self.valor_mesLbl.text!)! - valor).rounded(toPlaces: 2))
     }
     
     func tokenView(_ tokenView: KSTokenView, didDeleteToken token: KSToken) {
@@ -189,7 +189,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
                     SubtraiValor(valor: 69.00)
                 }
                 
-            case "Uber":
+            case "Uber, Bacify, 99Pop, etc...":
                 SubtraiValor(valor: 50.00)
                 
             case "Assist 24H 500KM":
@@ -240,10 +240,8 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
         bttnScreenshot.frame = self.CGRectMake(0, 0, 53, 31)
         let barButtonSC = UIBarButtonItem(customView: bttnScreenshot)
         
-        
         //assign button to navigationbar
         self.navigationItem.rightBarButtonItems = [barButtonSC]
-        
     }
     
     func saveTabela(){

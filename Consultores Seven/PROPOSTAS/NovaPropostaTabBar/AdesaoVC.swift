@@ -313,14 +313,11 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
                     self.tpVeic = "1"
                     
                 }
-                
             }
         }
     }
     
     @IBAction func pctPremiumClick(_ sender: AnyObject) {
-        
-        
         switch sender.selectedSegmentIndex {
         case 0:
             if self.idTabela != "0"{
@@ -341,8 +338,8 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
             
             self.pctprem15 = false
             self.pctprem30 = false
-        case 1:
             
+        case 1:
             if pctprem30 == true{
                 if self.idTabela != "0"{
                     if self.idTabela != "3" {

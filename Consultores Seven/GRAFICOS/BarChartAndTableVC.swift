@@ -51,7 +51,7 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         scrollView = UIScrollView(frame: CGRect(x:0, y:0, width:self.view.bounds.width,height: 260))
-      //  configurePageControl()
+       scrollView.isScrollEnabled = false
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
         self.view.addSubview(scrollView)
@@ -61,7 +61,7 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
         pageControl.addTarget(self, action: #selector(self.changePage(sender:)), for: UIControlEvents.valueChanged)
         
         
-        viewcolumn.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: 200)
+        viewcolumn.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: 260)
         viewcolumn.backgroundColor = UIColor.clear
         self.setupTableView()
         getCaptacoes()
@@ -97,37 +97,39 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
                     print("\(document.documentID) => \(document.data())")
                     let dictionary = document.data()
                     
-                    let mes = dictionary["mes"] as? String ?? ""
-                    
-                    switch mes{
-                    case "Janeiro":
-                        self.arrTotalCapMensal[0] = self.arrTotalCapMensal[0] + 1
-                    case "Fevereiro":
-                        self.arrTotalCapMensal[1] = self.arrTotalCapMensal[1] + 1
-                    case "Março":
-                        self.arrTotalCapMensal[2] = self.arrTotalCapMensal[2] + 1
-                    case "Abril":
-                        self.arrTotalCapMensal[3] = self.arrTotalCapMensal[3] + 1
-                    case "Maio":
-                        self.arrTotalCapMensal[4] = self.arrTotalCapMensal[4] + 1
-                    case "Junho":
-                        self.arrTotalCapMensal[5] = self.arrTotalCapMensal[5] + 1
-                    case "Julho":
-                        self.arrTotalCapMensal[6] = self.arrTotalCapMensal[6] + 1
-                    case "Agosto":
-                        self.arrTotalCapMensal[7] = self.arrTotalCapMensal[7] + 1
-                    case "Setembro":
-                        self.arrTotalCapMensal[8] = self.arrTotalCapMensal[8] + 1
-                    case "Outubro":
-                        self.arrTotalCapMensal[9] = self.arrTotalCapMensal[9] + 1
-                    case "Novembro":
-                        self.arrTotalCapMensal[10] = self.arrTotalCapMensal[10] + 1
-                    case "Dezembro":
-                        self.arrTotalCapMensal[11] = self.arrTotalCapMensal[11] + 1
-                    default:
-                        print("")
+                    let dataArr = (dictionary["crreated_at"] as? String ?? "0000/00/00").components(separatedBy: "/")
+                    let mes = self.getMesByInt(mes: Int(dataArr[1])!)
+                    let ano = dataArr[0]
+                    if ano == "2019"{
+                        switch mes{
+                            case "Janeiro":
+                                self.arrTotalCapMensal[0] = self.arrTotalCapMensal[0] + 1
+                            case "Fevereiro":
+                                self.arrTotalCapMensal[1] = self.arrTotalCapMensal[1] + 1
+                            case "Março":
+                                self.arrTotalCapMensal[2] = self.arrTotalCapMensal[2] + 1
+                            case "Abril":
+                                self.arrTotalCapMensal[3] = self.arrTotalCapMensal[3] + 1
+                            case "Maio":
+                                self.arrTotalCapMensal[4] = self.arrTotalCapMensal[4] + 1
+                            case "Junho":
+                                self.arrTotalCapMensal[5] = self.arrTotalCapMensal[5] + 1
+                            case "Julho":
+                                self.arrTotalCapMensal[6] = self.arrTotalCapMensal[6] + 1
+                            case "Agosto":
+                                self.arrTotalCapMensal[7] = self.arrTotalCapMensal[7] + 1
+                            case "Setembro":
+                                self.arrTotalCapMensal[8] = self.arrTotalCapMensal[8] + 1
+                            case "Outubro":
+                                self.arrTotalCapMensal[9] = self.arrTotalCapMensal[9] + 1
+                            case "Novembro":
+                                self.arrTotalCapMensal[10] = self.arrTotalCapMensal[10] + 1
+                            case "Dezembro":
+                                self.arrTotalCapMensal[11] = self.arrTotalCapMensal[11] + 1
+                            default:
+                                print("Mes nao valido -> \(mes)")
+                        }
                     }
-                    
                 }
             }
             self.getVisitas()

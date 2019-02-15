@@ -115,7 +115,7 @@ class FotosVC: UIViewController,EPSignatureDelegate {
         lanternaBttn.isHidden = false
         faroisBttn.isHidden = false
         pneusBttn.isHidden = false
-        videoBttn.isHidden = false
+        videoBttn.isHidden = true
         placalacreBttn.isHidden = false
         superiormotoBttn.isHidden = false
         
