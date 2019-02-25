@@ -163,10 +163,12 @@ class PortaMalas: UIViewController, UICollectionViewDataSource, UICollectionView
                 self.ArrFotosUrls = []
                 
                 let dictionary = querySnapshot?.data()
-                if (dictionary?["p_malas_st"] as? String ?? "").contains(".jpg"){
-                    self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(dictionary?["p_malas_st"] as? String ?? "")?alt=media")
+                if (dictionary?["p_malas_st"] as? String ?? "").contains("/emulated/"){
+                    let arr1 = (dictionary?["p_malas_st"] as? String ?? "").components(separatedBy: "/Seven/")
+                    self.ArrFotosUrls.append("https://firebasestorage.googleapis.com/v0/b/seven-app-61ea3.appspot.com/o/\(arr1[1])?alt=media")
+                    
                 }else{
-                self.ArrFotosUrls.append(dictionary?["p_malas_st"] as? String ?? "")
+                    self.ArrFotosUrls.append(dictionary?["p_malas_st"] as? String ?? "")
                 }
                 
                 self.myCollectionView.reloadData()

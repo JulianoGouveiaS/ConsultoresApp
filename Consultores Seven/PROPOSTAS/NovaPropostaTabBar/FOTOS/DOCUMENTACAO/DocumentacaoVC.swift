@@ -19,7 +19,7 @@ class DocumentacaoVC: UIViewController, UICollectionViewDataSource, UICollection
     
     
     @IBOutlet weak var myCollectionView: UICollectionView!
-    var ArrFotosUrls: [String] = ["","","",""]
+    var ArrFotosUrls: [String] = ["","",""]
     let db = Firestore.firestore()
      var permissao = ""
     var propostaEscolhida: Proposta!
@@ -58,7 +58,7 @@ class DocumentacaoVC: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     @objc func addFoto(){
-        self.showGallery(ArrFotosUrls: self.ArrFotosUrls, totalFotos: 4, permissao: self.permissao)
+        self.showGallery(ArrFotosUrls: self.ArrFotosUrls, totalFotos: 3, permissao: self.permissao)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -181,7 +181,7 @@ class DocumentacaoVC: UIViewController, UICollectionViewDataSource, UICollection
                 
                 let dictionary = querySnapshot?.data()
                 
-                for i in 1...4{
+                for i in 1...3{
                     if (dictionary?["doc\(i)_st"] as? String ?? "").contains("/emulated/"){
                         
                        // autoreleasepool {

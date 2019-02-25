@@ -14,7 +14,9 @@ class DadosVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     // MARK: - Properties
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     private let customAccessory: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         view.backgroundColor = UIColor.clear
@@ -63,7 +65,14 @@ class DadosVC: UIViewController {
                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TelefonesUteisVC") as? TelefonesUteisVC
                     self.navigationController!.pushViewController(vc!, animated: true)
                     
-                    })
+                }),
+                Row(text: "Oficinas Parceiras", detailText: "", selection: { [unowned self] in
+                    
+                    let vc = UIStoryboard(name: "Oficinas", bundle: nil).instantiateViewController(withIdentifier: "SelectEstado") as? SelectEstado
+                    self.navigationController!.pushViewController(vc!, animated: true)
+                    
+                })
+
                 ]),
             Section(header: "Ajuda", rows: [
                 Row(text: "Sobre o Aplicativo", detailText: "Informações gerais.", selection: { [unowned self] in

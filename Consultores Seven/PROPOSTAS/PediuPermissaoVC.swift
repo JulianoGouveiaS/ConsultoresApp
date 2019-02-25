@@ -30,6 +30,9 @@ class PediuPermissaoVC: UIViewController {
     let id_user = KeychainWrapper.standard.integer(forKey: "ID")
     let nome_user = KeychainWrapper.standard.string(forKey: "NOME")
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

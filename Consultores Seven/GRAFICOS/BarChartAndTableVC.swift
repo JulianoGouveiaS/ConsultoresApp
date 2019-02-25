@@ -46,7 +46,9 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
     var frame: CGRect = CGRect(x:0, y:0, width:0, height:0)
     var arrViewsGraficos = [UIView]();
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,14 +96,20 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
             } else {
                 
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
+                   
                     let dictionary = document.data()
                     
-                    let dataArr = (dictionary["crreated_at"] as? String ?? "0000/00/00").components(separatedBy: "/")
-                    let mes = self.getMesByInt(mes: Int(dataArr[1])!)
-                    let ano = dataArr[0]
-                    if ano == "2019"{
-                        switch mes{
+                    let data = (dictionary["created_at"] as? String ?? "00/00/0000")
+                    print("data", data)
+                    if data.contains("/"){
+                        let dataArr = data.components(separatedBy: "/")
+                        print("dataArr", data)
+                        let mes = self.getMesByInt(mes: Int(dataArr[1])!)
+                        print("mes", mes)
+                        let ano = dataArr[2].prefix(4)
+                        print("ano", ano)
+                        if ano == "2019"{
+                            switch mes{
                             case "Janeiro":
                                 self.arrTotalCapMensal[0] = self.arrTotalCapMensal[0] + 1
                             case "Fevereiro":
@@ -128,8 +136,10 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
                                 self.arrTotalCapMensal[11] = self.arrTotalCapMensal[11] + 1
                             default:
                                 print("Mes nao valido -> \(mes)")
+                            }
                         }
                     }
+                    
                 }
             }
             self.getVisitas()
@@ -148,37 +158,48 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
                     print("\(document.documentID) => \(document.data())")
                     let dictionary = document.data()
                     
-                    let mes = dictionary["mes"] as? String ?? ""
-                    
-                    switch mes{
-                    case "Janeiro":
-                        self.arrTotalVisMensal[0] = self.arrTotalVisMensal[0] + 1
-                    case "Fevereiro":
-                        self.arrTotalVisMensal[1] = self.arrTotalVisMensal[1] + 1
-                    case "Março":
-                        self.arrTotalVisMensal[2] = self.arrTotalCapMensal[2] + 1
-                    case "Abril":
-                        self.arrTotalVisMensal[3] = self.arrTotalVisMensal[3] + 1
-                    case "Maio":
-                        self.arrTotalVisMensal[4] = self.arrTotalVisMensal[4] + 1
-                    case "Junho":
-                        self.arrTotalVisMensal[5] = self.arrTotalVisMensal[5] + 1
-                    case "Julho":
-                        self.arrTotalVisMensal[6] = self.arrTotalVisMensal[6] + 1
-                    case "Agosto":
-                        self.arrTotalVisMensal[7] = self.arrTotalVisMensal[7] + 1
-                    case "Setembro":
-                        self.arrTotalVisMensal[8] = self.arrTotalVisMensal[8] + 1
-                    case "Outubro":
-                        self.arrTotalVisMensal[9] = self.arrTotalVisMensal[9] + 1
-                    case "Novembro":
-                        self.arrTotalVisMensal[10] = self.arrTotalVisMensal[10] + 1
-                    case "Dezembro":
-                        self.arrTotalVisMensal[11] = self.arrTotalVisMensal[11] + 1
-                    default:
-                        print("")
+                    let data = (dictionary["created_at"] as? String ?? "00/00/0000")
+                    print("data", data)
+                    if data.contains("/"){
+                        let dataArr = data.components(separatedBy: "/")
+                        print("dataArr", data)
+                        let mes = self.getMesByInt(mes: Int(dataArr[1])!)
+                        print("mes", mes)
+                        let ano = dataArr[2].prefix(4)
+                        print("ano", ano)
+                        if ano == "2019"{
+                            switch mes{
+                            case "Janeiro":
+                                self.arrTotalVisMensal[0] = self.arrTotalVisMensal[0] + 1
+                            case "Fevereiro":
+                                self.arrTotalVisMensal[1] = self.arrTotalVisMensal[1] + 1
+                            case "Março":
+                                self.arrTotalVisMensal[2] = self.arrTotalCapMensal[2] + 1
+                            case "Abril":
+                                self.arrTotalVisMensal[3] = self.arrTotalVisMensal[3] + 1
+                            case "Maio":
+                                self.arrTotalVisMensal[4] = self.arrTotalVisMensal[4] + 1
+                            case "Junho":
+                                self.arrTotalVisMensal[5] = self.arrTotalVisMensal[5] + 1
+                            case "Julho":
+                                self.arrTotalVisMensal[6] = self.arrTotalVisMensal[6] + 1
+                            case "Agosto":
+                                self.arrTotalVisMensal[7] = self.arrTotalVisMensal[7] + 1
+                            case "Setembro":
+                                self.arrTotalVisMensal[8] = self.arrTotalVisMensal[8] + 1
+                            case "Outubro":
+                                self.arrTotalVisMensal[9] = self.arrTotalVisMensal[9] + 1
+                            case "Novembro":
+                                self.arrTotalVisMensal[10] = self.arrTotalVisMensal[10] + 1
+                            case "Dezembro":
+                                self.arrTotalVisMensal[11] = self.arrTotalVisMensal[11] + 1
+                            default:
+                                print("")
+                            }
+                            
+                        }
+                        
                     }
-                    
                 }
             }
             self.getPropostas()
@@ -197,37 +218,48 @@ class BarChartAndTableVC: UIViewController, UITableViewDelegate, UITableViewData
                     print("\(document.documentID) => \(document.data())")
                     let dictionary = document.data()
                     
-                    let mes = dictionary["mes"] as? String ?? ""
-                    
-                    switch mes{
-                    case "Janeiro":
-                        self.arrTotalPropMensal[0] = self.arrTotalPropMensal[0] + 1
-                    case "Fevereiro":
-                        self.arrTotalPropMensal[1] = self.arrTotalPropMensal[1] + 1
-                    case "Março":
-                        self.arrTotalPropMensal[2] = self.arrTotalPropMensal[2] + 1
-                    case "Abril":
-                        self.arrTotalPropMensal[3] = self.arrTotalPropMensal[3] + 1
-                    case "Maio":
-                        self.arrTotalPropMensal[4] = self.arrTotalPropMensal[4] + 1
-                    case "Junho":
-                        self.arrTotalPropMensal[5] = self.arrTotalPropMensal[5] + 1
-                    case "Julho":
-                        self.arrTotalPropMensal[6] = self.arrTotalPropMensal[6] + 1
-                    case "Agosto":
-                        self.arrTotalPropMensal[7] = self.arrTotalPropMensal[7] + 1
-                    case "Setembro":
-                        self.arrTotalPropMensal[8] = self.arrTotalPropMensal[8] + 1
-                    case "Outubro":
-                        self.arrTotalPropMensal[9] = self.arrTotalPropMensal[9] + 1
-                    case "Novembro":
-                        self.arrTotalPropMensal[10] = self.arrTotalPropMensal[10] + 1
-                    case "Dezembro":
-                        self.arrTotalPropMensal[11] = self.arrTotalPropMensal[11] + 1
-                    default:
-                        print("")
+                    let data = (dictionary["created_at"] as? String ?? "0000/00/00")
+                    print("data", data)
+                    if data.contains("/"){
+                        let dataArr = data.components(separatedBy: "/")
+                        print("dataArr", data)
+                        let mes = self.getMesByInt(mes: Int(dataArr[1])!)
+                        print("mes", mes)
+                        let ano = dataArr[0].prefix(4)
+                        print("ano", ano)
+                        if ano == "2019"{
+                            switch mes{
+                            case "Janeiro":
+                                self.arrTotalPropMensal[0] = self.arrTotalPropMensal[0] + 1
+                            case "Fevereiro":
+                                self.arrTotalPropMensal[1] = self.arrTotalPropMensal[1] + 1
+                            case "Março":
+                                self.arrTotalPropMensal[2] = self.arrTotalPropMensal[2] + 1
+                            case "Abril":
+                                self.arrTotalPropMensal[3] = self.arrTotalPropMensal[3] + 1
+                            case "Maio":
+                                self.arrTotalPropMensal[4] = self.arrTotalPropMensal[4] + 1
+                            case "Junho":
+                                self.arrTotalPropMensal[5] = self.arrTotalPropMensal[5] + 1
+                            case "Julho":
+                                self.arrTotalPropMensal[6] = self.arrTotalPropMensal[6] + 1
+                            case "Agosto":
+                                self.arrTotalPropMensal[7] = self.arrTotalPropMensal[7] + 1
+                            case "Setembro":
+                                self.arrTotalPropMensal[8] = self.arrTotalPropMensal[8] + 1
+                            case "Outubro":
+                                self.arrTotalPropMensal[9] = self.arrTotalPropMensal[9] + 1
+                            case "Novembro":
+                                self.arrTotalPropMensal[10] = self.arrTotalPropMensal[10] + 1
+                            case "Dezembro":
+                                self.arrTotalPropMensal[11] = self.arrTotalPropMensal[11] + 1
+                            default:
+                                print("")
+                            }
+                            
+                        }
+                        
                     }
-                    
                 }
                 
                 KRProgressHUD.dismiss()

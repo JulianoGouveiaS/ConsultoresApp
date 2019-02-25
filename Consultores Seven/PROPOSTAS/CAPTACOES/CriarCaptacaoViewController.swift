@@ -29,7 +29,9 @@ class CriarCaptacaoViewController: UIViewController, UITextFieldDelegate {
     
    
     let db = Firestore.firestore()
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         MakeButtonsNav()

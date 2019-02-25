@@ -203,18 +203,14 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
                 self.preencheCheckBox(estado: dictionary?["uber"] as? Bool ?? false, checkBox: self.uberBox)
                 self.preencheCheckBox(estado: dictionary?["avarias"] as? Bool ?? false, checkBox: self.avariasBox)
                 
-                
-                
                 if (dictionary?["carres15"] as? Bool ?? false) == true{
                     self.carroReservaSegmented.selectedSegmentIndex = 1
                     self.carres15 = true
                     self.carres30 = false
-                  //  self.handleValorAdicional(adicionar: true, valor: 15.00)
                 }else if (dictionary?["carres30"] as? Bool ?? false) == true{
                     self.carroReservaSegmented.selectedSegmentIndex = 2
                     self.carres15 = false
                     self.carres30 = true
-                   // self.handleValorAdicional(adicionar: true, valor: 30.00)
                 }else{
                     self.carroReservaSegmented.selectedSegmentIndex = 0
                     self.carres15 = false
@@ -228,9 +224,7 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
                     
                     if self.idTabela != "0"{
                         if self.idTabela == "1" || self.idTabela == "2"{
-                         //   self.handleValorAdicional(adicionar: true, valor: 39.90)
                         } else if self.idTabela == "5" || self.idTabela == "6" {
-                        //    self.handleValorAdicional(adicionar: true, valor: 54.90)
                         }
                     }
                 }else if (dictionary?["pctpremio30"] as? Bool ?? false) == true{
@@ -240,7 +234,6 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
                     
                     if self.idTabela != "0"{
                         if self.idTabela != "3" {
-                         //   self.handleValorAdicional(adicionar: true, valor: 69.90)
                         }
                     }
                 }else{
@@ -256,7 +249,6 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
                     self.km500 = false
                     
                     if self.idTabela != "0"{
-                      //  self.handleValorAdicional(adicionar: true, valor: 35.00)
                     }
                 }else if (dictionary?["km700"] as? Bool ?? false) == true{
                     self.ass24hSegmented.selectedSegmentIndex = 2
@@ -264,7 +256,6 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
                     self.km700 = true
                     self.km500 = false
                     if self.idTabela != "0"{
-                     //   self.handleValorAdicional(adicionar: true, valor: 25.00)
                     }
                 }else if (dictionary?["km500"] as? Bool ?? false) == true{
                     self.ass24hSegmented.selectedSegmentIndex = 3
@@ -274,9 +265,7 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
                     
                     if self.idTabela != "0"{
                         if self.idTabela == "3"{
-                         //   self.handleValorAdicional(adicionar: true, valor: 25.00)
                         }else{
-                         //   self.handleValorAdicional(adicionar: true, valor: 15.00)
                         }
                     }
                 }else{
@@ -407,8 +396,6 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func DanosTercClick(_ sender: Any) {
         
-        print("id_tabela: \(self.idTabela)")
-        
         if self.idTabela != "0"{
             if self.idTabela == "3"{
                 if danosMateriaisBox.isChecked{
@@ -500,12 +487,10 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
                     }
                 }
             }
-            
             self.carres15 = false
             self.carres30 = false
             
         case 1:
-            
             if self.carres30 == true{
                 if self.idTabela != "0"{
                     if self.idTabela != "3"{
@@ -516,8 +501,8 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
             handleValorAdicional(adicionar: true, valor: 15.00)
             self.carres15 = true
             self.carres30 = false
-        case 2:
             
+        case 2:
             if self.carres15 == true{
                 if self.idTabela != "0"{
                     if self.idTabela != "3"{
@@ -525,6 +510,7 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
                     }
                 }
             }
+            
             handleValorAdicional(adicionar: true, valor: 30.00)
             self.carres15 = false
             self.carres30 = true

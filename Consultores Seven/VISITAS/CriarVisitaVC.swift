@@ -9,11 +9,13 @@
 import UIKit
 import KRProgressHUD
 import FirebaseFirestore
+import Gallery
+import CFAlertViewController
+import SDWebImage
+import Agrume
 
-class CriarVisitaVC: UIViewController, UITextFieldDelegate {
+class CriarVisitaVC: UIViewController, UITextFieldDelegate{
 
-    
-    
     let kCep: String!         = "cep";
     let kUF: String!          = "uf"
     let kLocalidade: String!  = "localidade"
@@ -28,6 +30,8 @@ class CriarVisitaVC: UIViewController, UITextFieldDelegate {
     let id_user = KeychainWrapper.standard.integer(forKey: "ID")
     let nome_user = KeychainWrapper.standard.string(forKey: "NOME")
     
+
+
     @IBOutlet weak var nomeTxt: UITextField!
     @IBOutlet weak var placaTxt: UITextField!
     @IBOutlet weak var placaMERCOSULTxt: UITextField!
@@ -41,6 +45,8 @@ class CriarVisitaVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var numeroTxt: UITextField!
     @IBOutlet weak var complementoTxt: UITextField!
     @IBOutlet weak var tpVeicSegmented: UISegmentedControl!
+    
+   
     @IBOutlet weak var isZeroKmSegmented: UISegmentedControl!
     
     
@@ -48,13 +54,17 @@ class CriarVisitaVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var StackViewPlacaMERCOSUL: UIStackView!
     @IBOutlet weak var SwitchPlacaMercosul: UISwitch!
     
+    var uuid = NSUUID().uuidString
+    
     let db = Firestore.firestore()
     let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
     
     var isZeroKm = false
     var tpveiculo = "1"
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,8 +75,10 @@ class CriarVisitaVC: UIViewController, UITextFieldDelegate {
         MakeButtonsNav()
         showDatePicker()
         showTimePicker()
+       
         // Do any additional setup after loading the view.
     }
+    
     
     
     func showDatePicker(){
@@ -188,7 +200,6 @@ class CriarVisitaVC: UIViewController, UITextFieldDelegate {
             let seconds = calendar.component(.second, from: date as Date)
             let data = String("\(year)/\(month)/\(day) - \(hour - 3):\(minutes):\(seconds)")
             
-            var uuid = NSUUID().uuidString
         
             let usersReference = db.collection("ConsultorSeven").document("Visitas").collection("\(self.id_user!)").document("\(uuid)")
             var placa = self.placaTxt.text!
@@ -225,18 +236,39 @@ class CriarVisitaVC: UIViewController, UITextFieldDelegate {
                         "tpveiculo": self.tpveiculo]
                         as [String : Any]
             
-            usersReference.setData(values) { (error) in
-                if error != nil{
-                    print("erro ao cadastrar no firebase", error)
-                    self.CriarAlerta(tituloAlerta: "Erro", mensagemAlerta: "Erro ao salvar dados no servidor!", acaoAlerta: "OK", erroRecebido: "\(error)")
-                   KRProgressHUD.dismiss()
-                    return
-                }else{
-                    print("visita cadastrada no firebase com sucesso")
-                    _ = self.navigationController?.popViewController(animated: true)
-                    KRProgressHUD.showSuccess()
+            usersReference.getDocument { (document, erro) in
+                if let document = document {
+                    if !document.exists{
+                        usersReference.setData(values) { (error) in
+                            if error != nil{
+                                print("erro ao acessar servidor", error)
+                                self.CriarAlerta(tituloAlerta: "Erro", mensagemAlerta: "Erro ao salvar dados no servidor!", acaoAlerta: "OK", erroRecebido: "\(error)")
+                                KRProgressHUD.dismiss()
+                                return
+                            }else{
+                                print("visita enviado com sucesso")
+                                _ = self.navigationController?.popViewController(animated: true)
+                                KRProgressHUD.showSuccess()
+                            }
+                        }
+                        KRProgressHUD.dismiss()
+                    }else{
+                        usersReference.updateData(values) { (error) in
+                            if error != nil{
+                                print("erro ao acessar servidor", error)
+                                self.CriarAlerta(tituloAlerta: "Erro", mensagemAlerta: "Erro ao salvar dados no servidor!", acaoAlerta: "OK", erroRecebido: "\(error)")
+                                KRProgressHUD.dismiss()
+                                return
+                            }else{
+                                print("Comprovante enviado com sucesso")
+                                KRProgressHUD.showSuccess()
+                            }
+                        }
+                        KRProgressHUD.dismiss()
+                    }
                 }
             }
+            
         }
         
     }

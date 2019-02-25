@@ -737,21 +737,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imI-hB-iMu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-84" y="124.13793103448276"/>
+            <point key="canvasLocation" x="-71.200000000000003" y="100.74962518740631"/>
         </scene>
         <!--Editar Visita-->
         <scene sceneID="icq-pD-cCh">
             <objects>
                 <viewController restorationIdentifier="EditarVisitaVC" storyboardIdentifier="EditarVisitaVC" title="Editar Visita" id="gSE-ct-eyx" customClass="EditarVisitaVC" customModule="Consultores_Seven" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jUR-iy-2Yb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R3a-fX-NnX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1150"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CQI-i8-kAg">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="YAv-q9-58q" userLabel="Nome">
                                                 <rect key="frame" x="8" y="25" width="359" height="60.5"/>
@@ -1154,7 +1154,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04Y-fX-kO0">
                                                         <rect key="frame" x="0.0" y="20.5" width="359" height="40"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UF" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KUg-iS-3ZF">
+                                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UF" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KUg-iS-3ZF">
                                                                 <rect key="frame" x="5" y="5" width="349" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1196,7 +1196,7 @@
                                                                     <constraint firstAttribute="width" constant="30" id="xMF-h1-ub8"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cidade" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CbE-E6-1aF">
+                                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cidade" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CbE-E6-1aF">
                                                                 <rect key="frame" x="40" y="5" width="314" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1235,7 +1235,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Zh-13-J3S">
                                                         <rect key="frame" x="0.0" y="20.5" width="359" height="40"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bairro" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="00N-92-8D3">
+                                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bairro" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="00N-92-8D3">
                                                                 <rect key="frame" x="5" y="5" width="349" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1271,7 +1271,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVn-Zf-zZ9">
                                                         <rect key="frame" x="0.0" y="20.5" width="359" height="40"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Logradouro" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4sG-EE-aa9">
+                                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Logradouro" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4sG-EE-aa9">
                                                                 <rect key="frame" x="5" y="5" width="349" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1368,7 +1368,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kYc-QY-Rlh" userLabel="botoes">
-                                                <rect key="frame" x="8" y="1057" width="359" height="50"/>
+                                                <rect key="frame" x="8" y="1121" width="359" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUA-WR-Nbb">
                                                         <rect key="frame" x="0.0" y="0.0" width="172" height="50"/>
@@ -1395,10 +1395,32 @@
                                                     <constraint firstAttribute="height" constant="50" id="FcN-hQ-6BM"/>
                                                 </constraints>
                                             </stackView>
+                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aSx-IF-RC3">
+                                                <rect key="frame" x="127.5" y="1102" width="120" height="84"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="84" id="2Fm-t3-mzG"/>
+                                                    <constraint firstAttribute="width" constant="120" id="hXA-xG-EiJ"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwS-YL-0G1">
+                                                <rect key="frame" x="8" y="1061" width="359" height="33"/>
+                                                <color key="backgroundColor" red="0.0" green="0.16078431369999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <state key="normal" title="Adicionar Comprovante de Endereço">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="adcFotoWithSender:" destination="p12-5D-BFe" eventType="touchUpInside" id="NPe-zv-hnf"/>
+                                                    <action selector="adcFotoWithSender:" destination="gSE-ct-eyx" eventType="touchUpInside" id="nrZ-L1-vai"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="bwS-YL-0G1" secondAttribute="trailing" constant="8" id="0XG-0k-FNq"/>
+                                            <constraint firstItem="aSx-IF-RC3" firstAttribute="top" secondItem="bwS-YL-0G1" secondAttribute="bottom" constant="8" id="13G-fH-d4a"/>
                                             <constraint firstAttribute="trailing" secondItem="kFE-G9-dv9" secondAttribute="trailing" constant="8" id="1gG-nm-D70"/>
+                                            <constraint firstItem="aSx-IF-RC3" firstAttribute="centerX" secondItem="CQI-i8-kAg" secondAttribute="centerX" id="1oO-la-3Km"/>
                                             <constraint firstItem="Axd-pv-TsJ" firstAttribute="leading" secondItem="CQI-i8-kAg" secondAttribute="leading" constant="8" id="4d4-6F-tLE"/>
                                             <constraint firstItem="kFE-G9-dv9" firstAttribute="top" secondItem="CSN-pv-xFD" secondAttribute="bottom" constant="16" id="4nH-QM-clg"/>
                                             <constraint firstAttribute="trailing" secondItem="gsm-d0-7co" secondAttribute="trailing" constant="8" id="4rQ-bv-BO4"/>
@@ -1413,17 +1435,19 @@
                                             <constraint firstItem="Cye-F2-Psk" firstAttribute="leading" secondItem="CQI-i8-kAg" secondAttribute="leading" constant="8" id="DjK-10-2GQ"/>
                                             <constraint firstItem="UPy-ql-fQL" firstAttribute="leading" secondItem="CQI-i8-kAg" secondAttribute="leading" constant="8" id="E6L-2o-MwF"/>
                                             <constraint firstItem="nRs-A6-M33" firstAttribute="top" secondItem="ceI-YL-w7N" secondAttribute="bottom" constant="16" id="Fhc-uc-0Aw"/>
+                                            <constraint firstItem="bwS-YL-0G1" firstAttribute="leading" secondItem="CQI-i8-kAg" secondAttribute="leading" constant="8" id="HxL-9Z-ar2"/>
                                             <constraint firstItem="kFE-G9-dv9" firstAttribute="leading" secondItem="CQI-i8-kAg" secondAttribute="leading" constant="8" id="JyU-hB-PeI"/>
                                             <constraint firstAttribute="trailing" secondItem="Axd-pv-TsJ" secondAttribute="trailing" constant="8" id="K1k-0d-36v"/>
                                             <constraint firstItem="4Fa-Da-M4V" firstAttribute="leading" secondItem="CQI-i8-kAg" secondAttribute="leading" constant="8" id="M24-L5-Sxy"/>
                                             <constraint firstAttribute="trailing" secondItem="Cye-F2-Psk" secondAttribute="trailing" constant="8" id="NZJ-f1-Dqj"/>
                                             <constraint firstItem="eme-Ud-XbW" firstAttribute="leading" secondItem="CQI-i8-kAg" secondAttribute="leading" constant="8" id="P0a-ar-l0p"/>
                                             <constraint firstAttribute="trailing" secondItem="AHa-hY-pFT" secondAttribute="trailing" constant="8" id="Q60-Hf-AEi"/>
+                                            <constraint firstItem="bwS-YL-0G1" firstAttribute="top" secondItem="AHa-hY-pFT" secondAttribute="bottom" constant="20" id="R9O-Ax-sjK"/>
                                             <constraint firstItem="2kX-l1-RcA" firstAttribute="leading" secondItem="CQI-i8-kAg" secondAttribute="leading" constant="8" id="RG7-bz-x3d"/>
                                             <constraint firstItem="eme-Ud-XbW" firstAttribute="centerX" secondItem="kFE-G9-dv9" secondAttribute="centerX" id="RIl-CL-aFr"/>
                                             <constraint firstItem="foM-Z9-HBD" firstAttribute="centerY" secondItem="kFE-G9-dv9" secondAttribute="centerY" id="RNL-Np-5h4"/>
                                             <constraint firstAttribute="trailing" secondItem="kYc-QY-Rlh" secondAttribute="trailing" constant="8" id="S12-d0-USf"/>
-                                            <constraint firstItem="kYc-QY-Rlh" firstAttribute="top" secondItem="AHa-hY-pFT" secondAttribute="bottom" constant="16" id="Sz8-55-6c1"/>
+                                            <constraint firstItem="kYc-QY-Rlh" firstAttribute="top" secondItem="AHa-hY-pFT" secondAttribute="bottom" constant="80" id="Sz8-55-6c1"/>
                                             <constraint firstItem="CSN-pv-xFD" firstAttribute="leading" secondItem="CQI-i8-kAg" secondAttribute="leading" constant="8" id="TPW-Ok-RLL"/>
                                             <constraint firstAttribute="trailing" secondItem="CSN-pv-xFD" secondAttribute="trailing" constant="8" id="VaX-m0-I0C"/>
                                             <constraint firstItem="gPE-qO-mBY" firstAttribute="top" secondItem="OaU-Aa-tlt" secondAttribute="bottom" constant="16" id="WtM-6z-nbG"/>
@@ -1446,7 +1470,7 @@
                                             <constraint firstAttribute="trailing" secondItem="OaU-Aa-tlt" secondAttribute="trailing" constant="8" id="oKr-ch-2Pp"/>
                                             <constraint firstItem="2kX-l1-RcA" firstAttribute="top" secondItem="YAv-q9-58q" secondAttribute="bottom" constant="16" id="oce-yO-OdA"/>
                                             <constraint firstItem="Axd-pv-TsJ" firstAttribute="top" secondItem="eme-Ud-XbW" secondAttribute="bottom" constant="16" id="qoO-WI-CEg"/>
-                                            <constraint firstAttribute="height" constant="1150" id="rBr-H2-fsr"/>
+                                            <constraint firstAttribute="height" constant="1300" id="rBr-H2-fsr"/>
                                             <constraint firstItem="YAv-q9-58q" firstAttribute="leading" secondItem="CQI-i8-kAg" secondAttribute="leading" constant="8" id="voD-k3-eGJ"/>
                                             <constraint firstItem="gsm-d0-7co" firstAttribute="top" secondItem="4Fa-Da-M4V" secondAttribute="bottom" constant="16" id="w30-CR-B7u"/>
                                             <constraint firstItem="gPE-qO-mBY" firstAttribute="leading" secondItem="CQI-i8-kAg" secondAttribute="leading" constant="8" id="y06-uD-yHj"/>
@@ -1473,8 +1497,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9l5-Bb-Erf"/>
                     </view>
-                    <size key="freeformSize" width="375" height="1150"/>
+                    <size key="freeformSize" width="375" height="1300"/>
                     <connections>
+                        <outlet property="BttnAdcComprovante" destination="bwS-YL-0G1" id="brg-CQ-BRK"/>
+                        <outlet property="ImgViewComprovante" destination="aSx-IF-RC3" id="bbD-O1-vAH"/>
                         <outlet property="StackViewPlacaMERCOSUL" destination="eme-Ud-XbW" id="TLf-KV-Xx8"/>
                         <outlet property="StackViewPlacaNormal" destination="kFE-G9-dv9" id="bfN-dp-cJ2"/>
                         <outlet property="SwitchPlacaMercosul" destination="q16-rG-LDe" id="FdO-cK-2iC"/>
@@ -1492,6 +1518,7 @@
                         <outlet property="numeroTxt" destination="tbc-j5-UxS" id="XVK-f0-bKe"/>
                         <outlet property="placaMERCOSULTxt" destination="s91-uk-quN" id="fIm-mo-ora"/>
                         <outlet property="placaTxt" destination="U19-dr-rB3" id="DZo-fq-hBT"/>
+                        <outlet property="topBttns" destination="Sz8-55-6c1" id="KGz-KX-xO1"/>
                         <outlet property="tpVeicSegmented" destination="nt4-wA-cs4" id="lFf-1Z-gQD"/>
                         <outlet property="ufTxt" destination="KUg-iS-3ZF" id="jQE-YT-b7M"/>
                     </connections>

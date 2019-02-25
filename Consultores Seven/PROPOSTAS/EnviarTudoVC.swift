@@ -35,6 +35,9 @@ class EnviarTudoVC: UIViewController {
     let id_user = KeychainWrapper.standard.integer(forKey: "ID")
     let nome_user = KeychainWrapper.standard.string(forKey: "NOME")
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -299,7 +302,7 @@ class EnviarTudoVC: UIViewController {
                     "doc1":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["doc1_st"] as? String ?? ""),
                     "doc2":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["doc2_st"] as? String ?? ""),
                     "doc3":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["doc3_st"] as? String ?? ""),
-                    "doc4":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["doc4_st"] as? String ?? ""),
+                    "doc4":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary!["comprovanteFoto"] as? String ?? ""),
                     "dut":                       self.getNomeFotoPelaUrl(urlFirebase: dictionary!["dut_st"] as? String ?? ""),
                     "rastreador":                self.getNomeFotoPelaUrl(urlFirebase: dictionary!["rasteador_st"] as? String ?? ""),
                     "frontal1":                  "",
@@ -365,8 +368,8 @@ class EnviarTudoVC: UIViewController {
 
                             switch response.result {
                             case .success(let value):
-                                self.progressBar.progress = 0.2
-                                self.porcentagemLbl.text = "20%"
+                                self.progressBar.progress = 0.1
+                                self.porcentagemLbl.text = "10%"
                                 self.enviaFotos2(idVeiculo: idVeiculo, idVoluntario: idVoluntario, dictionary: dictionary!)
                                 
                                 
@@ -405,11 +408,11 @@ class EnviarTudoVC: UIViewController {
                     "traseira":                  "",
                     "portamalas":                "",
                     "teto":                      "",
-                    "motor":                     self.getNomeFotoPelaUrl(urlFirebase: dictionary["motor_st"] as? String ?? ""),
-                    "chassift":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["chassi_st"] as? String ?? ""),
-                    "veloc":                     self.getNomeFotoPelaUrl(urlFirebase: dictionary["veloc_st"] as? String ?? ""),
-                    "esto1":                     self.getNomeFotoPelaUrl(urlFirebase: dictionary["esto1_st"] as? String ?? ""),
-                    "esto2":                     self.getNomeFotoPelaUrl(urlFirebase: dictionary["esto2_st"] as? String ?? ""),
+                    "motor":                     "",
+                    "chassift":                  "",
+                    "veloc":                     "",
+                    "esto1":                     "",
+                    "esto2":                     "",
                     "esto3":                     self.getNomeFotoPelaUrl(urlFirebase: dictionary["esto3_st"] as? String ?? ""),
                     "esto4":                     self.getNomeFotoPelaUrl(urlFirebase: dictionary["esto4_st"] as? String ?? ""),
                     "lanterna1":                 self.getNomeFotoPelaUrl(urlFirebase: dictionary["lanterna1_st"] as? String ?? ""),
@@ -456,8 +459,8 @@ class EnviarTudoVC: UIViewController {
             
             switch response.result {
             case .success(let value):
-                self.progressBar.progress = 0.4
-                self.porcentagemLbl.text = "40%"
+                self.progressBar.progress = 0.2
+                self.porcentagemLbl.text = "20%"
                 self.enviaFotos3(idVeiculo: idVeiculo, idVoluntario: idVoluntario, dictionary: dictionary)
                 
                 
@@ -484,10 +487,186 @@ class EnviarTudoVC: UIViewController {
             "doc4":                      "",
             "dut":                       "",
             "rastreador":                "",
+            "frontal1":                  "",
+            "frontal2":                  "",
+            "lat1":                      "",
+            "lat2":                      "",
+            "lat3":                      "",
+            "lat4":                      "",
+            "traseira":                  "",
+            "portamalas":                "",
+            "teto":                      "",
+            "motor":                     self.getNomeFotoPelaUrl(urlFirebase: dictionary["motor_st"] as? String ?? ""),
+            "chassift":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["chassi_st"] as? String ?? ""),
+            "veloc":                     self.getNomeFotoPelaUrl(urlFirebase: dictionary["veloc_st"] as? String ?? ""),
+            "esto1":                     self.getNomeFotoPelaUrl(urlFirebase: dictionary["esto1_st"] as? String ?? ""),
+            "esto2":                     self.getNomeFotoPelaUrl(urlFirebase: dictionary["esto2_st"] as? String ?? ""),
+            "esto3":                     "",
+            "esto4":                     "",
+            "lanterna1":                 "",
+            "lanterna2":                 "",
+            "farois1":                   "",
+            "farois2":                   "",
+            "pneus1":                    "",
+            "pneus2":                    "",
+            "pneus3":                    "",
+            "pneus4":                    "",
+            "pneus5":                    "",
+            "pneus6":                    "",
+            "vidros1":                   "",
+            "vidros2":                   "",
+            "vidros3":                   "",
+            "vidros4":                   "",
+            "vidros5":                   "",
+            "vidros6":                   "",
+            "vidros7":                   "",
+            "vidros8":                   "",
+            "vidros9":                   "",
+            "vidros10":                  "",
+            "vidros11":                  "",
+            "vidros12":                  "",
+            "avarias1":                  "",
+            "avarias2":                  "",
+            "avarias3":                  "",
+            "avarias4":                  "",
+            "avarias5":                  "",
+            "avarias6":                  "",
+            "avarias7":                  "",
+            "avarias8":                  "",
+            "avarias9":                  "",
+            "avarias10":                 ""
+            ] as [String : Any]
+        let url = "https://www.sevenprotecaoveicular.com.br/Api/CadastroFotos"
+        print("PARAM FOTOS -> \(parameters)")
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 90000
+        configuration.timeoutIntervalForResource = 90000
+        self.alamoFireManager = Alamofire.SessionManager(configuration: configuration)
+        
+        alamoFireManager?.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            
+            switch response.result {
+            case .success(let value):
+                self.progressBar.progress = 0.3
+                self.porcentagemLbl.text = "30%"
+                self.enviaFotos4(idVeiculo: idVeiculo, idVoluntario: idVoluntario, dictionary: dictionary)
+                
+                
+            case .failure(let error):
+                self.progressBar.isHidden = true
+                
+                self.reloadBttn.isHidden = false
+                print(error)
+                self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Para completar o envio das fotos restantes, clique no botão de reenvio. Erros podem ocorrer caso a internet não envie todas as fotos no tempo estabelecido.", acaoAlerta: "Ok", erroRecebido: "\(error)")
+                
+            }
+        })
+    }
+    
+    func enviaFotos4(idVeiculo: Int, idVoluntario: Int, dictionary: [String:Any]){
+        var parameters = [
+            "id_voluntario":            "\(idVoluntario)",
+            "id_veiculo":               "\(idVeiculo)",
+            "vistoria":                  "",
+            "proposta":                  "",
+            "doc1":                      "",
+            "doc2":                      "",
+            "doc3":                      "",
+            "doc4":                      "",
+            "dut":                       "",
+            "rastreador":                "",
             "frontal1":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["fronta1_st"] as? String ?? ""),
             "frontal2":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["fronta2_st"] as? String ?? ""),
             "lat1":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary["lat1_st"] as? String ?? ""),
             "lat2":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary["lat2_st"] as? String ?? ""),
+            "lat3":                      "",
+            "lat4":                      "",
+            "traseira":                  "",
+            "portamalas":                "",
+            "teto":                      "",
+            "motor":                     "",
+            "chassift":                  "",
+            "veloc":                     "",
+            "esto1":                     "",
+            "esto2":                     "",
+            "esto3":                     "",
+            "esto4":                     "",
+            "lanterna1":                 "",
+            "lanterna2":                 "",
+            "farois1":                   "",
+            "farois2":                   "",
+            "pneus1":                    "",
+            "pneus2":                    "",
+            "pneus3":                    "",
+            "pneus4":                    "",
+            "pneus5":                    "",
+            "pneus6":                    "",
+            "vidros1":                   "",
+            "vidros2":                   "",
+            "vidros3":                   "",
+            "vidros4":                   "",
+            "vidros5":                   "",
+            "vidros6":                   "",
+            "vidros7":                   "",
+            "vidros8":                   "",
+            "vidros9":                   "",
+            "vidros10":                  "",
+            "vidros11":                  "",
+            "vidros12":                  "",
+            "avarias1":                  "",
+            "avarias2":                  "",
+            "avarias3":                  "",
+            "avarias4":                  "",
+            "avarias5":                  "",
+            "avarias6":                  "",
+            "avarias7":                  "",
+            "avarias8":                  "",
+            "avarias9":                  "",
+            "avarias10":                 ""
+            ] as [String : Any]
+        let url = "https://www.sevenprotecaoveicular.com.br/Api/CadastroFotos"
+        print("PARAM FOTOS -> \(parameters)")
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 90000
+        configuration.timeoutIntervalForResource = 90000
+        self.alamoFireManager = Alamofire.SessionManager(configuration: configuration)
+        
+       alamoFireManager?.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            
+            switch response.result {
+            case .success(let value):
+                self.progressBar.progress = 0.5
+                self.porcentagemLbl.text = "50%"
+                self.enviaFotos5(idVeiculo: idVeiculo, idVoluntario: idVoluntario, dictionary: dictionary)
+                
+                
+            case .failure(let error):
+                self.progressBar.isHidden = true
+                
+                self.reloadBttn.isHidden = false
+                print(error)
+                self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Para completar o envio das fotos restantes, clique no botão de reenvio. Erros podem ocorrer caso a internet não envie todas as fotos no tempo estabelecido.", acaoAlerta: "Ok", erroRecebido: "\(error)")
+                
+            }
+        })
+    }
+    
+    func enviaFotos5(idVeiculo: Int, idVoluntario: Int, dictionary: [String:Any]){
+        var parameters = [
+            "id_voluntario":            "\(idVoluntario)",
+            "id_veiculo":               "\(idVeiculo)",
+            "vistoria":                  "",
+            "proposta":                  "",
+            "doc1":                      "",
+            "doc2":                      "",
+            "doc3":                      "",
+            "doc4":                      "",
+            "dut":                       "",
+            "rastreador":                "",
+            "frontal1":                  "",
+            "frontal2":                  "",
+            "lat1":                      "",
+            "lat2":                      "",
             "lat3":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary["lat3_st"] as? String ?? ""),
             "lat4":                      self.getNomeFotoPelaUrl(urlFirebase: dictionary["lat4_st"] as? String ?? ""),
             "traseira":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["traseira_st"] as? String ?? ""),
@@ -540,13 +719,13 @@ class EnviarTudoVC: UIViewController {
         configuration.timeoutIntervalForResource = 90000
         self.alamoFireManager = Alamofire.SessionManager(configuration: configuration)
         
-       alamoFireManager?.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+        alamoFireManager?.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
             
             switch response.result {
             case .success(let value):
-                self.progressBar.progress = 0.6
-                self.porcentagemLbl.text = "60%"
-                self.enviaFotos4(idVeiculo: idVeiculo, idVoluntario: idVoluntario, dictionary: dictionary)
+                self.progressBar.progress = 0.7
+                self.porcentagemLbl.text = "70%"
+                self.enviaFotos6(idVeiculo: idVeiculo, idVoluntario: idVoluntario, dictionary: dictionary)
                 
                 
             case .failure(let error):
@@ -561,7 +740,7 @@ class EnviarTudoVC: UIViewController {
     }
     
     
-    func enviaFotos4(idVeiculo: Int, idVoluntario: Int, dictionary: [String:Any]){
+    func enviaFotos6(idVeiculo: Int, idVoluntario: Int, dictionary: [String:Any]){
         var parameters = [
             "id_voluntario":            "\(idVoluntario)",
             "id_veiculo":               "\(idVeiculo)",
@@ -599,6 +778,94 @@ class EnviarTudoVC: UIViewController {
             "pneus4":                    self.getNomeFotoPelaUrl(urlFirebase: dictionary["pneu4_st"] as? String ?? ""),
             "pneus5":                    self.getNomeFotoPelaUrl(urlFirebase: dictionary["pneu5_st"] as? String ?? ""),
             "pneus6":                    self.getNomeFotoPelaUrl(urlFirebase: dictionary["pneu6_st"] as? String ?? ""),
+            "vidros1":                   "",
+            "vidros2":                   "",
+            "vidros3":                   "",
+            "vidros4":                   "",
+            "vidros5":                   "",
+            "vidros6":                   "",
+            "vidros7":                   "",
+            "vidros8":                   "",
+            "vidros9":                   "",
+            "vidros10":                  "",
+            "vidros11":                  "",
+            "vidros12":                  "",
+            "avarias1":                  "",
+            "avarias2":                  "",
+            "avarias3":                  "",
+            "avarias4":                  "",
+            "avarias5":                  "",
+            "avarias6":                  "",
+            "avarias7":                  "",
+            "avarias8":                  "",
+            "avarias9":                  "",
+            "avarias10":                 ""
+            ] as [String : Any]
+        let url = "https://www.sevenprotecaoveicular.com.br/Api/CadastroFotos"
+        print("PARAM FOTOS -> \(parameters)")
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 90000
+        configuration.timeoutIntervalForResource = 90000
+        self.alamoFireManager = Alamofire.SessionManager(configuration: configuration)
+        
+        alamoFireManager?.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            
+            switch response.result {
+            case .success(let value):
+                self.progressBar.progress = 0.8
+                self.porcentagemLbl.text = "80%"
+                self.enviaFotos7(idVeiculo: idVeiculo, idVoluntario: idVoluntario, dictionary: dictionary)
+                
+                
+            case .failure(let error):
+                self.progressBar.isHidden = true
+                
+                self.reloadBttn.isHidden = false
+                print(error)
+                self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Para completar o envio das fotos restantes, clique no botão de reenvio. Erros podem ocorrer caso a internet não envie todas as fotos no tempo estabelecido.", acaoAlerta: "Ok", erroRecebido: "\(error)")
+                
+            }
+        })
+    }
+    
+    func enviaFotos7(idVeiculo: Int, idVoluntario: Int, dictionary: [String:Any]){
+        var parameters = [
+            "id_voluntario":            "\(idVoluntario)",
+            "id_veiculo":               "\(idVeiculo)",
+            "vistoria":                  "",
+            "proposta":                  "",
+            "doc1":                      "",
+            "doc2":                      "",
+            "doc3":                      "",
+            "doc4":                      "",
+            "dut":                       "",
+            "rastreador":                "",
+            "frontal1":                  "",
+            "frontal2":                  "",
+            "lat1":                      "",
+            "lat2":                      "",
+            "lat3":                      "",
+            "lat4":                      "",
+            "traseira":                  "",
+            "portamalas":                "",
+            "teto":                      "",
+            "motor":                     "",
+            "chassift":                  "",
+            "veloc":                     "",
+            "esto1":                     "",
+            "esto2":                     "",
+            "esto3":                     "",
+            "esto4":                     "",
+            "lanterna1":                 "",
+            "lanterna2":                 "",
+            "farois1":                   "",
+            "farois2":                   "",
+            "pneus1":                    "",
+            "pneus2":                    "",
+            "pneus3":                    "",
+            "pneus4":                    "",
+            "pneus5":                    "",
+            "pneus6":                    "",
             "vidros1":                   self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro1_st"] as? String ?? ""),
             "vidros2":                   self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro2_st"] as? String ?? ""),
             "vidros3":                   self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro3_st"] as? String ?? ""),
@@ -633,9 +900,9 @@ class EnviarTudoVC: UIViewController {
             
             switch response.result {
             case .success(let value):
-                self.progressBar.progress = 0.8
-                self.porcentagemLbl.text = "80%"
-                self.enviaFotos5(idVeiculo: idVeiculo, idVoluntario: idVoluntario, dictionary: dictionary)
+                self.progressBar.progress = 0.9
+                self.porcentagemLbl.text = "90%"
+                self.enviaFotos8(idVeiculo: idVeiculo, idVoluntario: idVoluntario, dictionary: dictionary)
                 
                 
             case .failure(let error):
@@ -649,7 +916,96 @@ class EnviarTudoVC: UIViewController {
         })
     }
     
-    func enviaFotos5(idVeiculo: Int, idVoluntario: Int, dictionary: [String:Any]){
+    func enviaFotos8(idVeiculo: Int, idVoluntario: Int, dictionary: [String:Any]){
+        var parameters = [
+            "id_voluntario":            "\(idVoluntario)",
+            "id_veiculo":               "\(idVeiculo)",
+            "vistoria":                  "",
+            "proposta":                  "",
+            "doc1":                      "",
+            "doc2":                      "",
+            "doc3":                      "",
+            "doc4":                      "",
+            "dut":                       "",
+            "rastreador":                "",
+            "frontal1":                  "",
+            "frontal2":                  "",
+            "lat1":                      "",
+            "lat2":                      "",
+            "lat3":                      "",
+            "lat4":                      "",
+            "traseira":                  "",
+            "portamalas":                "",
+            "teto":                      "",
+            "motor":                     "",
+            "chassift":                  "",
+            "veloc":                     "",
+            "esto1":                     "",
+            "esto2":                     "",
+            "esto3":                     "",
+            "esto4":                     "",
+            "lanterna1":                 "",
+            "lanterna2":                 "",
+            "farois1":                   "",
+            "farois2":                   "",
+            "pneus1":                    "",
+            "pneus2":                    "",
+            "pneus3":                    "",
+            "pneus4":                    "",
+            "pneus5":                    "",
+            "pneus6":                    "",
+            "vidros1":                   "",
+            "vidros2":                   "",
+            "vidros3":                   "",
+            "vidros4":                   "",
+            "vidros5":                   "",
+            "vidros6":                   "",
+            "vidros7":                   "",
+            "vidros8":                   self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro8_st"] as? String ?? ""),
+            "vidros9":                   self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro9_st"] as? String ?? ""),
+            "vidros10":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro10_st"] as? String ?? ""),
+            "vidros11":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro11_st"] as? String ?? ""),
+            "vidros12":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro12_st"] as? String ?? ""),
+            "avarias1":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["avaria1_st"] as? String ?? ""),
+            "avarias2":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["avaria2_st"] as? String ?? ""),
+            "avarias3":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["avaria3_st"] as? String ?? ""),
+            "avarias4":                  "",
+            "avarias5":                  "",
+            "avarias6":                  "",
+            "avarias7":                  "",
+            "avarias8":                  "",
+            "avarias9":                  "",
+            "avarias10":                 ""
+            ] as [String : Any]
+        let url = "https://www.sevenprotecaoveicular.com.br/Api/CadastroFotos"
+        print("PARAM FOTOS -> \(parameters)")
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 90000
+        configuration.timeoutIntervalForResource = 90000
+        self.alamoFireManager = Alamofire.SessionManager(configuration: configuration)
+        
+        alamoFireManager?.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON(completionHandler: { (response) in
+            
+            switch response.result {
+            case .success(let value):
+                self.progressBar.progress = 0.95
+                self.porcentagemLbl.text = "95%"
+                self.enviaFotos9(idVeiculo: idVeiculo, idVoluntario: idVoluntario, dictionary: dictionary)
+                
+                
+            case .failure(let error):
+                self.progressBar.isHidden = true
+                
+                self.reloadBttn.isHidden = false
+                print(error)
+                self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Para completar o envio das fotos restantes, clique no botão de reenvio. Erros podem ocorrer caso a internet não envie todas as fotos no tempo estabelecido.", acaoAlerta: "Ok", erroRecebido: "\(error)")
+                
+            }
+        })
+    }
+    
+    
+    func enviaFotos9(idVeiculo: Int, idVoluntario: Int, dictionary: [String:Any]){
                 var parameters = [
                     "id_voluntario":            "\(idVoluntario)",
                     "id_veiculo":               "\(idVeiculo)",
@@ -694,14 +1050,14 @@ class EnviarTudoVC: UIViewController {
                     "vidros5":                   "",
                     "vidros6":                   "",
                     "vidros7":                   "",
-                    "vidros8":                   self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro8_st"] as? String ?? ""),
-                    "vidros9":                   self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro9_st"] as? String ?? ""),
-                    "vidros10":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro10_st"] as? String ?? ""),
-                    "vidros11":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro11_st"] as? String ?? ""),
-                    "vidros12":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["vidro12_st"] as? String ?? ""),
-                    "avarias1":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["avaria1_st"] as? String ?? ""),
-                    "avarias2":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["avaria2_st"] as? String ?? ""),
-                    "avarias3":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["avaria3_st"] as? String ?? ""),
+                    "vidros8":                   "",
+                    "vidros9":                   "",
+                    "vidros10":                  "",
+                    "vidros11":                  "",
+                    "vidros12":                  "",
+                    "avarias1":                  "",
+                    "avarias2":                  "",
+                    "avarias3":                  "",
                     "avarias4":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["avaria4_st"] as? String ?? ""),
                     "avarias5":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["avaria5_st"] as? String ?? ""),
                     "avarias6":                  self.getNomeFotoPelaUrl(urlFirebase: dictionary["avaria6_st"] as? String ?? ""),
@@ -730,7 +1086,6 @@ class EnviarTudoVC: UIViewController {
                             
                             KRProgressHUD.dismiss()
                         }else{
-                            
                             self.progressBar.isHidden = true
                             if self.rastreador == true{
                                 self.mudaSituacaoProposta(status: "5", motivo: "", popostaEscolhida: self.propostaEscolhida, id_user: self.id_user!)
@@ -774,6 +1129,8 @@ class EnviarTudoVC: UIViewController {
         
       //  self.okAssociado.isHidden = true
       //  self.okVeiculo.isHidden = true
+        self.porcentagemLbl.text = "0%"
+        
         self.okImagens.isHidden = true
         self.reloadBttn.isHidden = true
         

@@ -97,6 +97,12 @@ class MenuClienteVC: UIViewController {
                         self.CriarAlertaSemErro(tituloAlerta: "Opa!", mensagemAlerta: "Página temporiariamente indisponível", acaoAlerta: "OK")
                     }
                 }),
+                Row(text: "Oficinas Parceiras", detailText: "", selection: { [unowned self] in
+                    
+                    let vc = UIStoryboard(name: "Oficinas", bundle: nil).instantiateViewController(withIdentifier: "SelectEstado") as? SelectEstado
+                    self.navigationController!.pushViewController(vc!, animated: true)
+                    
+                })
             ]),
             Section(header: "Nos Siga", rows: [
                 Row(text: "/sevenpveicular", accessory: .view(faceAccessory)),

@@ -26,7 +26,9 @@ class ListaPropostasVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     var searchedList = [Proposta]()
     var searching = false
     @IBOutlet weak var searchBar: UISearchBar!
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPropostas()
@@ -277,15 +279,15 @@ class ListaPropostasVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     proposta.dtnasc = dictionary["dtnasc"] as? String ?? ""
                     proposta.telefone = dictionary["telefone"] as? String ?? ""
                     proposta.email = dictionary["email"] as? String ?? ""
+                    
                     if dictionary["estaEnviado"] as? String ?? "" == "0" || dictionary["estaEnviado"] as? String ?? "" == "1"{
                         proposta.antigaEnviada = true
                     }else{
                         proposta.antigaEnviada = false
                     }
+                    
                     proposta.id = document.documentID
-                    
                     self.listaPropostas.append(proposta)
-                    
                 }
                 KRProgressHUD.dismiss()
                 

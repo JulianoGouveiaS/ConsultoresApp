@@ -26,7 +26,9 @@ class CamposRastreadorVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var placaTxt: UITextField!
     
     @IBOutlet weak var bttnProsseguir: UIButton!
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

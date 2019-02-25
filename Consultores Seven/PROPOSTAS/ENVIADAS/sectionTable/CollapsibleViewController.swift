@@ -15,6 +15,11 @@ class CollapsibleViewController: UITableViewController {
     var placaEscolhida = ""
     var sections = sectionsData
     var dataProposta = [Any]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(dataProposta)

@@ -41,6 +41,8 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    
     @IBAction func verSenha(sender: Any){
         switch self.senhaTxtField.isSecureTextEntry {
         case true:
@@ -146,7 +148,7 @@ class LoginViewController: UIViewController {
                         }else{
                             
                             self.registraLogin(id: id_voluntario, login: login, senha: senha);
-                       
+                            
                             KeychainWrapper.standard.set(nome, forKey: "NOME");
                             KeychainWrapper.standard.set(cpf, forKey: "CPF");
                             KeychainWrapper.standard.set(id, forKey: "ID");
@@ -158,8 +160,9 @@ class LoginViewController: UIViewController {
                             
                             self.navigationController?.pushViewController(vc, animated: true);
                             
+                        
+                             KRProgressHUD.dismiss()
                             /*
-                            KRProgressHUD.dismiss()
                             self.verifyIfIsTest(finished: { (status) in
                                 if status == true{
                                     let alertController = CFAlertViewController(title: "CONFIRMAÇÃO",
@@ -292,7 +295,6 @@ class LoginViewController: UIViewController {
                 
                 
             }
-            
         }
     }
     
@@ -338,9 +340,7 @@ class LoginViewController: UIViewController {
                 
                 self.CriarAlerta(tituloAlerta: "Oops!", mensagemAlerta: "Erro encontrado!", acaoAlerta: "Ok", erroRecebido: "\(error)")
                 
-                
             }
-            
         }
     }
     

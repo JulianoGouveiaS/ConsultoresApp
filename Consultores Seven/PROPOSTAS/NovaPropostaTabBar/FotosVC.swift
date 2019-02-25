@@ -181,6 +181,8 @@ class FotosVC: UIViewController,EPSignatureDelegate {
                         
                     }else if (dictionary?["tpveiculo"] as? String ?? "0") == "2"{
                         
+                        self.placalacreBttn.isHidden = true
+                        self.placalacreLbl.isHidden = true
                         self.portamalasBttn.isHidden = true
                         self.tetoBttn.isHidden = true
                         self.estofadosBttn.isHidden = true
@@ -227,6 +229,10 @@ class FotosVC: UIViewController,EPSignatureDelegate {
                     self.lanternaLbl.isHidden = true
                     self.faroisLbl.isHidden = true
                     self.pneusLbl.isHidden = true
+                    
+                    self.placalacreBttn.isHidden = false
+                    
+                    self.placalacreLbl.isHidden = false
                     self.superiormotoLbl.isHidden = true
                     
                 }else if (dictionary?["seguro"] as? String ?? "0") == "2"{
@@ -288,12 +294,12 @@ class FotosVC: UIViewController,EPSignatureDelegate {
                 self.perfilLbl.text = "\(countPerfil)/1"
                 
                 var countDoc = 0
-                for i in 1...4{
+                for i in 1...3{
                     if dictionary?["doc\(i)_st"] as? String ?? "" != ""{
                         countDoc = countDoc + 1
                     }
                 }
-                self.documentacaoLbl.text = "\(countDoc)/4"
+                self.documentacaoLbl.text = "\(countDoc)/3"
                 
                 var countDut = 0
                 if dictionary?["dut_st"] as? String ?? "" != ""{
@@ -442,7 +448,7 @@ class FotosVC: UIViewController,EPSignatureDelegate {
             }else if self.assinaturaLbl.text != "1/1"{
                 self.CriarAlertaSemErro(tituloAlerta: "Opa", mensagemAlerta: "As foto da assinatura é obrigatória!", acaoAlerta: "Ok")
                 return
-            }else if self.documentacaoLbl.text != "4/4"{
+            }else if self.documentacaoLbl.text != "3/3"{
                 self.CriarAlertaSemErro(tituloAlerta: "Opa", mensagemAlerta: "As fotos da documentação são obrigatórias!", acaoAlerta: "Ok")
                 return
             }else if self.dutLbl.text != "1/1"{

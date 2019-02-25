@@ -31,7 +31,9 @@ class TableCaptacoesVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     let calendar = Calendar.current
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         checkVersion()

@@ -98,6 +98,22 @@ extension UIViewController {
         return randomString
     }
     
+    func randomNumber(length: Int) -> String {
+        
+        let letters : NSString = "0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
+    }
+    
     func getNomeFotoPelaUrl(urlFirebase: String) -> String{
         
         let url = urlFirebase
@@ -343,6 +359,51 @@ extension UIViewController {
         }
     }
     
+    func enviaComprovanteStorage(nomeImg: String, imagem: UIImage, id_user: String, idVisita: String){
+        
+        
+        let armazenamento = Storage.storage().reference()
+        let timestampValue = Date().millisecondsSince1970
+        
+        let imagemDados = UIImagePNGRepresentation(imagem)
+        
+        armazenamento.child("\(timestampValue).jpg").putData(imagemDados!, metadata: nil, completion: { (metaDados, erro) in
+            if erro == nil{
+                print("foto enviada com sucesso")
+                print("nome imagem: \(timestampValue).jpg")
+                armazenamento.child("\(timestampValue).jpg").downloadURL { url, error in
+                    if let error = error {
+                        print(error)
+                        KRProgressHUD.dismiss()
+                    }else {
+                        self.enviaUrlComprovanteDatabase(nomeImg: nomeImg, url: url!, id_user: id_user, idVisita: idVisita)
+                    }
+                }
+            }else{
+                self.CriarAlerta(tituloAlerta: "Opa", mensagemAlerta: "Ocorreu um erro ao enviar a foto pro storage", acaoAlerta: "OK", erroRecebido: "\(erro)")
+                KRProgressHUD.dismiss()
+            }
+        })
+    }
+    
+    func enviaUrlComprovanteDatabase(nomeImg: String, url: URL, id_user: String, idVisita: String){
+        let db = Firestore.firestore()
+        let usersReference = db.collection("ConsultorSeven").document("FotosPropostas").collection("\(id_user)").document("\(idVisita)")
+        
+        var values = ["\(nomeImg)": "\(url)"] as [String : Any]
+        
+        usersReference.setData(values) { (error) in
+            if error != nil{
+                print("erro ao cadastrar no firebase", error)
+                self.CriarAlerta(tituloAlerta: "Erro", mensagemAlerta: "Erro ao salvar foto no servidor!", acaoAlerta: "OK", erroRecebido: "\(error)")
+                return
+            }else{
+                print("url enviada com sucesso")
+                KRProgressHUD.dismiss()
+            }
+        }
+    }
+    
     func enviaFotoStorage(nomeImg: String, imagem: UIImage, id_user: String, proposta: Proposta){
   
         
@@ -437,6 +498,23 @@ extension UIViewController {
             if error != nil{
                 print("erro ao remover foto", error)
                 self.CriarAlerta(tituloAlerta: "Erro", mensagemAlerta: "Erro ao salvar foto no servidor!", acaoAlerta: "OK", erroRecebido: "\(error)")
+                return
+            }else{
+                print("foto removida com sucesso")
+            }
+        }
+    }
+    
+    func removeFotoComprovante(field: String, uuid: String, id_user: String){
+        let db = Firestore.firestore()
+        let usersReference =  db.collection("ConsultorSeven").document("FotosPropostas").collection("\(id_user)").document("\(uuid)")
+        
+        var values = ["\(field)": ""] as [String : Any]
+        
+        usersReference.updateData(values) { (error) in
+            if error != nil{
+                print("erro ao remover foto", error)
+                self.CriarAlerta(tituloAlerta: "Erro", mensagemAlerta: "Erro ao remover foto!", acaoAlerta: "OK", erroRecebido: "\(error)")
                 return
             }else{
                 print("foto removida com sucesso")

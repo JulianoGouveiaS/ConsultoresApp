@@ -381,7 +381,6 @@ class PropostasEnviadasVC: UIViewController, UITableViewDataSource, UITableViewD
                     
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "CollapsibleViewController") as! CollapsibleViewController
                     
-                    
                     let userNome = json["user_data"][0]["nome"].stringValue
                     let userRg = json["user_data"][0]["rg"].stringValue
                     let userNasc = json["user_data"][0]["dt_nascimento"].stringValue

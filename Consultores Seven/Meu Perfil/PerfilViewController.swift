@@ -26,7 +26,9 @@ class PerfilViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     var nome = KeychainWrapper.standard.string(forKey: "NOME")
     var cpf = KeychainWrapper.standard.string(forKey: "CPF")
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

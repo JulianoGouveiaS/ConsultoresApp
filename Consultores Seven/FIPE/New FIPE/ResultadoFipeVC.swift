@@ -13,7 +13,7 @@ import KSTokenView
 
 class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
 
-    var names: Array<String> = ["Danos Mat a Terceiros", "Carro Reserva (15 dias)", "Carro Reserva (30 dias)", "Coparticipação Reduzida", "Rastreador", "Proteção de Vidros 80%", "Pct Premium (15 dias)", "Pct Premium (30 dias)", "Assist 24H 500KM", "Assist 24H 700KM", "Assist 24H 1000KM", "Uber, Bacify, 99Pop, etc..."]
+    var names: Array<String> = ["Danos Mat a Terceiros", "Carro Reserva (15 dias)", "Carro Reserva (30 dias)", "Coparticipação Reduzida", "Especiais", "Proteção de Vidros 80%", "Pct Premium (15 dias)", "Pct Premium (30 dias)", "Assist 24H 500KM", "Assist 24H 700KM", "Assist 24H 1000KM", "Uber, Bacify, 99Pop, etc..."]
   
     
     
@@ -40,6 +40,10 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
     var valor_mes: String!
     var combustivel: String!
     var id_tabela: Int!
+    
+    override func viewWillAppear(_ animated: Bool) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -99,7 +103,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
                     AdicionaValor(valor: 15.00)
                 }
                 
-            case "Rastreador":
+            case "Especiais":
                 AdicionaValor(valor: 50.00)
                 
             case "Carro Reserva (15 dias)":
@@ -166,7 +170,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
                     SubtraiValor(valor: 15.00)
                 }
                 
-            case "Rastreador":
+            case "Especiais":
                 SubtraiValor(valor: 50.00)
                 
             case "Carro Reserva (15 dias)":

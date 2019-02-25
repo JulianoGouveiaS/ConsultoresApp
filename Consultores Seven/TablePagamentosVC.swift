@@ -25,7 +25,9 @@ class TablePagamentosVC: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var enviarBttn: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPagamentos()

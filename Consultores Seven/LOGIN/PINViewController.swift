@@ -10,8 +10,9 @@ import UIKit
 import FirebaseAuth
 import CBPinEntryView
 import KRProgressHUD
+import MessageUI
 
-class PINViewController: UIViewController, CBPinEntryViewDelegate {
+class PINViewController: UIViewController, CBPinEntryViewDelegate, MFMailComposeViewControllerDelegate {
     
     func entryChanged(_ completed: Bool) {
         print("entryChanged")
@@ -42,6 +43,7 @@ class PINViewController: UIViewController, CBPinEntryViewDelegate {
 
     }
     @IBAction func submitCodigo(sender: Any){
+       
         KRProgressHUD.show()
         let credential = PhoneAuthProvider.provider().credential(
             withVerificationID: verificationID,
@@ -72,11 +74,29 @@ class PINViewController: UIViewController, CBPinEntryViewDelegate {
                     KeychainWrapper.standard.set(self.login, forKey: "LOGIN");
                     KeychainWrapper.standard.set(self.senha, forKey: "SENHA");
                     KRProgressHUD.dismiss();
+                    
                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarPrincipal") as! TabBarPrincipal;
                     
                     self.navigationController?.pushViewController(vc, animated: true);
                 }
             }
         }
+    }
+    
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["juliano.gouveia@sevenprotecaoveicular.com.br"])
+            mail.setMessageBody("Seu código de verificação no aplicativo Seven Proteção Veicular é: \(self.randomNumber(length: 5))", isHTML: false)
+            
+            present(mail, animated: true)
+        } else {
+            print("erro")
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }

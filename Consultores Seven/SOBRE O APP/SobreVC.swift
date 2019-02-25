@@ -11,7 +11,9 @@ import UIKit
 class SobreVC: UIViewController {
 
     @IBOutlet weak var lblVersao: UILabel!
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false

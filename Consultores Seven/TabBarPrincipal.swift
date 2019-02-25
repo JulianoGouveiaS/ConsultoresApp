@@ -14,6 +14,7 @@ class TabBarPrincipal: UITabBarController, UITabBarControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        self.title = ""
         
     }
     
@@ -21,7 +22,7 @@ class TabBarPrincipal: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         MakeButtonsNav()
         self.delegate = self
-    // MARK: - Actions
+        
     }
  
     @objc func pushToNextVC() {
