@@ -21,6 +21,8 @@ class TableVisitasVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var listaVisitas = [Visita]()
     
+    @IBOutlet weak var view404: UIView!
+    
     var searchedList = [Visita]()
     var searching = false
     @IBOutlet weak var searchBar: UISearchBar!
@@ -217,6 +219,14 @@ class TableVisitasVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
+                
+                
+                if self.listaVisitas.count == 0{
+                    self.view404.isHidden = false
+                }else{
+                    self.view404.isHidden = true
+                }
+                
             }
             KRProgressHUD.dismiss()
         }

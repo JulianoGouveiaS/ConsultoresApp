@@ -17,7 +17,7 @@ class ListaPropostasVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     let id_user = KeychainWrapper.standard.integer(forKey: "ID")
     let nome_user = KeychainWrapper.standard.string(forKey: "NOME")
     
-
+    @IBOutlet weak var view404: UIView!
     let db = Firestore.firestore()
     
     var listaPropostas = [Proposta]()
@@ -294,6 +294,12 @@ class ListaPropostasVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
+                if self.listaPropostas.count == 0{
+                    self.view404.isHidden = false
+                }else{
+                    self.view404.isHidden = true
+                }
+                
             }
             KRProgressHUD.dismiss()
         }

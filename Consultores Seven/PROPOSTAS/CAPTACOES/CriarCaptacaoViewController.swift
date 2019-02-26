@@ -41,7 +41,7 @@ class CriarCaptacaoViewController: UIViewController, UITextFieldDelegate {
     
     func mandaProDatabase(){
        
-        if origemLbl.text != "" && nomeLbl.text != "" && telLbl.text != "" && modeloLbl.text != "" && placaLbl.text != ""{
+        if origemLbl.text != "" && nomeLbl.text != "" && telLbl.text != "" && modeloLbl.text != ""{
             KRProgressHUD.show()
             let date = NSDate()
             // *** create calendar object ***

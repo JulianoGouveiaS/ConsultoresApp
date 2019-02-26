@@ -365,13 +365,11 @@ class EnviarTudoVC: UIViewController {
                 let req = self.alamoFireManager!.request(url, method:.post, parameters:parameters!,encoding: JSONEncoding.default)
                 
                 req.responseJSON { response in
-
                             switch response.result {
                             case .success(let value):
                                 self.progressBar.progress = 0.1
                                 self.porcentagemLbl.text = "10%"
                                 self.enviaFotos2(idVeiculo: idVeiculo, idVoluntario: idVoluntario, dictionary: dictionary!)
-                                
                                 
                             case .failure(let error):
                                 self.progressBar.isHidden = true

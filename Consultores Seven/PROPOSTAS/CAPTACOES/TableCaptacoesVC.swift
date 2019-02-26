@@ -29,6 +29,7 @@ class TableCaptacoesVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var viewFunil: UIView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var view404: UIView!
     
     let calendar = Calendar.current
     override func viewWillAppear(_ animated: Bool) {
@@ -232,6 +233,11 @@ class TableCaptacoesVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                }
+                if self.listaCaptacoes.count == 0{
+                    self.view404.isHidden = false
+                }else{
+                    self.view404.isHidden = true
                 }
             }
             KRProgressHUD.dismiss()

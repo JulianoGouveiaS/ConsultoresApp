@@ -21,6 +21,8 @@ class TablePagamentosVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var listaPagamentos = [Pagamento]()
     
+    @IBOutlet weak var view404: UIView!
+    
     
     @IBOutlet weak var enviarBttn: UIButton!
     
@@ -110,6 +112,11 @@ class TablePagamentosVC: UIViewController, UITableViewDelegate, UITableViewDataS
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                }
+                if self.listaPagamentos.count == 0{
+                    self.view404.isHidden = false
+                }else{
+                    self.view404.isHidden = true
                 }
             }
             KRProgressHUD.dismiss()
