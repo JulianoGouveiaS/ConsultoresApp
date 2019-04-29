@@ -178,14 +178,14 @@ class PediuPermissaoVC: UIViewController {
         var kms: String!
         if (dictionary["km500"] as? Bool) == true{
             if (dictionary["ddltabelaa"] as? Int) == 3{
-                kms = "5"
-            }else{ kms = "2" }
+                kms = "2"
+            }else{ kms = "0" }
             
         }else if (dictionary["km700"] as? Bool) == true{
             kms = "3"
         }else if (dictionary["km1000"] as? Bool) == true{
             kms = "1"
-        }else{ kms = "2" }
+        }else{ kms = "0" }
         
         var rastreador = "0"
         self.rastreador = ((dictionary["rastreadorparceirosv"] as? Bool)!)

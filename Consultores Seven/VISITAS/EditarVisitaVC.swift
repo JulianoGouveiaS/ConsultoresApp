@@ -14,7 +14,7 @@ import CFAlertViewController
 import SDWebImage
 import Agrume
 
-class EditarVisitaVC: UIViewController, UITextFieldDelegate, GalleryControllerDelegate {
+class EditarVisitaVC: UIViewController, UITextFieldDelegate {
 
     
     let cpf_user = KeychainWrapper.standard.string(forKey: "CPF")
@@ -59,11 +59,7 @@ class EditarVisitaVC: UIViewController, UITextFieldDelegate, GalleryControllerDe
     var tpveiculo = "1"
     var visitaEscolhida: Visita!
     
-    @IBOutlet weak var BttnAdcComprovante: UIButton!
-    @IBOutlet weak var ImgViewComprovante: UIImageView!
     
-    @IBOutlet weak var topBttns: NSLayoutConstraint!
-        var ArrFotosUrls = [String]()
     
     @IBOutlet weak var cancelarBttn: UIButton!
     @IBOutlet weak var finalizarBttn: UIButton!
@@ -88,114 +84,13 @@ class EditarVisitaVC: UIViewController, UITextFieldDelegate, GalleryControllerDe
         showDatePicker()
         showTimePicker()
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapImg))
-        ImgViewComprovante.addGestureRecognizer(tapGestureRecognizer)
-        ImgViewComprovante.isUserInteractionEnabled = true
-        let longTapGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longTapImg))
-        ImgViewComprovante.addGestureRecognizer(longTapGestureRecognizer)
         
-        loadFoto()
+        
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func adcFoto(sender: Any){
-        self.showGallery(ArrFotosUrls: self.ArrFotosUrls, totalFotos: 1, permissao: "3")
-    }
     
-    @objc func tapImg(){
-        if ImgViewComprovante.image != nil{
-            let agrume = Agrume(image: ImgViewComprovante.image!)
-            agrume.show(from: self)
-        }
-    }
-    
-    @objc func longTapImg(){
-        if ImgViewComprovante.image != nil{
-                let alertController = CFAlertViewController(title: "Atenção",
-                                                            message: "Deseja realmente excluir essa foto?",
-                                                            textAlignment: .center,
-                                                            preferredStyle: .alert,
-                                                            didDismissAlertHandler: nil)
-                
-                // Create Upgrade Action
-                let defaultAction = CFAlertAction(title: "Excluir Foto",
-                                                  style: .Default,
-                                                  alignment: .center,
-                                                  backgroundColor: UIColor(red: CGFloat(41.0 / 255.0), green: CGFloat(79.0 / 255.0), blue: CGFloat(118.0 / 255.0), alpha: CGFloat(1)),
-                                                  textColor: nil,
-                                                  handler: { (action) in
-                                                    
-                                                    self.removeFotoComprovante(field: "comprovanteFoto", uuid: self.visitaEscolhida.id!, id_user: "\(self.id_user!)")
-                                                    
-                })
-                
-                let voltar = CFAlertAction(title: "Cancelar",
-                                           style: .Default,
-                                           alignment: .center,
-                                           backgroundColor: UIColor(red: CGFloat(41.0 / 255.0), green: CGFloat(79.0 / 255.0), blue: CGFloat(118.0 / 255.0), alpha: CGFloat(1)),
-                                           textColor: nil,
-                                           handler: { (action) in })
-            
-                alertController.addAction(defaultAction)
-                alertController.addAction(voltar)
-                
-                self.present(alertController, animated: true, completion: nil)
-                
-            }
-    }
-    
-    func loadFoto(){
-        KRProgressHUD.show()
-        
-        db.collection("ConsultorSeven").document("FotosPropostas").collection("\(self.id_user!)").document("\(self.visitaEscolhida.id!)").addSnapshotListener { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                self.ArrFotosUrls = []
-                
-                let dictionary = querySnapshot?.data()
-                if (dictionary?["comprovanteFoto"] as? String ?? "") == ""{
-                    self.ImgViewComprovante.image = nil
-                    self.topBttns.constant = 80
-                }else{
-                    if !(dictionary?["comprovanteFoto"] as? String ?? "").contains(".emulated"){
-                        let url = dictionary?["comprovanteFoto"] as? String ?? ""
-                        self.ImgViewComprovante.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "imgLoad"))
-                        self.topBttns.constant = 150
-                    }
-                }
-            }
-            KRProgressHUD.dismiss()
-        }
-    }
-    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
-        print("didSelectVideo")
-    }
-    
-    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
-        print("requestLightbox")
-    }
-    
-    func galleryControllerDidCancel(_ controller: GalleryController) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
-        DispatchQueue.main.async {
-            KRProgressHUD.show()
-        }
-        images[0].resolve(completion: { (imagem) in
-            let data1 = UIImagePNGRepresentation(imagem!)
-            
-            let fotoComprimida = self.colocaLogo(imgData: data1!).compressTo(0.2)
-            print("data1.count => \(data1!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
-            
-            self.enviaComprovanteStorage(nomeImg: "comprovanteFoto", imagem: fotoComprimida!, id_user: "\(self.id_user!)", idVisita: self.visitaEscolhida.id!)
-        })
-        
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
+  
     
     func showDatePicker(){
         //Formate Date
@@ -666,10 +561,6 @@ class EditarVisitaVC: UIViewController, UITextFieldDelegate, GalleryControllerDe
     }
     
     func criaProposta(){
-        
-        if self.bairroTxt.text == "" {
-            CriarAlertaSemErro(tituloAlerta: "Opa", mensagemAlerta: "CEP ou Comprovante necessários para prosseguir.", acaoAlerta: "OK")
-        }
         
         KRProgressHUD.show()
         let date = NSDate()

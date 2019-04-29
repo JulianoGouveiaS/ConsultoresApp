@@ -9,9 +9,13 @@
 import UIKit
 import KRProgressHUD
 import FirebaseFirestore
+import Gallery
+import CFAlertViewController
+import SDWebImage
+import Agrume
 
 
-class AssociadoVC: UIViewController, UITextFieldDelegate {
+class AssociadoVC: UIViewController, UITextFieldDelegate, GalleryControllerDelegate{
     
      var propostaEscolhida: Proposta!
         let db = Firestore.firestore()
@@ -22,6 +26,7 @@ class AssociadoVC: UIViewController, UITextFieldDelegate {
     let id_user = KeychainWrapper.standard.integer(forKey: "ID")
     let nome_user = KeychainWrapper.standard.string(forKey: "NOME")
     
+    var comprovante = false
     
     let kCep: String!         = "cep";
     let kUF: String!          = "uf"
@@ -53,14 +58,20 @@ class AssociadoVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tpPessoaSegmented: UISegmentedControl!
     @IBOutlet weak var sexoSegmented: UISegmentedControl!
     
+    
+    @IBOutlet weak var BttnAdcComprovante: UIButton!
+    @IBOutlet weak var ImgViewComprovante: UIImageView!
+    
     @IBOutlet weak var checkbox: M13Checkbox?
     
     var tppessoa: String!
      var sexo: String!
+    var permissao = ""
+    var ArrFotosUrls = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+       self.getPermissao(id_user: "\(self.id_user!)", propostaEscolhida: self.propostaEscolhida)
         self.dt_nascTxt.delegate = self
         self.cpfTxt.delegate = self
         self.celTxt.delegate = self
@@ -69,10 +80,136 @@ class AssociadoVC: UIViewController, UITextFieldDelegate {
         self.cepTxt.delegate = self
         self.dt_nascTxt.delegate = self
         preencheCampos()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapImg))
+        ImgViewComprovante.addGestureRecognizer(tapGestureRecognizer)
+        ImgViewComprovante.isUserInteractionEnabled = true
+        let longTapGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longTapImg))
+        ImgViewComprovante.addGestureRecognizer(longTapGestureRecognizer)
+        
+        loadFoto()
         // Do any additional setup after loading the view.
        
     }
+    
+    func getPermissao(id_user:String, propostaEscolhida: Proposta){
+        let db = Firestore.firestore()
+        db.collection("ConsultorSeven").document("MinhasPropostas").collection("\(id_user)").document("\(propostaEscolhida.id!)").addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                let dictionary = querySnapshot?.data()
+                
+                Config.Camera.recordLocation = true
+                print(dictionary?["status_permissao"] as? String ?? "")
+                self.permissao = dictionary?["status_permissao"] as? String ?? ""
+            }
+            KRProgressHUD.dismiss()
+        }
+    }
+    
+    @IBAction func adcFoto(sender: Any){
+        self.showGallery(ArrFotosUrls: self.ArrFotosUrls, totalFotos: 1, permissao: self.permissao)
+    }
    
+    @objc func tapImg(){
+        if ImgViewComprovante.image != nil{
+            let agrume = Agrume(image: ImgViewComprovante.image!)
+            agrume.show(from: self)
+        }
+    }
+    
+    @objc func longTapImg(){
+        if ImgViewComprovante.image != nil{
+            let alertController = CFAlertViewController(title: "Atenção",
+                                                        message: "Deseja realmente excluir essa foto?",
+                                                        textAlignment: .center,
+                                                        preferredStyle: .alert,
+                                                        didDismissAlertHandler: nil)
+            
+            // Create Upgrade Action
+            let defaultAction = CFAlertAction(title: "Excluir Foto",
+                                              style: .Default,
+                                              alignment: .center,
+                                              backgroundColor: UIColor(red: CGFloat(41.0 / 255.0), green: CGFloat(79.0 / 255.0), blue: CGFloat(118.0 / 255.0), alpha: CGFloat(1)),
+                                              textColor: nil,
+                                              handler: { (action) in
+                                                
+                                                self.removeFotoComprovante(field: "comprovanteFoto", uuid: self.propostaEscolhida.id!, id_user: "\(self.id_user!)")
+                                                self.comprovante = false
+                                                
+            })
+            
+            let voltar = CFAlertAction(title: "Cancelar",
+                                       style: .Default,
+                                       alignment: .center,
+                                       backgroundColor: UIColor(red: CGFloat(41.0 / 255.0), green: CGFloat(79.0 / 255.0), blue: CGFloat(118.0 / 255.0), alpha: CGFloat(1)),
+                                       textColor: nil,
+                                       handler: { (action) in })
+            
+            alertController.addAction(defaultAction)
+            alertController.addAction(voltar)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+        }
+    }
+    
+    func loadFoto(){
+        KRProgressHUD.show()
+        
+        db.collection("ConsultorSeven").document("FotosPropostas").collection("\(self.id_user!)").document("\(self.propostaEscolhida.id!)").addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                self.ArrFotosUrls = []
+                
+                let dictionary = querySnapshot?.data()
+                if (dictionary?["comprovanteFoto"] as? String ?? "") == ""{
+                    self.ImgViewComprovante.image = nil
+                }else{
+                    if !(dictionary?["comprovanteFoto"] as? String ?? "").contains(".emulated"){
+                        let url = dictionary?["comprovanteFoto"] as? String ?? ""
+                        self.ImgViewComprovante.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "imgLoad"))
+                        self.comprovante = true
+                    
+                    }
+                }
+            }
+            KRProgressHUD.dismiss()
+        }
+    }
+    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+        print("didSelectVideo")
+    }
+    
+    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        print("requestLightbox")
+    }
+    
+    func galleryControllerDidCancel(_ controller: GalleryController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+        DispatchQueue.main.async {
+            KRProgressHUD.show()
+        }
+        images[0].resolve(completion: { (imagem) in
+            let data1 = UIImagePNGRepresentation(imagem!)
+            
+            let fotoComprimida = self.colocaLogo(imgData: data1!).compressTo(0.2)
+            print("data1.count => \(data1!.count) \n fotoComprimida.count => \(String(describing: UIImagePNGRepresentation(fotoComprimida!)))" )
+            
+            self.enviaComprovanteStorage(nomeImg: "comprovanteFoto", imagem: fotoComprimida!, id_user: "\(self.id_user!)", idProposta: self.propostaEscolhida.id!)
+            self.comprovante = true
+        })
+        
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    
     @IBAction func checkboxValueChanged(_ sender: M13Checkbox) {
             switch sender.checkState {
             case .unchecked:
@@ -112,7 +249,7 @@ class AssociadoVC: UIViewController, UITextFieldDelegate {
                     self.logradouroTxt.text = dictionary?["logradouro"] as? String ?? ""
                     self.numTxt.text = dictionary?["num_residencia"] as? String ?? ""
                     self.complementoTxt.text = dictionary?["complemento"] as? String ?? ""
-                
+                    self.comprovante = dictionary?["comprovante"] as? Bool ?? false
                 
                 if dictionary?["pessoa"] as? String == "1"{
                     self.tpPessoaSegmented.selectedSegmentIndex = 0
@@ -200,7 +337,8 @@ class AssociadoVC: UIViewController, UITextFieldDelegate {
             "bairro": self.bairroTxt.text!,
             "logradouro": self.logradouroTxt.text!,
             "num_residencia": self.numTxt.text!,
-            "complemento": self.complementoTxt.text!]
+            "complemento": self.complementoTxt.text!,
+            "comprovante": self.comprovante]
             as [String : Any]
         
         usersReference.updateData(values) { (error) in

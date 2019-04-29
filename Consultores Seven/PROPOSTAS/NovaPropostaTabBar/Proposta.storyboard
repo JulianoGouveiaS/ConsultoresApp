@@ -520,14 +520,14 @@
             <objects>
                 <viewController storyboardIdentifier="AssociadoVC" id="21h-Iw-KnS" customClass="AssociadoVC" customModule="Consultores_Seven" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vb9-nO-DMr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1467"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ifK-m8-RLM">
-                                <rect key="frame" x="0.0" y="44" width="375" height="1340"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="1540"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXf-bh-6To">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1398"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1598"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="X8M-pc-XzF" userLabel="stack">
                                                 <rect key="frame" x="8" y="8.0000000000000036" width="359" height="60.333333333333343"/>
@@ -1184,6 +1184,24 @@
                                                     <constraint firstAttribute="bottom" secondItem="LUB-Ne-7cc" secondAttribute="bottom" id="vwJ-z7-ivH"/>
                                                 </constraints>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7W-TU-sOi">
+                                                <rect key="frame" x="8" y="1398.6666666666667" width="359" height="33"/>
+                                                <color key="backgroundColor" red="0.0" green="0.16078431369999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <state key="normal" title="Adicionar Comprovante de Endereço">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="adcFotoWithSender:" destination="21h-Iw-KnS" eventType="touchUpInside" id="CVU-My-qHl"/>
+                                                </connections>
+                                            </button>
+                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TkO-Ia-wCi">
+                                                <rect key="frame" x="127.66666666666669" y="1439.6666666666667" width="120" height="84"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="84" id="O77-9S-DQb"/>
+                                                    <constraint firstAttribute="width" constant="120" id="bN8-Bd-we2"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -1191,6 +1209,7 @@
                                             <constraint firstItem="X8M-pc-XzF" firstAttribute="top" secondItem="YXf-bh-6To" secondAttribute="top" constant="8" id="0AA-st-aF2"/>
                                             <constraint firstItem="6WQ-j0-DSm" firstAttribute="top" secondItem="IaQ-69-wa3" secondAttribute="bottom" constant="16" id="1VC-G6-ze4"/>
                                             <constraint firstItem="IaQ-69-wa3" firstAttribute="top" secondItem="2pV-1d-OrF" secondAttribute="bottom" constant="16" id="1wX-qt-cop"/>
+                                            <constraint firstItem="TkO-Ia-wCi" firstAttribute="centerX" secondItem="YXf-bh-6To" secondAttribute="centerX" id="2ic-H4-Yr7"/>
                                             <constraint firstAttribute="trailing" secondItem="6WQ-j0-DSm" secondAttribute="trailing" constant="8" id="2nQ-Em-lAD"/>
                                             <constraint firstItem="YY7-Ep-nyM" firstAttribute="top" secondItem="z9y-Cw-GhC" secondAttribute="bottom" constant="16" id="3Bt-hl-u81"/>
                                             <constraint firstAttribute="trailing" secondItem="X8M-pc-XzF" secondAttribute="trailing" constant="8" id="3DW-aa-4o4"/>
@@ -1207,6 +1226,7 @@
                                             <constraint firstItem="awn-7A-q07" firstAttribute="top" secondItem="6WQ-j0-DSm" secondAttribute="bottom" constant="16" id="Eqd-YE-gX2"/>
                                             <constraint firstItem="2pV-1d-OrF" firstAttribute="leading" secondItem="YXf-bh-6To" secondAttribute="leading" constant="8" id="Gfu-Q7-gzF"/>
                                             <constraint firstAttribute="trailing" secondItem="xOV-rQ-NET" secondAttribute="trailing" constant="8" id="Hwf-YX-2yZ"/>
+                                            <constraint firstItem="c7W-TU-sOi" firstAttribute="top" secondItem="D88-VF-gJs" secondAttribute="bottom" constant="30" id="JMW-hQ-xeM"/>
                                             <constraint firstAttribute="trailing" secondItem="z9y-Cw-GhC" secondAttribute="trailing" constant="8" id="JZZ-lE-3bt"/>
                                             <constraint firstAttribute="trailing" secondItem="a0D-2t-Ko9" secondAttribute="trailing" constant="8" id="K7p-AP-66R"/>
                                             <constraint firstItem="7dA-pR-MlX" firstAttribute="top" secondItem="awn-7A-q07" secondAttribute="bottom" constant="16" id="KHB-aT-3R6"/>
@@ -1218,12 +1238,13 @@
                                             <constraint firstItem="D88-VF-gJs" firstAttribute="top" secondItem="xOV-rQ-NET" secondAttribute="bottom" constant="16" id="S5i-vv-tfa"/>
                                             <constraint firstItem="xOV-rQ-NET" firstAttribute="leading" secondItem="YXf-bh-6To" secondAttribute="leading" constant="8" id="Sjl-De-rWl"/>
                                             <constraint firstAttribute="trailing" secondItem="lhy-Gk-HyN" secondAttribute="trailing" constant="8" id="V6g-hB-xYa"/>
+                                            <constraint firstItem="TkO-Ia-wCi" firstAttribute="top" secondItem="c7W-TU-sOi" secondAttribute="bottom" constant="8" id="V8c-em-i9K"/>
                                             <constraint firstAttribute="trailing" secondItem="D88-VF-gJs" secondAttribute="trailing" constant="8" id="VYO-Kr-v5j"/>
                                             <constraint firstItem="MWp-VM-igE" firstAttribute="leading" secondItem="YXf-bh-6To" secondAttribute="leading" constant="8" id="Vcp-is-aP1"/>
                                             <constraint firstItem="X8M-pc-XzF" firstAttribute="leading" secondItem="YXf-bh-6To" secondAttribute="leading" constant="8" id="Xek-XA-7Eu"/>
                                             <constraint firstAttribute="trailing" secondItem="ktd-76-AVp" secondAttribute="trailing" constant="8" id="XmB-US-lbT"/>
                                             <constraint firstAttribute="trailing" secondItem="2pV-1d-OrF" secondAttribute="trailing" constant="8" id="Y3H-fx-Yle"/>
-                                            <constraint firstAttribute="height" constant="1398" id="ZHt-g2-Kpe"/>
+                                            <constraint firstAttribute="height" constant="1598" id="ZHt-g2-Kpe"/>
                                             <constraint firstAttribute="trailing" secondItem="YY7-Ep-nyM" secondAttribute="trailing" constant="8" id="aGU-VH-r36"/>
                                             <constraint firstItem="z9y-Cw-GhC" firstAttribute="leading" secondItem="YXf-bh-6To" secondAttribute="leading" constant="8" id="bhX-Ws-YiB"/>
                                             <constraint firstAttribute="trailing" secondItem="7dA-pR-MlX" secondAttribute="trailing" constant="8" id="cmC-g5-Mag"/>
@@ -1234,10 +1255,12 @@
                                             <constraint firstItem="tpK-n3-eJ0" firstAttribute="top" secondItem="MWp-VM-igE" secondAttribute="bottom" constant="16" id="gcc-Zk-Oxo"/>
                                             <constraint firstItem="xOV-rQ-NET" firstAttribute="top" secondItem="tpK-n3-eJ0" secondAttribute="bottom" constant="16" id="gfA-ae-qVl"/>
                                             <constraint firstItem="a0D-2t-Ko9" firstAttribute="leading" secondItem="YXf-bh-6To" secondAttribute="leading" constant="8" id="iBe-Jf-mvN"/>
+                                            <constraint firstAttribute="trailing" secondItem="c7W-TU-sOi" secondAttribute="trailing" constant="8" id="j7b-B3-9Gl"/>
                                             <constraint firstItem="6WQ-j0-DSm" firstAttribute="leading" secondItem="YXf-bh-6To" secondAttribute="leading" constant="8" id="rMe-TP-435"/>
                                             <constraint firstItem="tpK-n3-eJ0" firstAttribute="leading" secondItem="YXf-bh-6To" secondAttribute="leading" constant="8" id="sHb-np-jOc"/>
                                             <constraint firstItem="a0D-2t-Ko9" firstAttribute="top" secondItem="YY7-Ep-nyM" secondAttribute="bottom" constant="16" id="t3F-Nb-wiu"/>
                                             <constraint firstItem="2pV-1d-OrF" firstAttribute="top" secondItem="57o-sI-dTm" secondAttribute="bottom" constant="16" id="t4B-3A-sdy"/>
+                                            <constraint firstItem="c7W-TU-sOi" firstAttribute="leading" secondItem="YXf-bh-6To" secondAttribute="leading" constant="8" id="tKI-hv-hUC"/>
                                             <constraint firstItem="MWp-VM-igE" firstAttribute="top" secondItem="tbJ-6U-zHW" secondAttribute="bottom" constant="16" id="tLl-Mu-fWx"/>
                                             <constraint firstItem="JgW-6B-1bC" firstAttribute="leading" secondItem="YXf-bh-6To" secondAttribute="leading" constant="8" id="wwR-Mu-app"/>
                                             <constraint firstItem="ktd-76-AVp" firstAttribute="top" secondItem="lhy-Gk-HyN" secondAttribute="bottom" constant="16" id="xhJ-kq-E1b"/>
@@ -1264,8 +1287,10 @@
                         <viewLayoutGuide key="safeArea" id="8p9-HK-VX4"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Associado" image="user" id="xTD-If-kRl"/>
-                    <size key="freeformSize" width="375" height="1467"/>
+                    <size key="freeformSize" width="375" height="1667"/>
                     <connections>
+                        <outlet property="BttnAdcComprovante" destination="c7W-TU-sOi" id="76G-DO-tH6"/>
+                        <outlet property="ImgViewComprovante" destination="TkO-Ia-wCi" id="vKW-Od-OQn"/>
                         <outlet property="bairroTxt" destination="8g9-oQ-Oeb" id="101-o7-Lfo"/>
                         <outlet property="celTxt" destination="rqa-bZ-AoE" id="Kes-Uv-TjH"/>
                         <outlet property="cepTxt" destination="KAT-cO-CFQ" id="WBG-35-LdW"/>

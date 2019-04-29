@@ -331,16 +331,19 @@ class FipeVC: UIViewController {
             tabelaid = 2
         }
         if tabelaApi! == "MOTO"{
-            tabelaid = 3
-        }
-        if tabelaApi! == "TABELA ESPECIAL 4" {
             tabelaid = 4
         }
-        if tabelaApi! == "TABELA ESPECIAL 5" {
+        if tabelaApi! == "TABELA ESPECIAL 4" {
             tabelaid = 5
         }
-        if tabelaApi! == "TABELA ESPECIAL 6" {
+        if tabelaApi! == "TABELA ESPECIAL 5" {
             tabelaid = 6
+        }
+        if tabelaApi! == "TABELA ESPECIAL 6" {
+            tabelaid = 7
+        }
+        if tabelaApi! == "Não fazemos esse modelo" {
+            tabelaid = 20
         }
         
         return tabelaid

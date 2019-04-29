@@ -104,9 +104,7 @@ class TablePagamentosVC: UIViewController, UITableViewDelegate, UITableViewDataS
                     pag.valor = dictionary["valor"] as? String ?? ""
                     
                     self.listaPagamentos.append(pag)
-                    
                 }
-                
                 
                 KRProgressHUD.dismiss()
                 

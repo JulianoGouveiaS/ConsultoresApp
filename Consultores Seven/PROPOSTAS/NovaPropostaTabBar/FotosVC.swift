@@ -516,16 +516,12 @@ class FotosVC: UIViewController,EPSignatureDelegate {
                 if dictionary?["cep"] as? String == ""{
                     self.CriarAlertaSemErro(tituloAlerta: "Opa", mensagemAlerta: "Você precisa preencher e salvar todos os campos!", acaoAlerta: "Ok")
                 }else
-                if dictionary?["cidade"] as? String == ""{
-                    self.CriarAlertaSemErro(tituloAlerta: "Opa", mensagemAlerta: "Você precisa preencher e salvar todos os campos!", acaoAlerta: "Ok")
+                  if dictionary?["logradouro"] as? String == ""{
+                        if dictionary?["comprovante"] as? Bool == false{
+                            self.CriarAlertaSemErro(tituloAlerta: "Opa", mensagemAlerta: "Voce precisa anexar um comprovante de residencia!", acaoAlerta: "Ok")
+                        }
                 }else
                 if dictionary?["uf"] as? String == ""{
-                    self.CriarAlertaSemErro(tituloAlerta: "Opa", mensagemAlerta: "Você precisa preencher e salvar todos os campos!", acaoAlerta: "Ok")
-                }else
-                if dictionary?["bairro"] as? String == ""{
-                    self.CriarAlertaSemErro(tituloAlerta: "Opa", mensagemAlerta: "Você precisa preencher e salvar todos os campos!", acaoAlerta: "Ok")
-                }else
-                if dictionary?["logradouro"] as? String == ""{
                     self.CriarAlertaSemErro(tituloAlerta: "Opa", mensagemAlerta: "Você precisa preencher e salvar todos os campos!", acaoAlerta: "Ok")
                 }else
                 if dictionary?["num_residencia"] as? String == ""{

@@ -305,12 +305,6 @@ class CriarVisitaVC: UIViewController, UITextFieldDelegate{
         }else if self.cidadeTxt.text == ""{
             self.CriarAlertaSemErro(tituloAlerta: "Ops!", mensagemAlerta: "Preencha sua cidade!", acaoAlerta: "OK")
             return false
-        }else if self.bairroTxt.text == ""{
-            self.CriarAlertaSemErro(tituloAlerta: "Ops!", mensagemAlerta: "Preencha seu bairro!", acaoAlerta: "OK")
-            return false
-        }else if self.logradouroTxt.text == ""{
-            self.CriarAlertaSemErro(tituloAlerta: "Ops!", mensagemAlerta: "Preencha seu logradouro!", acaoAlerta: "OK")
-            return false
         }else if self.numeroTxt.text == ""{
             self.CriarAlertaSemErro(tituloAlerta: "Ops!", mensagemAlerta: "Preencha seu número!", acaoAlerta: "OK")
             return false

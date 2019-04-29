@@ -4,7 +4,8 @@
 //
 //  Created by Juliano Gouveia on 11/10/2018.
 //  Copyright © 2018 Juliano Gouveia. All rights reserved.
-//
+
+//0330256   2005
 
 import UIKit
 import KRProgressHUD
@@ -316,7 +317,7 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
                     }else if self.pctprem30 == true{
                         handleValorAdicional(adicionar: false, valor: 69.90)
                     }
-                } else if self.idTabela == "5" || self.idTabela == "6" {
+                } else if self.idTabela == "6" || self.idTabela == "7" {
                     if pctprem15 == true{
                         handleValorAdicional(adicionar: false, valor: 54.90)
                     }else if self.pctprem30 == true{
@@ -340,7 +341,7 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
             if self.idTabela != "0"{
                 if self.idTabela == "1" || self.idTabela == "2"{
                     handleValorAdicional(adicionar: true, valor: 39.90)
-                } else if self.idTabela == "5" || self.idTabela == "6" {
+                } else if self.idTabela == "6" || self.idTabela == "7" {
                     handleValorAdicional(adicionar: true, valor: 54.90)
                 }
             }
@@ -353,7 +354,7 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
                 if self.idTabela != "0"{
                     if self.idTabela == "1" || self.idTabela == "2"{
                         handleValorAdicional(adicionar: false, valor: 39.90)
-                    } else if self.idTabela == "5" || self.idTabela == "6" {
+                    } else if self.idTabela == "6" || self.idTabela == "7" {
                         handleValorAdicional(adicionar: false, valor: 54.90)
                     }
                 }
@@ -489,7 +490,7 @@ class AdesaoVC: UIViewController, UITextFieldDelegate {
             }
             self.carres15 = false
             self.carres30 = false
-            
+        
         case 1:
             if self.carres30 == true{
                 if self.idTabela != "0"{

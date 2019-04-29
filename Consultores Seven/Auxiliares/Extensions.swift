@@ -359,7 +359,7 @@ extension UIViewController {
         }
     }
     
-    func enviaComprovanteStorage(nomeImg: String, imagem: UIImage, id_user: String, idVisita: String){
+    func enviaComprovanteStorage(nomeImg: String, imagem: UIImage, id_user: String, idProposta: String){
         
         
         let armazenamento = Storage.storage().reference()
@@ -376,7 +376,7 @@ extension UIViewController {
                         print(error)
                         KRProgressHUD.dismiss()
                     }else {
-                        self.enviaUrlComprovanteDatabase(nomeImg: nomeImg, url: url!, id_user: id_user, idVisita: idVisita)
+                        self.enviaUrlComprovanteDatabase(nomeImg: nomeImg, url: url!, id_user: id_user, idProposta: idProposta)
                     }
                 }
             }else{
@@ -386,9 +386,9 @@ extension UIViewController {
         })
     }
     
-    func enviaUrlComprovanteDatabase(nomeImg: String, url: URL, id_user: String, idVisita: String){
+    func enviaUrlComprovanteDatabase(nomeImg: String, url: URL, id_user: String, idProposta: String){
         let db = Firestore.firestore()
-        let usersReference = db.collection("ConsultorSeven").document("FotosPropostas").collection("\(id_user)").document("\(idVisita)")
+        let usersReference = db.collection("ConsultorSeven").document("FotosPropostas").collection("\(id_user)").document("\(idProposta)")
         
         var values = ["\(nomeImg)": "\(url)"] as [String : Any]
         
@@ -405,7 +405,6 @@ extension UIViewController {
     }
     
     func enviaFotoStorage(nomeImg: String, imagem: UIImage, id_user: String, proposta: Proposta){
-  
         
         let armazenamento = Storage.storage().reference()
         let timestampValue = Date().millisecondsSince1970

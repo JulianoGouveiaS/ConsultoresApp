@@ -34,7 +34,22 @@ class SuperiorMoto: UIViewController, UICollectionViewDataSource, UICollectionVi
           getPermissao(id_user: "\(self.id_user!)", propostaEscolhida: self.propostaEscolhida)
     }
     
-    
+    func getPermissao(id_user:String, propostaEscolhida: Proposta){
+        let db = Firestore.firestore()
+        db.collection("ConsultorSeven").document("MinhasPropostas").collection("\(id_user)").document("\(propostaEscolhida.id!)").addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                let dictionary = querySnapshot?.data()
+                
+                Config.Camera.recordLocation = true
+                print(dictionary?["status_permissao"] as? String ?? "")
+                self.permissao = dictionary?["status_permissao"] as? String ?? ""
+            }
+            KRProgressHUD.dismiss()
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -204,20 +219,5 @@ class SuperiorMoto: UIViewController, UICollectionViewDataSource, UICollectionVi
         controller.dismiss(animated: true, completion: nil)
     }
     
-    func getPermissao(id_user:String, propostaEscolhida: Proposta){
-        let db = Firestore.firestore()
-        db.collection("ConsultorSeven").document("MinhasPropostas").collection("\(id_user)").document("\(propostaEscolhida.id!)").addSnapshotListener { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                
-                let dictionary = querySnapshot?.data()
-                
-                Config.Camera.recordLocation = true
-                print(dictionary?["status_permissao"] as? String ?? "")
-                self.permissao = dictionary?["status_permissao"] as? String ?? ""
-            }
-            KRProgressHUD.dismiss()
-        }
-    }
+   
 }

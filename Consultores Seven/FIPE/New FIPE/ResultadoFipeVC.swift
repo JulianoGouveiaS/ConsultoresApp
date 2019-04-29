@@ -69,7 +69,7 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
             self.valor_mesLbl.text = "Não fazemos esse modelo"
             self.tokenView.isUserInteractionEnabled = false
             tokenView.promptText = ""
-            tokenView.placeholder = "Adicionais indisponíveis para esta FIPE"
+            tokenView.placeholder = "Adicionais indisponíveis."
         }else{
             self.franquiaLbl.text = self.franquia
             self.valor_mesLbl.text = "\(Double(self.valor_mes.replace(target: ",", withString: "."))!)"
@@ -92,14 +92,14 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
                 AdicionaValor(valor: 15.00)
                 
             case "Coparticipação Reduzida":
-                if self.id_tabela != 5 && self.id_tabela != 6{
+                if self.id_tabela != 6 && self.id_tabela != 7{
                     AdicionaValor(valor: 15.00)
                 }else{
                     AdicionaValor(valor: 30.00)
                 }
                 
             case "Proteção de Vidros 80%":
-                if self.id_tabela != 3{
+                if self.id_tabela != 4{
                     AdicionaValor(valor: 15.00)
                 }
                 
@@ -107,22 +107,24 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
                 AdicionaValor(valor: 50.00)
                 
             case "Carro Reserva (15 dias)":
-                if self.id_tabela != 3{
+                if self.id_tabela != 4{
                     AdicionaValor(valor: 15.00)
                 }
                 
             case "Carro Reserva (30 dias)":
-                if self.id_tabela != 3{
+                if self.id_tabela != 4{
                     AdicionaValor(valor: 30.00)
                 }
                 
             case "Pct Premium (15 dias)":
-                if self.id_tabela != 3 && self.id_tabela != 5 && self.id_tabela != 6{
-                    AdicionaValor(valor: 39.00)
+                if self.id_tabela == 1 || self.id_tabela == 2 || self.id_tabela == 5{
+                    AdicionaValor(valor: 39.90)
+                }else if self.id_tabela == 6 || self.id_tabela == 7{
+                    AdicionaValor(valor: 54.90)
                 }
                 
             case "Pct Premium (30 dias)":
-                if self.id_tabela != 3 {
+                if self.id_tabela != 4 {
                     AdicionaValor(valor: 69.00)
                 }
                 
@@ -159,14 +161,14 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
                 SubtraiValor(valor: 15.00)
                 
             case "Coparticipação Reduzida":
-                if self.id_tabela != 5 && self.id_tabela != 6{
+                if self.id_tabela != 6 && self.id_tabela != 7{
                     SubtraiValor(valor: 15.00)
                 }else{
                     SubtraiValor(valor: 30.00)
                 }
                 
             case "Proteção de Vidros 80%":
-                if self.id_tabela != 3{
+                if self.id_tabela != 4{
                     SubtraiValor(valor: 15.00)
                 }
                 
@@ -174,22 +176,24 @@ class ResultadoFipeVC: UIViewController, KSTokenViewDelegate {
                 SubtraiValor(valor: 50.00)
                 
             case "Carro Reserva (15 dias)":
-                if self.id_tabela != 3{
+                if self.id_tabela != 4{
                     SubtraiValor(valor: 15.00)
                 }
                 
             case "Carro Reserva (30 dias)":
-                if self.id_tabela != 3{
+                if self.id_tabela != 4{
                     SubtraiValor(valor: 30.00)
                 }
                 
             case "Pct Premium (15 dias)":
-                if self.id_tabela != 3 && self.id_tabela != 5 && self.id_tabela != 6{
-                    SubtraiValor(valor: 39.00)
+                if self.id_tabela == 1 || self.id_tabela == 2 || self.id_tabela == 5{
+                    SubtraiValor(valor: 39.90)
+                }else if self.id_tabela == 6 || self.id_tabela == 7{
+                    SubtraiValor(valor: 54.90)
                 }
                 
             case "Pct Premium (30 dias)":
-                if self.id_tabela != 3 {
+                if self.id_tabela != 4 {
                     SubtraiValor(valor: 69.00)
                 }
                 
